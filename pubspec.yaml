@@ -1,0 +1,25 @@
+name: proxy_messages
+version: 0.0.1
+
+description: >
+  Proxy messages library for Dart.
+author: Chenna Reddy <chenna@alavala.in>
+homepage: http://github.com/yagnyam-in/proxy-messages-dart
+
+environment:
+ sdk: '>=2.0.0-dev.62.0 <3.0.0'
+
+dependencies:
+  proxy_core:
+   path: ../proxy-core-dart
+   # git: git://github.com/yagnyam-in/proxy-core-dart.git
+  json_annotation: ^2.0.0
+  quiver: '>=2.0.0 <3.0.0'
+  http: ^0.12.0
+  logging: ^0.11.3+2
+
+dev_dependencies:
+  build_runner: ^1.0.0
+  json_serializable: ^2.0.0
+  test: '>=0.12.42 <2.0.0'
+  mockito: ^4.0.0
