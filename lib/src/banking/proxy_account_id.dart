@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 
 part 'proxy_account_id.g.dart';
@@ -12,9 +13,9 @@ class ProxyAccountId extends ProxyBaseObject with ProxyUtils {
   @JsonKey(nullable: false)
   final String bankId;
 
-  ProxyAccountId(this.accountId, [this.bankId = null])
+  ProxyAccountId({@required this.accountId, @required String bankId})
       : assert(isNotEmpty(accountId)),
-        assert(isNotEmpty(bankId));
+        assert(isNotEmpty(bankId)), this.bankId = bankId;
 
   @override
   bool operator ==(dynamic other) {

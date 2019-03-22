@@ -54,5 +54,8 @@ class ProxyWalletCreationResponse extends SignableMessage with ProxyUtils {
   factory ProxyWalletCreationResponse.fromJson(Map<String, dynamic> json) =>
       _$ProxyWalletCreationResponseFromJson(json);
 
+  static ProxyWalletCreationResponse staticFromJson(Map<String, dynamic> json) =>
+      ProxyWalletCreationResponse.fromJson(json);
+
   Map<String, dynamic> toJson() => _$ProxyWalletCreationResponseToJson(this);
 }

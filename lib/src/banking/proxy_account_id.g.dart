@@ -7,7 +7,8 @@ part of 'proxy_account_id.dart';
 // **************************************************************************
 
 ProxyAccountId _$ProxyAccountIdFromJson(Map<String, dynamic> json) {
-  return ProxyAccountId(json['accountId'] as String, json['bankId'] as String);
+  return ProxyAccountId(
+      accountId: json['accountId'] as String, bankId: json['bankId'] as String);
 }
 
 Map<String, dynamic> _$ProxyAccountIdToJson(ProxyAccountId instance) =>

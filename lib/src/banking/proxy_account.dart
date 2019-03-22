@@ -7,7 +7,6 @@ part 'proxy_account.g.dart';
 
 @JsonSerializable()
 class ProxyAccount extends SignableMessage with ProxyUtils {
-
   @JsonKey(nullable: false)
   final ProxyAccountId proxyAccountId;
 
@@ -29,8 +28,14 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final Amount maximumAmountPerTransaction;
 
-  ProxyAccount({@required this.proxyAccountId,
-    @required this.proxyId, @required this.currency, @required this.creationDate, @required this.expiryDate, @required this.maximumAmountPerTransaction,});
+  ProxyAccount({
+    @required this.proxyAccountId,
+    @required this.proxyId,
+    @required this.currency,
+    @required this.creationDate,
+    @required this.expiryDate,
+    @required this.maximumAmountPerTransaction,
+  });
 
   @override
   ProxyId getSigner() {
@@ -44,13 +49,15 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return proxyAccountId != null
-        && proxyAccountId.isValid()
-        && proxyId != null && proxyId.isValid()
-        && isValidDateTime(creationDate)
-        && isValidDateTime(expiryDate)
-        && Currency.isValidCurrency(currency)
-        && maximumAmountPerTransaction != null && maximumAmountPerTransaction.isValid();
+    return proxyAccountId != null &&
+        proxyAccountId.isValid() &&
+        proxyId != null &&
+        proxyId.isValid() &&
+        isValidDateTime(creationDate) &&
+        isValidDateTime(expiryDate) &&
+        Currency.isValidCurrency(currency) &&
+        maximumAmountPerTransaction != null &&
+        maximumAmountPerTransaction.isValid();
   }
 
   String get bankId {

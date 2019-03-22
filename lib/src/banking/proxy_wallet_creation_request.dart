@@ -69,5 +69,7 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
 
   factory ProxyWalletCreationRequest.fromJson(Map<String, dynamic> json) => _$ProxyWalletCreationRequestFromJson(json);
 
+  static ProxyWalletCreationRequest staticFromJson(Map<String, dynamic> json) => ProxyWalletCreationRequest.fromJson(json);
+
   Map<String, dynamic> toJson() => _$ProxyWalletCreationRequestToJson(this);
 }
