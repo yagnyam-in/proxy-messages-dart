@@ -6,7 +6,6 @@ part 'proxy_account_id.g.dart';
 
 @JsonSerializable()
 class ProxyAccountId extends ProxyBaseObject with ProxyUtils {
-
   @JsonKey(nullable: false)
   final String accountId;
 
@@ -15,7 +14,8 @@ class ProxyAccountId extends ProxyBaseObject with ProxyUtils {
 
   ProxyAccountId({@required this.accountId, @required String bankId})
       : assert(isNotEmpty(accountId)),
-        assert(isNotEmpty(bankId)), this.bankId = bankId;
+        assert(isNotEmpty(bankId)),
+        this.bankId = bankId;
 
   @override
   bool operator ==(dynamic other) {
@@ -33,6 +33,12 @@ class ProxyAccountId extends ProxyBaseObject with ProxyUtils {
   @override
   bool isValid() {
     return isValidId(accountId) && isValidId(bankId);
+  }
+
+  @override
+  void assertValid() {
+    assert(isValidId(accountId), "Invalid accountId $accountId");
+    assert(isValidId(bankId), "Invalid bankId $bankId");
   }
 
   static bool isValidId(String id) {

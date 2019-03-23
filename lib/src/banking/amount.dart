@@ -21,6 +21,13 @@ class Amount extends ProxyBaseObject with ProxyUtils {
     return Currency.isValidCurrency(currency) && value != null;
   }
 
+
+  @override
+  void assertValid() {
+    assert(Currency.isValidCurrency(currency));
+    assert(value != null);
+  }
+
   Amount add(Amount amount) {
     if (currency != amount.currency) {
       throw ArgumentError("Currencies " + currency + ", " + amount.currency + " are not same");

@@ -35,7 +35,9 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
     @required this.creationDate,
     @required this.expiryDate,
     @required this.maximumAmountPerTransaction,
-  });
+  }) {
+    assertValid();
+  }
 
   @override
   ProxyId getSigner() {
@@ -60,13 +62,30 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
         maximumAmountPerTransaction.isValid();
   }
 
+  @override
+  void assertValid() {
+    assert(proxyAccountId != null);
+    proxyAccountId.assertValid();
+    assert(proxyId != null);
+    proxyId.assertValid();
+    assert(isValidDateTime(creationDate));
+    assert(isValidDateTime(expiryDate));
+    assert(Currency.isValidCurrency(currency));
+    assert(maximumAmountPerTransaction != null);
+    assert(maximumAmountPerTransaction.isValid());
+  }
+
   String get bankId {
     return proxyAccountId != null ? proxyAccountId.bankId : null;
   }
 
-  factory ProxyAccount.fromJson(Map<String, dynamic> json) => _$ProxyAccountFromJson(json);
+  static ProxyAccount fromJson(Map<String, dynamic> json) => _$ProxyAccountFromJson(json);
 
-  static ProxyAccount build(Map<String, dynamic> json, MessageBuilder messageBuilder) => ProxyAccount.fromJson(json);
+  static SignedMessage<ProxyAccount> signedMessageFromJson(Map<String, dynamic> json) {
+    SignedMessage<ProxyAccount> signedMessage = SignedMessage.fromJson<ProxyAccount>(json);
+    signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
+    return signedMessage;
+  }
 
   Map<String, dynamic> toJson() => _$ProxyAccountToJson(this);
 

@@ -36,10 +36,9 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
     @required this.proxyId,
     @required this.bankId,
     @required this.currency,
-  })  : assert(isNotEmpty(requestId)),
-        assert(isValidProxyId(proxyId)),
-        assert(isValidProxyId(bankId)),
-        assert(Currency.isValidCurrency(currency));
+  })  {
+    assertValid();
+  }
 
   @override
   bool isValid() {
@@ -47,6 +46,14 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
         isValidProxyId(proxyId) &&
         isValidProxyId(bankId) &&
         Currency.isValidCurrency(currency);
+  }
+
+  @override
+  void assertValid() {
+    assert(isNotEmpty(requestId));
+    proxyId.assertValid();
+    bankId.assertValid();
+    assert(Currency.isValidCurrency(currency));
   }
 
   @override
@@ -67,13 +74,13 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
     return null;
   }
 
-  factory ProxyWalletCreationRequest.fromJson(Map<String, dynamic> json) => _$ProxyWalletCreationRequestFromJson(json);
+  static ProxyWalletCreationRequest fromJson(Map<String, dynamic> json) => _$ProxyWalletCreationRequestFromJson(json);
 
-  static ProxyWalletCreationRequest build(
-    Map<String, dynamic> json,
-    MessageBuilder messageBuilder,
-  ) =>
-      ProxyWalletCreationRequest.fromJson(json);
+  static SignedMessage<ProxyWalletCreationRequest> signedMessageFromJson(Map<String, dynamic> json) {
+    SignedMessage<ProxyWalletCreationRequest> signedMessage = SignedMessage.fromJson<ProxyWalletCreationRequest>(json);
+    signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
+    return signedMessage;
+  }
 
   Map<String, dynamic> toJson() => _$ProxyWalletCreationRequestToJson(this);
 }
