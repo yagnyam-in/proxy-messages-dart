@@ -66,6 +66,8 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
 
   factory ProxyAccount.fromJson(Map<String, dynamic> json) => _$ProxyAccountFromJson(json);
 
+  static ProxyAccount build(Map<String, dynamic> json, MessageBuilder messageBuilder) => ProxyAccount.fromJson(json);
+
   Map<String, dynamic> toJson() => _$ProxyAccountToJson(this);
 
   @override

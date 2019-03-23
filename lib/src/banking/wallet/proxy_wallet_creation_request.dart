@@ -60,7 +60,7 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.banking.ProxyWalletCreationRequest";
+  String get messageType => "in.yagnyam.proxy.messages.banking.wallet.ProxyWalletCreationRequest";
 
   @override
   String toReadableString() {
@@ -69,7 +69,11 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
 
   factory ProxyWalletCreationRequest.fromJson(Map<String, dynamic> json) => _$ProxyWalletCreationRequestFromJson(json);
 
-  static ProxyWalletCreationRequest staticFromJson(Map<String, dynamic> json) => ProxyWalletCreationRequest.fromJson(json);
+  static ProxyWalletCreationRequest build(
+    Map<String, dynamic> json,
+    MessageBuilder messageBuilder,
+  ) =>
+      ProxyWalletCreationRequest.fromJson(json);
 
   Map<String, dynamic> toJson() => _$ProxyWalletCreationRequestToJson(this);
 }

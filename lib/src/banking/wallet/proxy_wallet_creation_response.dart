@@ -3,8 +3,6 @@ import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/banking.dart';
 
-part 'proxy_wallet_creation_response.g.dart';
-
 @JsonSerializable()
 class ProxyWalletCreationResponse extends SignableMessage with ProxyUtils {
   /**
@@ -23,8 +21,7 @@ class ProxyWalletCreationResponse extends SignableMessage with ProxyUtils {
     @required this.request,
     @required this.proxyAccount,
   })  : assert(isValidProxyObject(request)),
-        assert(isValidProxyObject(proxyAccount)),
-        assert(proxyAccount.signedBy.canSignOnBehalfOf(request.message.bankId));
+        assert(isValidProxyObject(proxyAccount));
 
   @override
   bool isValid() {
@@ -44,18 +41,18 @@ class ProxyWalletCreationResponse extends SignableMessage with ProxyUtils {
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.banking.ProxyWalletCreationResponse";
+  String get messageType => "in.yagnyam.proxy.messages.banking.wallet.ProxyWalletCreationResponse";
 
   @override
   String toReadableString() {
     return null;
   }
 
-  factory ProxyWalletCreationResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProxyWalletCreationResponseFromJson(json);
+  static ProxyWalletCreationResponse build(Map<String, dynamic> json, MessageBuilder messageBuilder) =>
+      ProxyWalletCreationResponse(
+        request: messageBuilder.buildSignedMessage(json['request'], ProxyWalletCreationRequest.build),
+        proxyAccount: messageBuilder.buildSignedMessage(json['proxyAccount'], ProxyAccount.build),
+      );
 
-  static ProxyWalletCreationResponse staticFromJson(Map<String, dynamic> json) =>
-      ProxyWalletCreationResponse.fromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProxyWalletCreationResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{'request': request, 'proxyAccount': proxyAccount};
 }
