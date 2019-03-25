@@ -21,11 +21,15 @@ class Amount extends ProxyBaseObject with ProxyUtils {
     return Currency.isValidCurrency(currency) && value != null;
   }
 
-
   @override
   void assertValid() {
     assert(Currency.isValidCurrency(currency));
     assert(value != null);
+  }
+
+  @override
+  String toString() {
+    return "$currency $value";
   }
 
   Amount add(Amount amount) {
