@@ -6,3 +6,6 @@ export 'package:proxy_messages/src/banking/wallet/proxy_wallet_creation_request.
 export 'package:proxy_messages/src/banking/wallet/proxy_wallet_creation_response.dart';
 export 'package:proxy_messages/src/banking/deposit_link_request.dart';
 export 'package:proxy_messages/src/banking/deposit_link_response.dart';
+export 'package:proxy_messages/src/banking/account_balance_request.dart';
+export 'package:proxy_messages/src/banking/account_balance_response.dart';
+export 'package:proxy_messages/src/banking/account_updated_alert.dart';
