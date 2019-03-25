@@ -15,7 +15,7 @@ class AccountUpdatedAlert {
     @required this.alertId,
   });
 
-  factory AccountUpdatedAlert.fromJson(Map<String, dynamic> map) {
+  factory AccountUpdatedAlert.fromJson(Map<dynamic, dynamic> map) {
     ProxyAccountId proxyAccountId =
         ProxyAccountId(accountId: map['accountId'], bankId: map['bankId']);
     return AccountUpdatedAlert(
