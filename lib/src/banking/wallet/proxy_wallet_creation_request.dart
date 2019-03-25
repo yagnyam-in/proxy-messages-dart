@@ -74,6 +74,9 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
     return null;
   }
 
+  @override
+  Map<String, dynamic> toJson() => _$ProxyWalletCreationRequestToJson(this);
+
   static ProxyWalletCreationRequest fromJson(Map<String, dynamic> json) => _$ProxyWalletCreationRequestFromJson(json);
 
   static SignedMessage<ProxyWalletCreationRequest> signedMessageFromJson(Map<String, dynamic> json) {
@@ -82,5 +85,4 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
     return signedMessage;
   }
 
-  Map<String, dynamic> toJson() => _$ProxyWalletCreationRequestToJson(this);
 }

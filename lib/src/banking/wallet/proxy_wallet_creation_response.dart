@@ -47,7 +47,7 @@ class ProxyWalletCreationResponse extends SignableMessage with ProxyUtils {
 
   @override
   List<SignedMessage<SignableMessage>> getChildMessages() {
-    return [];
+    return [request, proxyAccount];
   }
 
   @override

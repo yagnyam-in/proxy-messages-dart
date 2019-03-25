@@ -11,7 +11,7 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
   final ProxyAccountId proxyAccountId;
 
   @JsonKey(nullable: false)
-  final ProxyId proxyId;
+  final ProxyId ownerProxyId;
 
   @JsonKey(nullable: false)
   final DateTime creationDate;
@@ -30,7 +30,7 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
 
   ProxyAccount({
     @required this.proxyAccountId,
-    @required this.proxyId,
+    @required this.ownerProxyId,
     @required this.currency,
     @required this.creationDate,
     @required this.expiryDate,
@@ -53,8 +53,8 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
   bool isValid() {
     return proxyAccountId != null &&
         proxyAccountId.isValid() &&
-        proxyId != null &&
-        proxyId.isValid() &&
+        ownerProxyId != null &&
+        ownerProxyId.isValid() &&
         isValidDateTime(creationDate) &&
         isValidDateTime(expiryDate) &&
         Currency.isValidCurrency(currency) &&
@@ -66,8 +66,8 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
   void assertValid() {
     assert(proxyAccountId != null);
     proxyAccountId.assertValid();
-    assert(proxyId != null);
-    proxyId.assertValid();
+    assert(ownerProxyId != null);
+    ownerProxyId.assertValid();
     assert(isValidDateTime(creationDate));
     assert(isValidDateTime(expiryDate));
     assert(Currency.isValidCurrency(currency));
