@@ -87,6 +87,7 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
     return signedMessage;
   }
 
+  @override
   Map<String, dynamic> toJson() => _$ProxyAccountToJson(this);
 
   @override

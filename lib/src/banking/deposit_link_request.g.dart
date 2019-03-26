@@ -35,12 +35,21 @@ DepositLinkRequest _$DepositLinkRequestFromJson(Map<String, dynamic> json) {
               json['requestingCustomer'] as Map<String, dynamic>));
 }
 
-Map<String, dynamic> _$DepositLinkRequestToJson(DepositLinkRequest instance) =>
-    <String, dynamic>{
-      'requestId': instance.requestId,
-      'proxyAccount': instance.proxyAccount,
-      'accountName': instance.accountName,
-      'amount': instance.amount,
-      'message': instance.message,
-      'requestingCustomer': instance.requestingCustomer
-    };
+Map<String, dynamic> _$DepositLinkRequestToJson(DepositLinkRequest instance) {
+  final val = <String, dynamic>{
+    'requestId': instance.requestId,
+    'proxyAccount': instance.proxyAccount,
+    'accountName': instance.accountName,
+    'amount': instance.amount,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('message', instance.message);
+  writeNotNull('requestingCustomer', instance.requestingCustomer);
+  return val;
+}

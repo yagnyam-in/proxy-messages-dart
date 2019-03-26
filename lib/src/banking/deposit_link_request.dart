@@ -51,8 +51,10 @@ class DepositLinkRequest extends SignableRequestMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final Amount amount;
 
+  @JsonKey(includeIfNull: false)
   final String message;
 
+  @JsonKey(includeIfNull: false)
   final _RequestingCustomer requestingCustomer;
 
   DepositLinkRequest({
