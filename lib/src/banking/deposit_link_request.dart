@@ -7,7 +7,7 @@ import 'package:proxy_messages/src/banking/proxy_account.dart';
 part 'deposit_link_request.g.dart';
 
 @JsonSerializable()
-class _RequestingCustomer extends ProxyBaseObject with ProxyUtils {
+class RequestingCustomer extends ProxyBaseObject with ProxyUtils {
   @JsonKey(nullable: false)
   final String name;
 
@@ -17,7 +17,7 @@ class _RequestingCustomer extends ProxyBaseObject with ProxyUtils {
   @JsonKey(nullable: false)
   final String email;
 
-  _RequestingCustomer({@required this.name, @required this.phone, @required this.email});
+  RequestingCustomer({@required this.name, @required this.phone, @required this.email});
 
   @override
   void assertValid() {
@@ -31,9 +31,9 @@ class _RequestingCustomer extends ProxyBaseObject with ProxyUtils {
     return isNotEmpty(name) && isNotEmpty(phone) && isNotEmpty(email);
   }
 
-  Map<String, dynamic> toJson() => _$_RequestingCustomerToJson(this);
+  Map<String, dynamic> toJson() => _$RequestingCustomerToJson(this);
 
-  factory _RequestingCustomer.fromJson(Map<String, dynamic> json) => _$_RequestingCustomerFromJson(json);
+  factory RequestingCustomer.fromJson(Map<String, dynamic> json) => _$RequestingCustomerFromJson(json);
 
 }
 
@@ -55,7 +55,7 @@ class DepositLinkRequest extends SignableRequestMessage with ProxyUtils {
   final String message;
 
   @JsonKey(includeIfNull: false)
-  final _RequestingCustomer requestingCustomer;
+  final RequestingCustomer requestingCustomer;
 
   DepositLinkRequest({
     @required this.requestId,

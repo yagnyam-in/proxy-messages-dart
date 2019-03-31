@@ -6,15 +6,14 @@ part of 'deposit_link_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_RequestingCustomer _$_RequestingCustomerFromJson(Map<String, dynamic> json) {
-  return _RequestingCustomer(
+RequestingCustomer _$RequestingCustomerFromJson(Map<String, dynamic> json) {
+  return RequestingCustomer(
       name: json['name'] as String,
       phone: json['phone'] as String,
       email: json['email'] as String);
 }
 
-Map<String, dynamic> _$_RequestingCustomerToJson(
-        _RequestingCustomer instance) =>
+Map<String, dynamic> _$RequestingCustomerToJson(RequestingCustomer instance) =>
     <String, dynamic>{
       'name': instance.name,
       'phone': instance.phone,
@@ -31,7 +30,7 @@ DepositLinkRequest _$DepositLinkRequestFromJson(Map<String, dynamic> json) {
       message: json['message'] as String,
       requestingCustomer: json['requestingCustomer'] == null
           ? null
-          : _RequestingCustomer.fromJson(
+          : RequestingCustomer.fromJson(
               json['requestingCustomer'] as Map<String, dynamic>));
 }
 
