@@ -37,12 +37,33 @@ class NonProxyAccount extends ProxyBaseObject with ProxyUtils {
   @JsonKey(includeIfNull: false)
   final String ifscCode;
 
+  /**
+   * Sometimes, it is mandatory withdraw money to specify Email
+   */
+  @JsonKey(includeIfNull: false)
+  final String email;
+
+  /**
+   * Sometimes, it is mandatory withdraw money to specify Phone
+   */
+  @JsonKey(includeIfNull: false)
+  final String phone;
+
+  /**
+   * Sometimes, it is mandatory withdraw money to specify Address
+   */
+  @JsonKey(includeIfNull: false)
+  final String address;
+
   NonProxyAccount({
     @required this.bank,
     @required this.accountNumber,
     @required this.accountHolder,
     @required this.currency,
     this.ifscCode,
+    this.email,
+    this.phone,
+    this.address,
   });
 
   @override
@@ -56,6 +77,9 @@ class NonProxyAccount extends ProxyBaseObject with ProxyUtils {
     assert(currency != null);
     assert(Currency.isValidCurrency(currency));
     assert(ifscCode == null || isNotEmpty(bank));
+    assert(email == null || isNotEmpty(email));
+    assert(phone == null || isNotEmpty(phone));
+    assert(address == null || isNotEmpty(address));
   }
 
   @override
@@ -68,8 +92,14 @@ class NonProxyAccount extends ProxyBaseObject with ProxyUtils {
         isNotEmpty(accountHolder) &&
         currency != null &&
         Currency.isValidCurrency(currency) &&
-        (ifscCode == null || isNotEmpty(ifscCode));
+        (ifscCode == null || isNotEmpty(ifscCode)) &&
+        (email == null || isNotEmpty(email)) &&
+        (phone == null || isNotEmpty(phone)) &&
+        (address == null || isNotEmpty(address));
   }
+
+  @override
+  String toString() => toJson().toString();
 
   Map<String, dynamic> toJson() => _$NonProxyAccountToJson(this);
 

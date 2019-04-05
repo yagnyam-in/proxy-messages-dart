@@ -36,7 +36,7 @@ class Withdrawal extends SignableRequestMessage with ProxyUtils {
     @required this.withdrawalId,
     @required this.proxyAccount,
     @required this.amount,
-    this.destinationAccount,
+    @required this.destinationAccount,
   }) {
     assertValid();
   }

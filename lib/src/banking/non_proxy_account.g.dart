@@ -12,7 +12,10 @@ NonProxyAccount _$NonProxyAccountFromJson(Map<String, dynamic> json) {
       accountNumber: json['accountNumber'] as String,
       accountHolder: json['accountHolder'] as String,
       currency: json['currency'] as String,
-      ifscCode: json['ifscCode'] as String);
+      ifscCode: json['ifscCode'] as String,
+      email: json['email'] as String,
+      phone: json['phone'] as String,
+      address: json['address'] as String);
 }
 
 Map<String, dynamic> _$NonProxyAccountToJson(NonProxyAccount instance) {
@@ -30,5 +33,8 @@ Map<String, dynamic> _$NonProxyAccountToJson(NonProxyAccount instance) {
   }
 
   writeNotNull('ifscCode', instance.ifscCode);
+  writeNotNull('email', instance.email);
+  writeNotNull('phone', instance.phone);
+  writeNotNull('address', instance.address);
   return val;
 }
