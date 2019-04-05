@@ -11,10 +11,10 @@ part 'withdrawal.g.dart';
 enum WithdrawalStatusEnum {
   Registered,
   Rejected,
-  Cancelled,
   InTransit,
   Completed,
-  Failed,
+  FailedInTransit,
+  FailedCompleted,
 }
 
 @JsonSerializable()

@@ -35,8 +35,8 @@ T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
 const _$WithdrawalStatusEnumEnumMap = <WithdrawalStatusEnum, dynamic>{
   WithdrawalStatusEnum.Registered: 'Registered',
   WithdrawalStatusEnum.Rejected: 'Rejected',
-  WithdrawalStatusEnum.Cancelled: 'Cancelled',
   WithdrawalStatusEnum.InTransit: 'InTransit',
   WithdrawalStatusEnum.Completed: 'Completed',
-  WithdrawalStatusEnum.Failed: 'Failed'
+  WithdrawalStatusEnum.FailedInTransit: 'FailedInTransit',
+  WithdrawalStatusEnum.FailedCompleted: 'FailedCompleted'
 };
