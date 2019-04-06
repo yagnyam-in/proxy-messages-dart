@@ -18,3 +18,4 @@ export 'package:proxy_messages/src/banking/account_updated_alert.dart';
 export 'package:proxy_messages/src/banking/withdrawal.dart';
 export 'package:proxy_messages/src/banking/withdrawal_status.dart';
 export 'package:proxy_messages/src/banking/withdrawal_status_request.dart';
+export 'package:proxy_messages/src/banking/withdrawal_updated_alert.dart';
