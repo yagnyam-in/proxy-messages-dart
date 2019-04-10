@@ -10,12 +10,18 @@ export 'package:proxy_messages/src/banking/wallet/proxy_wallet_creation_response
 export 'package:proxy_messages/src/banking/deposit_link_request.dart';
 export 'package:proxy_messages/src/banking/deposit_link_response.dart';
 
+// Account Balance
 export 'package:proxy_messages/src/banking/account_balance_request.dart';
 export 'package:proxy_messages/src/banking/account_balance_response.dart';
 
 export 'package:proxy_messages/src/banking/account_updated_alert.dart';
 
+// Withdrawal
+
 export 'package:proxy_messages/src/banking/withdrawal.dart';
-export 'package:proxy_messages/src/banking/withdrawal_status.dart';
+export 'package:proxy_messages/src/banking/withdrawal_response.dart';
+
 export 'package:proxy_messages/src/banking/withdrawal_status_request.dart';
+export 'package:proxy_messages/src/banking/withdrawal_status_response.dart';
+
 export 'package:proxy_messages/src/banking/withdrawal_updated_alert.dart';

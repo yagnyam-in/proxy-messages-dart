@@ -6,7 +6,10 @@ import 'package:proxy_messages/src/banking/withdrawal.dart';
 part 'withdrawal_status_request.g.dart';
 
 @JsonSerializable()
-class WithdrawalStatusRequest extends SignableMessage with ProxyUtils {
+class WithdrawalStatusRequest extends SignableRequestMessage with ProxyUtils {
+  @JsonKey(nullable: false)
+  final String requestId;
+
   /**
    * Original Request Message
    */
@@ -14,6 +17,7 @@ class WithdrawalStatusRequest extends SignableMessage with ProxyUtils {
   final SignedMessage<Withdrawal> request;
 
   WithdrawalStatusRequest({
+    @required this.requestId,
     @required this.request,
   }) {
     assertValid();
@@ -21,11 +25,13 @@ class WithdrawalStatusRequest extends SignableMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return isValidProxyObject(request);
+    return isNotEmpty(requestId) && isValidProxyObject(request);
   }
 
   @override
   void assertValid() {
+    assert(requestId != null);
+    assert(isNotEmpty(requestId));
     assert(request != null);
     request.assertValid();
   }
@@ -50,6 +56,7 @@ class WithdrawalStatusRequest extends SignableMessage with ProxyUtils {
 
   @override
   Map<String, dynamic> toJson() => _$WithdrawalStatusRequestToJson(this);
+
   static WithdrawalStatusRequest fromJson(Map<String, dynamic> json) => _$WithdrawalStatusRequestFromJson(json);
 
   static SignedMessage<WithdrawalStatusRequest> signedMessageFromJson(Map<String, dynamic> json) {
@@ -57,5 +64,4 @@ class WithdrawalStatusRequest extends SignableMessage with ProxyUtils {
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
-
 }

@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'withdrawal_status.dart';
+part of 'withdrawal_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-WithdrawalStatus _$WithdrawalStatusFromJson(Map<String, dynamic> json) {
-  return WithdrawalStatus(
+WithdrawalResponse _$WithdrawalResponseFromJson(Map<String, dynamic> json) {
+  return WithdrawalResponse(
       request: Withdrawal.signedMessageFromJson(
           json['request'] as Map<String, dynamic>),
       status: _$enumDecode(_$WithdrawalStatusEnumEnumMap, json['status']));
 }
 
-Map<String, dynamic> _$WithdrawalStatusToJson(WithdrawalStatus instance) =>
+Map<String, dynamic> _$WithdrawalResponseToJson(WithdrawalResponse instance) =>
     <String, dynamic>{
       'request': instance.request,
       'status': _$WithdrawalStatusEnumEnumMap[instance.status]

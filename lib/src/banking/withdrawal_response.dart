@@ -3,10 +3,10 @@ import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/src/banking/withdrawal.dart';
 
-part 'withdrawal_status.g.dart';
+part 'withdrawal_response.g.dart';
 
 @JsonSerializable()
-class WithdrawalStatus extends SignableMessage with ProxyUtils {
+class WithdrawalResponse extends SignableMessage with ProxyUtils {
   /**
    * Original Request Message
    */
@@ -14,12 +14,12 @@ class WithdrawalStatus extends SignableMessage with ProxyUtils {
   final SignedMessage<Withdrawal> request;
 
   /**
-   * Status of the request
+   * Status of the withdrawal
    */
   @JsonKey(nullable: false)
   final WithdrawalStatusEnum status;
 
-  WithdrawalStatus({
+  WithdrawalResponse({
     @required this.request,
     @required this.status,
   }) {
@@ -49,7 +49,7 @@ class WithdrawalStatus extends SignableMessage with ProxyUtils {
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.banking.WithdrawalStatus";
+  String get messageType => "in.yagnyam.proxy.messages.banking.WithdrawalResponse";
 
   @override
   String toReadableString() {
@@ -57,11 +57,11 @@ class WithdrawalStatus extends SignableMessage with ProxyUtils {
   }
 
   @override
-  Map<String, dynamic> toJson() => _$WithdrawalStatusToJson(this);
-  static WithdrawalStatus fromJson(Map<String, dynamic> json) => _$WithdrawalStatusFromJson(json);
+  Map<String, dynamic> toJson() => _$WithdrawalResponseToJson(this);
+  static WithdrawalResponse fromJson(Map<String, dynamic> json) => _$WithdrawalResponseFromJson(json);
 
-  static SignedMessage<WithdrawalStatus> signedMessageFromJson(Map<String, dynamic> json) {
-    SignedMessage<WithdrawalStatus> signed = SignedMessage.fromJson<WithdrawalStatus>(json);
+  static SignedMessage<WithdrawalResponse> signedMessageFromJson(Map<String, dynamic> json) {
+    SignedMessage<WithdrawalResponse> signed = SignedMessage.fromJson<WithdrawalResponse>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
