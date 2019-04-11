@@ -4,7 +4,15 @@ import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/src/banking/amount.dart';
 import 'package:proxy_messages/src/banking/proxy_account.dart';
 
-part 'deposit_link_request.g.dart';
+part 'deposit_request.g.dart';
+
+enum DepositStatusEnum {
+  Registered,
+  Rejected,
+  InProcess,
+  Completed,
+  Cancelled,
+}
 
 @JsonSerializable()
 class RequestingCustomer extends ProxyBaseObject with ProxyUtils {
@@ -38,9 +46,9 @@ class RequestingCustomer extends ProxyBaseObject with ProxyUtils {
 }
 
 @JsonSerializable()
-class DepositLinkRequest extends SignableRequestMessage with ProxyUtils {
+class DepositRequest extends SignableRequestMessage with ProxyUtils {
   @JsonKey(nullable: false)
-  final String requestId;
+  final String depositId;
 
   @JsonKey(nullable: false, fromJson: ProxyAccount.signedMessageFromJson)
   final SignedMessage<ProxyAccount> proxyAccount;
@@ -57,8 +65,8 @@ class DepositLinkRequest extends SignableRequestMessage with ProxyUtils {
   @JsonKey(includeIfNull: false)
   final RequestingCustomer requestingCustomer;
 
-  DepositLinkRequest({
-    @required this.requestId,
+  DepositRequest({
+    @required this.depositId,
     @required this.proxyAccount,
     @required this.accountName,
     @required this.amount,
@@ -70,7 +78,7 @@ class DepositLinkRequest extends SignableRequestMessage with ProxyUtils {
 
   @override
   void assertValid() {
-    assert(isNotEmpty(requestId));
+    assert(isNotEmpty(depositId));
     assert(proxyAccount != null);
     proxyAccount.assertValid();
     assert(isNotEmpty(accountName));
@@ -94,7 +102,7 @@ class DepositLinkRequest extends SignableRequestMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return isNotEmpty(requestId) &&
+    return isNotEmpty(depositId) &&
         proxyAccount != null &&
         proxyAccount.isValid() &&
         isNotEmpty(accountName) &&
@@ -104,7 +112,10 @@ class DepositLinkRequest extends SignableRequestMessage with ProxyUtils {
   }
 
   @override
-  String get messageType => 'in.yagnyam.proxy.messages.banking.DepositLinkRequest';
+  String get messageType => 'in.yagnyam.proxy.messages.banking.DepositRequest';
+
+  @override
+  String get requestId => depositId;
 
   @override
   String toReadableString() {
@@ -112,12 +123,12 @@ class DepositLinkRequest extends SignableRequestMessage with ProxyUtils {
   }
 
   @override
-  Map<String, dynamic> toJson() => _$DepositLinkRequestToJson(this);
+  Map<String, dynamic> toJson() => _$DepositRequestToJson(this);
 
-  static DepositLinkRequest fromJson(Map<String, dynamic> json) => _$DepositLinkRequestFromJson(json);
+  static DepositRequest fromJson(Map<String, dynamic> json) => _$DepositRequestFromJson(json);
 
-  static SignedMessage<DepositLinkRequest> signedMessageFromJson(Map<String, dynamic> json) {
-    SignedMessage<DepositLinkRequest> signed = SignedMessage.fromJson<DepositLinkRequest>(json);
+  static SignedMessage<DepositRequest> signedMessageFromJson(Map<String, dynamic> json) {
+    SignedMessage<DepositRequest> signed = SignedMessage.fromJson<DepositRequest>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }

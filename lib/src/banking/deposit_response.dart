@@ -3,15 +3,15 @@ import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/banking.dart';
 
-part 'deposit_link_response.g.dart';
+part 'deposit_response.g.dart';
 
 @JsonSerializable()
-class DepositLinkResponse extends SignableMessage with ProxyUtils {
+class DepositResponse extends SignableMessage with ProxyUtils {
   /**
    * Original Request Message
    */
-  @JsonKey(nullable: false, fromJson: DepositLinkRequest.signedMessageFromJson)
-  final SignedMessage<DepositLinkRequest> request;
+  @JsonKey(nullable: false, fromJson: DepositRequest.signedMessageFromJson)
+  final SignedMessage<DepositRequest> request;
 
   /**
    * Link to use for depositing Money to the account
@@ -19,16 +19,23 @@ class DepositLinkResponse extends SignableMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final String depositLink;
 
-  DepositLinkResponse({
+  /**
+   * Status of the Deposit
+   */
+  @JsonKey(nullable: false)
+  final DepositStatusEnum status;
+
+  DepositResponse({
     @required this.request,
     @required this.depositLink,
+    @required this.status,
   }) {
     assertValid();
   }
 
   @override
   bool isValid() {
-    return isValidProxyObject(request) && isNotEmpty(depositLink);
+    return isValidProxyObject(request) && isNotEmpty(depositLink) && status != null;
   }
 
   @override
@@ -36,6 +43,7 @@ class DepositLinkResponse extends SignableMessage with ProxyUtils {
     assert(request != null);
     request.assertValid();
     assert(isNotEmpty(depositLink));
+    assert(status != null);
   }
 
   @override
@@ -49,7 +57,7 @@ class DepositLinkResponse extends SignableMessage with ProxyUtils {
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.banking.DepositLinkResponse";
+  String get messageType => "in.yagnyam.proxy.messages.banking.DepositResponse";
 
   @override
   String toReadableString() {
@@ -57,11 +65,11 @@ class DepositLinkResponse extends SignableMessage with ProxyUtils {
   }
 
   @override
-  Map<String, dynamic> toJson() => _$DepositLinkResponseToJson(this);
-  static DepositLinkResponse fromJson(Map<String, dynamic> json) => _$DepositLinkResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$DepositResponseToJson(this);
+  static DepositResponse fromJson(Map<String, dynamic> json) => _$DepositResponseFromJson(json);
 
-  static SignedMessage<DepositLinkResponse> signedMessageFromJson(Map<String, dynamic> json) {
-    SignedMessage<DepositLinkResponse> signed = SignedMessage.fromJson<DepositLinkResponse>(json);
+  static SignedMessage<DepositResponse> signedMessageFromJson(Map<String, dynamic> json) {
+    SignedMessage<DepositResponse> signed = SignedMessage.fromJson<DepositResponse>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }

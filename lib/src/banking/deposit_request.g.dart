@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'deposit_link_request.dart';
+part of 'deposit_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -20,9 +20,9 @@ Map<String, dynamic> _$RequestingCustomerToJson(RequestingCustomer instance) =>
       'email': instance.email
     };
 
-DepositLinkRequest _$DepositLinkRequestFromJson(Map<String, dynamic> json) {
-  return DepositLinkRequest(
-      requestId: json['requestId'] as String,
+DepositRequest _$DepositRequestFromJson(Map<String, dynamic> json) {
+  return DepositRequest(
+      depositId: json['depositId'] as String,
       proxyAccount: ProxyAccount.signedMessageFromJson(
           json['proxyAccount'] as Map<String, dynamic>),
       accountName: json['accountName'] as String,
@@ -34,9 +34,9 @@ DepositLinkRequest _$DepositLinkRequestFromJson(Map<String, dynamic> json) {
               json['requestingCustomer'] as Map<String, dynamic>));
 }
 
-Map<String, dynamic> _$DepositLinkRequestToJson(DepositLinkRequest instance) {
+Map<String, dynamic> _$DepositRequestToJson(DepositRequest instance) {
   final val = <String, dynamic>{
-    'requestId': instance.requestId,
+    'depositId': instance.depositId,
     'proxyAccount': instance.proxyAccount,
     'accountName': instance.accountName,
     'amount': instance.amount,
