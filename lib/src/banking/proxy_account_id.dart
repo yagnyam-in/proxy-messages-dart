@@ -29,7 +29,7 @@ class ProxyAccountId extends ProxyBaseObject with ProxyUtils {
   }
 
   String toString() {
-    return toJson().toString();
+    return "(accountId: $accountId, bankId: $bankId)";
   }
 
   @override

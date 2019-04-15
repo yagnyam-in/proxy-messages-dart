@@ -58,6 +58,24 @@ class AccountBalanceResponse extends SignableMessage with ProxyUtils {
     return null;
   }
 
+  String get requestId {
+    return request?.message?.requestId;
+  }
+
+  ProxyAccountId get proxyAccountId {
+    return request?.message?.proxyAccount?.message?.proxyAccountId;
+  }
+
+  @override
+  String toString() {
+    return "AccountBalanceResponse: " + {
+      "requestId": requestId,
+      "proxyAccountId": proxyAccountId.toString(),
+      "balance": balance.toString(),
+    }.toString();
+  }
+
+
   @override
   Map<String, dynamic> toJson() => _$AccountBalanceResponseToJson(this);
   static AccountBalanceResponse fromJson(Map<String, dynamic> json) => _$AccountBalanceResponseFromJson(json);

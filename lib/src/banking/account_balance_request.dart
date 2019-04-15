@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/src/banking/proxy_account.dart';
+import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
 part 'account_balance_request.g.dart';
 
@@ -51,6 +52,18 @@ class AccountBalanceRequest extends SignableRequestMessage with ProxyUtils {
   @override
   String toReadableString() {
     return null;
+  }
+
+  ProxyAccountId get proxyAccountId {
+    return proxyAccount?.message?.proxyAccountId;
+  }
+
+  @override
+  String toString() {
+    return "AccountBalanceRequest: " + {
+      "requestId": requestId,
+      "proxyAccountId": proxyAccountId.toString(),
+    }.toString();
   }
 
   @override
