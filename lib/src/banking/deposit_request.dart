@@ -54,13 +54,10 @@ class DepositRequest extends SignableRequestMessage with ProxyUtils {
   final SignedMessage<ProxyAccount> proxyAccount;
 
   @JsonKey(nullable: false)
-  final String accountName;
+  final String message;
 
   @JsonKey(nullable: false)
   final Amount amount;
-
-  @JsonKey(includeIfNull: false)
-  final String message;
 
   @JsonKey(includeIfNull: false)
   final RequestingCustomer requestingCustomer;
@@ -68,9 +65,8 @@ class DepositRequest extends SignableRequestMessage with ProxyUtils {
   DepositRequest({
     @required this.depositId,
     @required this.proxyAccount,
-    @required this.accountName,
+    @required this.message,
     @required this.amount,
-    this.message,
     this.requestingCustomer,
   }) {
     assertValid();
@@ -81,7 +77,7 @@ class DepositRequest extends SignableRequestMessage with ProxyUtils {
     assert(isNotEmpty(depositId));
     assert(proxyAccount != null);
     proxyAccount.assertValid();
-    assert(isNotEmpty(accountName));
+    assert(isNotEmpty(message));
     assert(amount != null);
     amount.assertValid();
     if (requestingCustomer != null) {
@@ -105,7 +101,7 @@ class DepositRequest extends SignableRequestMessage with ProxyUtils {
     return isNotEmpty(depositId) &&
         proxyAccount != null &&
         proxyAccount.isValid() &&
-        isNotEmpty(accountName) &&
+        isNotEmpty(message) &&
         amount != null &&
         amount.isValid() &&
         (requestingCustomer == null || requestingCustomer.isValid());

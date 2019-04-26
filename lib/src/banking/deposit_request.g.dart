@@ -25,9 +25,8 @@ DepositRequest _$DepositRequestFromJson(Map<String, dynamic> json) {
       depositId: json['depositId'] as String,
       proxyAccount: ProxyAccount.signedMessageFromJson(
           json['proxyAccount'] as Map<String, dynamic>),
-      accountName: json['accountName'] as String,
-      amount: Amount.fromJson(json['amount'] as Map<String, dynamic>),
       message: json['message'] as String,
+      amount: Amount.fromJson(json['amount'] as Map<String, dynamic>),
       requestingCustomer: json['requestingCustomer'] == null
           ? null
           : RequestingCustomer.fromJson(
@@ -38,7 +37,7 @@ Map<String, dynamic> _$DepositRequestToJson(DepositRequest instance) {
   final val = <String, dynamic>{
     'depositId': instance.depositId,
     'proxyAccount': instance.proxyAccount,
-    'accountName': instance.accountName,
+    'message': instance.message,
     'amount': instance.amount,
   };
 
@@ -48,7 +47,6 @@ Map<String, dynamic> _$DepositRequestToJson(DepositRequest instance) {
     }
   }
 
-  writeNotNull('message', instance.message);
   writeNotNull('requestingCustomer', instance.requestingCustomer);
   return val;
 }
