@@ -9,8 +9,7 @@ class Currency {
   /**
    * Valid Currencies
    */
-  static final Set<String> currenciesSupported = Set.of([INR, EUR, USD, GBP, AUD, JPY]);
-
+  static final Set<String> currenciesSupported = {INR, EUR};
 
   /**
    * Valid Currencies
@@ -22,6 +21,7 @@ class Currency {
     GBP: '\u{00A3}',
     JPY: '\u{00A5}',
   };
+
   /**
    * Check if the given currency is valid
    *
