@@ -9,7 +9,7 @@ class Currency {
   /**
    * Valid Currencies
    */
-  static final Set<String> currenciesSupported = {INR, EUR};
+  static final Set<String> currenciesSupported = Set.of([INR, EUR]);
 
   /**
    * Valid Currencies

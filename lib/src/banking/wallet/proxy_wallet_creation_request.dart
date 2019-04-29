@@ -14,6 +14,12 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
   final String requestId;
 
   /**
+   * Proxy Universe
+   */
+  @JsonKey(nullable: false)
+  final String proxyUniverse;
+
+  /**
    * Proxy Id
    */
   @JsonKey(nullable: false)
@@ -33,6 +39,7 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
 
   ProxyWalletCreationRequest({
     @required this.requestId,
+    @required this.proxyUniverse,
     @required this.proxyId,
     @required this.bankId,
     @required this.currency,
@@ -43,6 +50,7 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
   @override
   bool isValid() {
     return isNotEmpty(requestId) &&
+        isNotEmpty(proxyUniverse) &&
         isValidProxyId(proxyId) &&
         isValidProxyId(bankId) &&
         Currency.isValidCurrency(currency);
@@ -51,6 +59,7 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
   @override
   void assertValid() {
     assert(isNotEmpty(requestId));
+    assert(isNotEmpty(proxyUniverse));
     proxyId.assertValid();
     bankId.assertValid();
     assert(Currency.isValidCurrency(currency));

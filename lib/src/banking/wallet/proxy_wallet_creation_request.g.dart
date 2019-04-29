@@ -10,6 +10,7 @@ ProxyWalletCreationRequest _$ProxyWalletCreationRequestFromJson(
     Map<String, dynamic> json) {
   return ProxyWalletCreationRequest(
       requestId: json['requestId'] as String,
+      proxyUniverse: json['proxyUniverse'] as String,
       proxyId: ProxyId.fromJson(json['proxyId'] as Map<String, dynamic>),
       bankId: ProxyId.fromJson(json['bankId'] as Map<String, dynamic>),
       currency: json['currency'] as String);
@@ -19,6 +20,7 @@ Map<String, dynamic> _$ProxyWalletCreationRequestToJson(
         ProxyWalletCreationRequest instance) =>
     <String, dynamic>{
       'requestId': instance.requestId,
+      'proxyUniverse': instance.proxyUniverse,
       'proxyId': instance.proxyId,
       'bankId': instance.bankId,
       'currency': instance.currency
