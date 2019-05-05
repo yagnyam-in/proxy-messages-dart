@@ -76,10 +76,6 @@ class NonProxyAccount extends ProxyBaseObject with ProxyUtils {
     assert(isNotEmpty(accountHolder));
     assert(currency != null);
     assert(Currency.isValidCurrency(currency));
-    assert(ifscCode == null || isNotEmpty(bank));
-    assert(email == null || isNotEmpty(email));
-    assert(phone == null || isNotEmpty(phone));
-    assert(address == null || isNotEmpty(address));
   }
 
   @override
@@ -91,11 +87,7 @@ class NonProxyAccount extends ProxyBaseObject with ProxyUtils {
         accountHolder != null &&
         isNotEmpty(accountHolder) &&
         currency != null &&
-        Currency.isValidCurrency(currency) &&
-        (ifscCode == null || isNotEmpty(ifscCode)) &&
-        (email == null || isNotEmpty(email)) &&
-        (phone == null || isNotEmpty(phone)) &&
-        (address == null || isNotEmpty(address));
+        Currency.isValidCurrency(currency);
   }
 
   @override
