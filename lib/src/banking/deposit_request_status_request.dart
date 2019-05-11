@@ -38,7 +38,7 @@ class DepositRequestStatusRequest extends SignableRequestMessage with ProxyUtils
 
   @override
   ProxyId getSigner() {
-    return ProxyId(proxyAccountId.bankId);
+    return ownerProxyId;
   }
 
   @override
@@ -73,6 +73,11 @@ class DepositRequestStatusRequest extends SignableRequestMessage with ProxyUtils
   ProxyAccountId get proxyAccountId {
     return depositRequest.message.proxyAccountId;
   }
+
+  ProxyId get ownerProxyId {
+    return depositRequest.message.ownerProxyId;
+  }
+
 
   String get proxyUniverse {
     return proxyAccountId.proxyUniverse;
