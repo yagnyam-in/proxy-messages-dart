@@ -72,7 +72,7 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
     assert(isValidDateTime(expiryDate));
     assert(Currency.isValidCurrency(currency));
     assert(maximumAmountPerTransaction != null);
-    assert(maximumAmountPerTransaction.isValid());
+    maximumAmountPerTransaction.assertValid();
   }
 
   String get bankId {

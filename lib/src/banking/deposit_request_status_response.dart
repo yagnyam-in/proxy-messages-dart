@@ -3,15 +3,15 @@ import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/banking.dart';
 
-part 'deposit_status_response.g.dart';
+part 'deposit_request_status_response.g.dart';
 
 @JsonSerializable()
-class DepositStatusResponse extends SignableMessage with ProxyUtils {
+class DepositRequestStatusResponse extends SignableMessage with ProxyUtils {
   /**
    * Original Request Message
    */
-  @JsonKey(nullable: false, fromJson: DepositStatusRequest.signedMessageFromJson)
-  final SignedMessage<DepositStatusRequest> request;
+  @JsonKey(nullable: false, fromJson: DepositRequestStatusRequest.signedMessageFromJson)
+  final SignedMessage<DepositRequestStatusRequest> request;
 
   /**
    * Status of the Deposit
@@ -19,7 +19,7 @@ class DepositStatusResponse extends SignableMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final DepositStatusEnum status;
 
-  DepositStatusResponse({
+  DepositRequestStatusResponse({
     @required this.request,
     @required this.status,
   }) {
@@ -40,8 +40,7 @@ class DepositStatusResponse extends SignableMessage with ProxyUtils {
 
   @override
   ProxyId getSigner() {
-    DepositRequest deposit = request.message.request.message;
-    return deposit.proxyAccount.signedBy;
+     return request.message.depositRequest.signedBy;
   }
 
   @override
@@ -50,7 +49,7 @@ class DepositStatusResponse extends SignableMessage with ProxyUtils {
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.banking.DepositStatusResponse";
+  String get messageType => "in.yagnyam.proxy.messages.banking.DepositRequestStatusResponse";
 
   @override
   String toReadableString() {
@@ -58,12 +57,12 @@ class DepositStatusResponse extends SignableMessage with ProxyUtils {
   }
 
   @override
-  Map<String, dynamic> toJson() => _$DepositStatusResponseToJson(this);
+  Map<String, dynamic> toJson() => _$DepositRequestStatusResponseToJson(this);
 
-  static DepositStatusResponse fromJson(Map<String, dynamic> json) => _$DepositStatusResponseFromJson(json);
+  static DepositRequestStatusResponse fromJson(Map<String, dynamic> json) => _$DepositRequestStatusResponseFromJson(json);
 
-  static SignedMessage<DepositStatusResponse> signedMessageFromJson(Map<String, dynamic> json) {
-    SignedMessage<DepositStatusResponse> signed = SignedMessage.fromJson<DepositStatusResponse>(json);
+  static SignedMessage<DepositRequestStatusResponse> signedMessageFromJson(Map<String, dynamic> json) {
+    SignedMessage<DepositRequestStatusResponse> signed = SignedMessage.fromJson<DepositRequestStatusResponse>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }

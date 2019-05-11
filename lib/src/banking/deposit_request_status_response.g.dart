@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'deposit_status_response.dart';
+part of 'deposit_request_status_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DepositStatusResponse _$DepositStatusResponseFromJson(
+DepositRequestStatusResponse _$DepositRequestStatusResponseFromJson(
     Map<String, dynamic> json) {
-  return DepositStatusResponse(
-      request: DepositStatusRequest.signedMessageFromJson(
+  return DepositRequestStatusResponse(
+      request: DepositRequestStatusRequest.signedMessageFromJson(
           json['request'] as Map<String, dynamic>),
       status: _$enumDecode(_$DepositStatusEnumEnumMap, json['status']));
 }
 
-Map<String, dynamic> _$DepositStatusResponseToJson(
-        DepositStatusResponse instance) =>
+Map<String, dynamic> _$DepositRequestStatusResponseToJson(
+        DepositRequestStatusResponse instance) =>
     <String, dynamic>{
       'request': instance.request,
       'status': _$DepositStatusEnumEnumMap[instance.status]
