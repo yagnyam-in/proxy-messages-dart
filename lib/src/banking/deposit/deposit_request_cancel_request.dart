@@ -1,13 +1,14 @@
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
-import 'package:proxy_messages/src/banking/deposit_request.dart';
+import 'package:proxy_messages/src/banking/deposit/deposit_request.dart';
 import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
-part 'deposit_request_status_request.g.dart';
+part 'deposit_request_cancel_request.g.dart';
 
 @JsonSerializable()
-class DepositRequestStatusRequest extends SignableRequestMessage with ProxyUtils {
+class DepositRequestCancelRequest extends SignableRequestMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final String requestId;
 
@@ -17,7 +18,7 @@ class DepositRequestStatusRequest extends SignableRequestMessage with ProxyUtils
   @JsonKey(nullable: false, fromJson: DepositRequest.signedMessageFromJson)
   final SignedMessage<DepositRequest> depositRequest;
 
-  DepositRequestStatusRequest({
+  DepositRequestCancelRequest({
     @required this.requestId,
     @required this.depositRequest,
   }) {
@@ -47,7 +48,7 @@ class DepositRequestStatusRequest extends SignableRequestMessage with ProxyUtils
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.banking.DepositRequestStatusRequest";
+  String get messageType => "in.yagnyam.proxy.messages.banking.DepositRequestCancelRequest";
 
   @override
   String toReadableString() {
@@ -55,12 +56,12 @@ class DepositRequestStatusRequest extends SignableRequestMessage with ProxyUtils
   }
 
   @override
-  Map<String, dynamic> toJson() => _$DepositRequestStatusRequestToJson(this);
+  Map<String, dynamic> toJson() => _$DepositRequestCancelRequestToJson(this);
 
-  static DepositRequestStatusRequest fromJson(Map<String, dynamic> json) => _$DepositRequestStatusRequestFromJson(json);
+  static DepositRequestCancelRequest fromJson(Map<String, dynamic> json) => _$DepositRequestCancelRequestFromJson(json);
 
-  static SignedMessage<DepositRequestStatusRequest> signedMessageFromJson(Map<String, dynamic> json) {
-    SignedMessage<DepositRequestStatusRequest> signed = SignedMessage.fromJson<DepositRequestStatusRequest>(json);
+  static SignedMessage<DepositRequestCancelRequest> signedMessageFromJson(Map<String, dynamic> json) {
+    SignedMessage<DepositRequestCancelRequest> signed = SignedMessage.fromJson<DepositRequestCancelRequest>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }

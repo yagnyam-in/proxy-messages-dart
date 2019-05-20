@@ -8,13 +8,16 @@ export 'package:proxy_messages/src/banking/wallet/proxy_wallet_creation_request.
 export 'package:proxy_messages/src/banking/wallet/proxy_wallet_creation_response.dart';
 
 // Deposit
-export 'package:proxy_messages/src/banking/deposit_request.dart';
+export 'package:proxy_messages/src/banking/deposit/deposit_request.dart';
 
-export 'package:proxy_messages/src/banking/deposit_request_creation_request.dart';
-export 'package:proxy_messages/src/banking/deposit_request_creation_response.dart';
+export 'package:proxy_messages/src/banking/deposit/deposit_request_creation_request.dart';
+export 'package:proxy_messages/src/banking/deposit/deposit_request_creation_response.dart';
 
-export 'package:proxy_messages/src/banking/deposit_request_status_request.dart';
-export 'package:proxy_messages/src/banking/deposit_request_status_response.dart';
+export 'package:proxy_messages/src/banking/deposit/deposit_request_status_request.dart';
+export 'package:proxy_messages/src/banking/deposit/deposit_request_status_response.dart';
+
+export 'package:proxy_messages/src/banking/deposit/deposit_request_cancel_request.dart';
+export 'package:proxy_messages/src/banking/deposit/deposit_request_cancel_response.dart';
 
 export 'package:proxy_messages/src/banking/alerts/deposit_updated_alert.dart';
 
