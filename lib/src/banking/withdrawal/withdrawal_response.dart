@@ -1,21 +1,15 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
-import 'package:proxy_messages/src/banking/withdrawal.dart';
+import 'package:proxy_messages/src/banking/withdrawal/withdrawal.dart';
 
 part 'withdrawal_response.g.dart';
 
 @JsonSerializable()
 class WithdrawalResponse extends SignableMessage with ProxyUtils {
-  /**
-   * Original Request Message
-   */
   @JsonKey(nullable: false, fromJson: Withdrawal.signedMessageFromJson)
   final SignedMessage<Withdrawal> request;
 
-  /**
-   * Status of the withdrawal
-   */
   @JsonKey(nullable: false)
   final WithdrawalStatusEnum status;
 
@@ -49,7 +43,8 @@ class WithdrawalResponse extends SignableMessage with ProxyUtils {
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.banking.WithdrawalResponse";
+  String get messageType =>
+      "in.yagnyam.proxy.messages.banking.WithdrawalResponse";
 
   @override
   String toReadableString() {
@@ -58,12 +53,16 @@ class WithdrawalResponse extends SignableMessage with ProxyUtils {
 
   @override
   Map<String, dynamic> toJson() => _$WithdrawalResponseToJson(this);
-  static WithdrawalResponse fromJson(Map<String, dynamic> json) => _$WithdrawalResponseFromJson(json);
 
-  static SignedMessage<WithdrawalResponse> signedMessageFromJson(Map<String, dynamic> json) {
-    SignedMessage<WithdrawalResponse> signed = SignedMessage.fromJson<WithdrawalResponse>(json);
-    signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
+  static WithdrawalResponse fromJson(Map<String, dynamic> json) =>
+      _$WithdrawalResponseFromJson(json);
+
+  static SignedMessage<WithdrawalResponse> signedMessageFromJson(
+      Map<String, dynamic> json) {
+    SignedMessage<WithdrawalResponse> signed =
+        SignedMessage.fromJson<WithdrawalResponse>(json);
+    signed.message = MessageBuilder.instance()
+        .buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
-
 }

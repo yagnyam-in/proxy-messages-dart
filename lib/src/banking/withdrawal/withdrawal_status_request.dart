@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
-import 'package:proxy_messages/src/banking/withdrawal.dart';
+import 'package:proxy_messages/src/banking/withdrawal/withdrawal.dart';
 
 part 'withdrawal_status_request.g.dart';
 
@@ -10,9 +10,6 @@ class WithdrawalStatusRequest extends SignableRequestMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final String requestId;
 
-  /**
-   * Original Request Message
-   */
   @JsonKey(nullable: false, fromJson: Withdrawal.signedMessageFromJson)
   final SignedMessage<Withdrawal> request;
 

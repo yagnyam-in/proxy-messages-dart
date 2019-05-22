@@ -75,15 +75,15 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
     maximumAmountPerTransaction.assertValid();
   }
 
-  String get bankId {
-    return proxyAccountId != null ? proxyAccountId.bankId : null;
-  }
+  static ProxyAccount fromJson(Map<String, dynamic> json) =>
+      _$ProxyAccountFromJson(json);
 
-  static ProxyAccount fromJson(Map<String, dynamic> json) => _$ProxyAccountFromJson(json);
-
-  static SignedMessage<ProxyAccount> signedMessageFromJson(Map<String, dynamic> json) {
-    SignedMessage<ProxyAccount> signedMessage = SignedMessage.fromJson<ProxyAccount>(json);
-    signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
+  static SignedMessage<ProxyAccount> signedMessageFromJson(
+      Map<String, dynamic> json) {
+    SignedMessage<ProxyAccount> signedMessage =
+        SignedMessage.fromJson<ProxyAccount>(json);
+    signedMessage.message = MessageBuilder.instance()
+        .buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;
   }
 
@@ -97,4 +97,8 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
 
   @override
   String get messageType => "in.yagnyam.proxy.messages.banking.ProxyAccount";
+
+  String get bankId => proxyAccountId.bankId;
+
+  String get proxyUniverse => proxyAccountId.proxyUniverse;
 }
