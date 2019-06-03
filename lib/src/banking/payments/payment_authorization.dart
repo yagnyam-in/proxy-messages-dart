@@ -75,6 +75,13 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
   @override
   String get requestId => paymentId;
 
+
+  @override
+  ProxyId getSigner() {
+    return payerId;
+  }
+
+
   @override
   String toReadableString() {
     return null;

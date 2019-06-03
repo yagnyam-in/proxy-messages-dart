@@ -45,7 +45,7 @@ class PaymentAuthorizationStatusResponse extends SignableMessage with ProxyUtils
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.banking.PaymentAuthorizationStatusResponse";
+  String get messageType => "in.yagnyam.proxy.messages.payments.PaymentAuthorizationStatusResponse";
 
   @override
   String toReadableString() {

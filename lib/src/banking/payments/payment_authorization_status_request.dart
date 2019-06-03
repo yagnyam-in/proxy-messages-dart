@@ -46,7 +46,7 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage
     if (payeeId != null) {
       return Set.of([payerId, payeeId]);
     }
-    return Set.of([payeeId]);
+    return Set.of([payerId]);
   }
 
   @override
@@ -56,7 +56,7 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage
 
   @override
   String get messageType =>
-      "in.yagnyam.proxy.messages.banking.PaymentAuthorizationStatusRequest";
+      "in.yagnyam.proxy.messages.payments.PaymentAuthorizationStatusRequest";
 
   @override
   String toReadableString() {
