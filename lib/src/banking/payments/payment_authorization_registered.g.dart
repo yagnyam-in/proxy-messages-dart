@@ -11,15 +11,17 @@ PaymentAuthorizationRegistered _$PaymentAuthorizationRegisteredFromJson(
   return PaymentAuthorizationRegistered(
       paymentAuthorization: PaymentAuthorization.signedMessageFromJson(
           json['paymentAuthorization'] as Map<String, dynamic>),
-      paymentStatus:
-          _$enumDecode(_$PaymentStatusEnumEnumMap, json['paymentStatus']));
+      paymentAuthorizationStatus: _$enumDecode(
+          _$PaymentAuthorizationStatusEnumEnumMap,
+          json['paymentAuthorizationStatus']));
 }
 
 Map<String, dynamic> _$PaymentAuthorizationRegisteredToJson(
         PaymentAuthorizationRegistered instance) =>
     <String, dynamic>{
       'paymentAuthorization': instance.paymentAuthorization,
-      'paymentStatus': _$PaymentStatusEnumEnumMap[instance.paymentStatus]
+      'paymentAuthorizationStatus': _$PaymentAuthorizationStatusEnumEnumMap[
+          instance.paymentAuthorizationStatus]
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
@@ -35,14 +37,15 @@ T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
       .key;
 }
 
-const _$PaymentStatusEnumEnumMap = <PaymentStatusEnum, dynamic>{
-  PaymentStatusEnum.Registered: 'Registered',
-  PaymentStatusEnum.Rejected: 'Rejected',
-  PaymentStatusEnum.InsufficientFunds: 'InsufficientFunds',
-  PaymentStatusEnum.CancelledByPayer: 'CancelledByPayer',
-  PaymentStatusEnum.CancelledByPayee: 'CancelledByPayee',
-  PaymentStatusEnum.InProcess: 'InProcess',
-  PaymentStatusEnum.Processed: 'Processed',
-  PaymentStatusEnum.Expired: 'Expired',
-  PaymentStatusEnum.Error: 'Error'
+const _$PaymentAuthorizationStatusEnumEnumMap =
+    <PaymentAuthorizationStatusEnum, dynamic>{
+  PaymentAuthorizationStatusEnum.Registered: 'Registered',
+  PaymentAuthorizationStatusEnum.Rejected: 'Rejected',
+  PaymentAuthorizationStatusEnum.InsufficientFunds: 'InsufficientFunds',
+  PaymentAuthorizationStatusEnum.CancelledByPayer: 'CancelledByPayer',
+  PaymentAuthorizationStatusEnum.CancelledByPayee: 'CancelledByPayee',
+  PaymentAuthorizationStatusEnum.InProcess: 'InProcess',
+  PaymentAuthorizationStatusEnum.Processed: 'Processed',
+  PaymentAuthorizationStatusEnum.Expired: 'Expired',
+  PaymentAuthorizationStatusEnum.Error: 'Error'
 };

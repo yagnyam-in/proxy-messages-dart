@@ -13,25 +13,25 @@ class PaymentAuthorizationStatusResponse extends SignableMessage with ProxyUtils
   final SignedMessage<PaymentAuthorizationStatusRequest> request;
 
   @JsonKey(nullable: false)
-  final PaymentStatusEnum paymentStatus;
+  final PaymentAuthorizationStatusEnum paymentAuthorizationStatus;
 
   PaymentAuthorizationStatusResponse({
     @required this.request,
-    @required this.paymentStatus,
+    @required this.paymentAuthorizationStatus,
   }) {
     assertValid();
   }
 
   @override
   bool isValid() {
-    return isValidProxyObject(request) && paymentStatus != null;
+    return isValidProxyObject(request) && paymentAuthorizationStatus != null;
   }
 
   @override
   void assertValid() {
     assert(request != null);
     request.assertValid();
-    assert(paymentStatus != null);
+    assert(paymentAuthorizationStatus != null);
   }
 
   @override

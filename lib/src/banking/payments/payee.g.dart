@@ -8,6 +8,7 @@ part of 'payee.dart';
 
 Payee _$PayeeFromJson(Map<String, dynamic> json) {
   return Payee(
+      paymentEncashmentId: json['paymentEncashmentId'] as String,
       payeeType: _$enumDecode(_$PayeeTypeEnumEnumMap, json['payeeType']),
       proxyAccountId: json['proxyAccountId'] == null
           ? null
@@ -16,18 +17,19 @@ Payee _$PayeeFromJson(Map<String, dynamic> json) {
       proxyId: json['proxyId'] == null
           ? null
           : ProxyId.fromJson(json['proxyId'] as Map<String, dynamic>),
-      email: json['email'] as String,
-      phone: json['phone'] as String,
-      ivPrefixedSecretHash: json['ivPrefixedSecretHash'] as String);
+      emailHash: json['emailHash'] as String,
+      phoneHash: json['phoneHash'] as String,
+      secretHash: json['secretHash'] as String);
 }
 
 Map<String, dynamic> _$PayeeToJson(Payee instance) => <String, dynamic>{
+      'paymentEncashmentId': instance.paymentEncashmentId,
       'payeeType': _$PayeeTypeEnumEnumMap[instance.payeeType],
       'proxyAccountId': instance.proxyAccountId,
       'proxyId': instance.proxyId,
-      'email': instance.email,
-      'phone': instance.phone,
-      'ivPrefixedSecretHash': instance.ivPrefixedSecretHash
+      'emailHash': instance.emailHash,
+      'phoneHash': instance.phoneHash,
+      'secretHash': instance.secretHash
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
@@ -44,7 +46,6 @@ T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
 }
 
 const _$PayeeTypeEnumEnumMap = <PayeeTypeEnum, dynamic>{
-  PayeeTypeEnum.ProxyAccountId: 'ProxyAccountId',
   PayeeTypeEnum.ProxyId: 'ProxyId',
   PayeeTypeEnum.Email: 'Email',
   PayeeTypeEnum.Phone: 'Phone',

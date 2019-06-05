@@ -6,7 +6,6 @@ import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 part 'payee.g.dart';
 
 enum PayeeTypeEnum {
-  ProxyAccountId,
   ProxyId,
   Email,
   Phone,
@@ -15,6 +14,9 @@ enum PayeeTypeEnum {
 
 @JsonSerializable()
 class Payee extends ProxyBaseObject with ProxyUtils {
+
+  @JsonKey(nullable: false)
+  String paymentEncashmentId;
 
   @JsonKey(nullable: false)
   final PayeeTypeEnum payeeType;
@@ -26,25 +28,27 @@ class Payee extends ProxyBaseObject with ProxyUtils {
   final ProxyId proxyId;
 
   @JsonKey(nullable: true)
-  final String email;
+  final String emailHash;
 
   @JsonKey(nullable: true)
-  final String phone;
+  final String phoneHash;
 
   @JsonKey(nullable: true)
-  final String ivPrefixedSecretHash;
+  final String secretHash;
 
   Payee({
+    @required this.paymentEncashmentId,
     @required this.payeeType,
     this.proxyAccountId,
     this.proxyId,
-    this.email,
-    this.phone,
-    this.ivPrefixedSecretHash,
+    this.emailHash,
+    this.phoneHash,
+    this.secretHash,
   });
 
   @override
   void assertValid() {
+    assert(paymentEncashmentId != null);
     assert(payeeType != null);
     assert(isValid());
   }
@@ -54,17 +58,18 @@ class Payee extends ProxyBaseObject with ProxyUtils {
     if (payeeType == null) {
       return false;
     }
+    if (isEmpty(paymentEncashmentId)) {
+      return false;
+    }
     switch (payeeType) {
-      case PayeeTypeEnum.ProxyAccountId:
-        return proxyAccountId != null && proxyAccountId.isValid() && proxyId != null && proxyId.isValid();
       case PayeeTypeEnum.ProxyId:
         return proxyId != null && proxyId.isValid();
       case PayeeTypeEnum.Email:
-        return isNotEmpty(email) && isNotEmpty(ivPrefixedSecretHash);
+        return isNotEmpty(emailHash) && isNotEmpty(secretHash);
       case PayeeTypeEnum.Phone:
-        return isNotEmpty(phone) && isNotEmpty(ivPrefixedSecretHash);
+        return isNotEmpty(phoneHash) && isNotEmpty(secretHash);
       case PayeeTypeEnum.AnyoneWithSecret:
-        return isNotEmpty(ivPrefixedSecretHash);
+        return isNotEmpty(secretHash);
       default:
         return false;
     }

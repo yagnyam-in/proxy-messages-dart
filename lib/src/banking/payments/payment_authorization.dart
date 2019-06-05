@@ -8,7 +8,7 @@ import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
 part 'payment_authorization.g.dart';
 
-enum PaymentStatusEnum {
+enum PaymentAuthorizationStatusEnum {
   Registered,
   Rejected,
   InsufficientFunds,
@@ -23,7 +23,7 @@ enum PaymentStatusEnum {
 @JsonSerializable()
 class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
   @JsonKey(nullable: false)
-  final String paymentId;
+  final String paymentAuthorizationId;
 
   @JsonKey(nullable: false, fromJson: ProxyAccount.signedMessageFromJson)
   final SignedMessage<ProxyAccount> proxyAccount;
@@ -32,24 +32,27 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
   final Amount amount;
 
   @JsonKey(nullable: false)
-  final Payee payee;
+  final List<Payee> payees;
 
   PaymentAuthorization({
-    @required this.paymentId,
+    @required this.paymentAuthorizationId,
     @required this.proxyAccount,
     @required this.amount,
-    @required this.payee,
+    @required this.payees,
   });
 
   @override
   void assertValid() {
-    assert(isNotEmpty(paymentId));
+    assert(isNotEmpty(paymentAuthorizationId));
     assert(proxyAccount != null);
     proxyAccount.assertValid();
     assert(amount != null);
     amount.assertValid();
-    assert(payee != null);
-    payee.assertValid();
+    assert(payees != null);
+    assert(payees.isNotEmpty);
+    assert(payees.map((p) => p.paymentEncashmentId).toSet().length ==
+        payees.length);
+    payees.forEach((p) => p.assertValid());
   }
 
   @override
@@ -59,13 +62,16 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return isNotEmpty(paymentId) &&
+    return isNotEmpty(paymentAuthorizationId) &&
         proxyAccount != null &&
         proxyAccount.isValid() &&
         amount != null &&
         amount.isValid() &&
-        payee != null &&
-        payee.isValid();
+        payees != null &&
+        payees.isNotEmpty &&
+        payees.map((p) => p.paymentEncashmentId).toSet().length ==
+            payees.length &&
+        payees.every((p) => p.isValid());
   }
 
   @override
@@ -73,14 +79,12 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
       "in.yagnyam.proxy.messages.payments.PaymentAuthorization";
 
   @override
-  String get requestId => paymentId;
-
+  String get requestId => paymentAuthorizationId;
 
   @override
   ProxyId getSigner() {
     return payerId;
   }
-
 
   @override
   String toReadableString() {
@@ -116,14 +120,6 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
 
   String get proxyUniverse {
     return proxyAccount.message.proxyUniverse;
-  }
-
-  ProxyAccountId get payeeAccountId {
-    return payee.proxyAccountId;
-  }
-
-  ProxyId get payeeId {
-    return payee.proxyId;
   }
 
   ProxyId get payerBankProxyId {

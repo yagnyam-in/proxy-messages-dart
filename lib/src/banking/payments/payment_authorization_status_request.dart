@@ -37,16 +37,7 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage
 
   @override
   ProxyId getSigner() {
-    throw Exception(
-        "PaymentAuthorizationStatusRequest.signer should never be invoked when PaymentAuthorizationStatusRequest.validSigners is implemented");
-  }
-
-  @override
-  Set<ProxyId> getValidSigners() {
-    if (payeeId != null) {
-      return Set.of([payerId, payeeId]);
-    }
-    return Set.of([payerId]);
+    return payerId;
   }
 
   @override
@@ -80,8 +71,8 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage
     return signed;
   }
 
-  String get paymentId {
-    return paymentAuthorization.message.paymentId;
+  String get paymentAuthorizationId {
+    return paymentAuthorization.message.paymentAuthorizationId;
   }
 
   ProxyAccountId get payerAccountId {
@@ -90,10 +81,6 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage
 
   ProxyId get payerId {
     return paymentAuthorization.message.payerId;
-  }
-
-  ProxyId get payeeId {
-    return paymentAuthorization.message.payeeId;
   }
 
   String get proxyUniverse {

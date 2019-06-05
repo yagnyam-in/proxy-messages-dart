@@ -8,18 +8,20 @@ part of 'payment_authorization.dart';
 
 PaymentAuthorization _$PaymentAuthorizationFromJson(Map<String, dynamic> json) {
   return PaymentAuthorization(
-      paymentId: json['paymentId'] as String,
+      paymentAuthorizationId: json['paymentAuthorizationId'] as String,
       proxyAccount: ProxyAccount.signedMessageFromJson(
           json['proxyAccount'] as Map<String, dynamic>),
       amount: Amount.fromJson(json['amount'] as Map<String, dynamic>),
-      payee: Payee.fromJson(json['payee'] as Map<String, dynamic>));
+      payees: (json['payees'] as List)
+          .map((e) => Payee.fromJson(e as Map<String, dynamic>))
+          .toList());
 }
 
 Map<String, dynamic> _$PaymentAuthorizationToJson(
         PaymentAuthorization instance) =>
     <String, dynamic>{
-      'paymentId': instance.paymentId,
+      'paymentAuthorizationId': instance.paymentAuthorizationId,
       'proxyAccount': instance.proxyAccount,
       'amount': instance.amount,
-      'payee': instance.payee
+      'payees': instance.payees
     };
