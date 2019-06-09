@@ -38,6 +38,7 @@ T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
 }
 
 const _$DepositStatusEnumEnumMap = <DepositStatusEnum, dynamic>{
+  DepositStatusEnum.Created: 'Created',
   DepositStatusEnum.Registered: 'Registered',
   DepositStatusEnum.Rejected: 'Rejected',
   DepositStatusEnum.InProcess: 'InProcess',

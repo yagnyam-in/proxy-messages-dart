@@ -8,6 +8,7 @@ import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 part 'deposit_request_creation_request.g.dart';
 
 enum DepositStatusEnum {
+  Created,
   Registered,
   Rejected,
   InProcess,

@@ -9,6 +9,7 @@ part 'withdrawal.g.dart';
 
 
 enum WithdrawalStatusEnum {
+  Created,
   Registered,
   Rejected,
   InTransit,
