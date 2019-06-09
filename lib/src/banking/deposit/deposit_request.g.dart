@@ -6,12 +6,12 @@ part of 'deposit_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DepositRequest _$DepositRequestFromJson(Map<String, dynamic> json) {
+DepositRequest _$DepositRequestFromJson(Map json) {
   return DepositRequest(
       depositId: json['depositId'] as String,
-      proxyAccount: ProxyAccount.signedMessageFromJson(
-          json['proxyAccount'] as Map<String, dynamic>),
-      amount: Amount.fromJson(json['amount'] as Map<String, dynamic>),
+      proxyAccount:
+          ProxyAccount.signedMessageFromJson(json['proxyAccount'] as Map),
+      amount: Amount.fromJson(json['amount'] as Map),
       creationDate: DateTime.parse(json['creationDate'] as String),
       expiryDate: DateTime.parse(json['expiryDate'] as String),
       depositLink: json['depositLink'] as String);
@@ -20,8 +20,8 @@ DepositRequest _$DepositRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$DepositRequestToJson(DepositRequest instance) =>
     <String, dynamic>{
       'depositId': instance.depositId,
-      'proxyAccount': instance.proxyAccount,
-      'amount': instance.amount,
+      'proxyAccount': instance.proxyAccount.toJson(),
+      'amount': instance.amount.toJson(),
       'creationDate': instance.creationDate.toIso8601String(),
       'expiryDate': instance.expiryDate.toIso8601String(),
       'depositLink': instance.depositLink

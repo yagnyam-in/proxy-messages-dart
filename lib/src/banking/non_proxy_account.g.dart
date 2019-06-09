@@ -6,7 +6,7 @@ part of 'non_proxy_account.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NonProxyAccount _$NonProxyAccountFromJson(Map<String, dynamic> json) {
+NonProxyAccount _$NonProxyAccountFromJson(Map json) {
   return NonProxyAccount(
       bank: json['bank'] as String,
       accountNumber: json['accountNumber'] as String,

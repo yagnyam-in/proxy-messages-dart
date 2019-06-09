@@ -6,8 +6,10 @@ part of 'amount.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Amount _$AmountFromJson(Map<String, dynamic> json) {
-  return Amount(json['currency'] as String, (json['value'] as num).toDouble());
+Amount _$AmountFromJson(Map json) {
+  return Amount(
+      currency: json['currency'] as String,
+      value: (json['value'] as num).toDouble());
 }
 
 Map<String, dynamic> _$AmountToJson(Amount instance) =>

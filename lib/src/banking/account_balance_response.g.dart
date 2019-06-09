@@ -6,14 +6,16 @@ part of 'account_balance_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AccountBalanceResponse _$AccountBalanceResponseFromJson(
-    Map<String, dynamic> json) {
+AccountBalanceResponse _$AccountBalanceResponseFromJson(Map json) {
   return AccountBalanceResponse(
-      request: AccountBalanceRequest.signedMessageFromJson(
-          json['request'] as Map<String, dynamic>),
-      balance: Amount.fromJson(json['balance'] as Map<String, dynamic>));
+      request:
+          AccountBalanceRequest.signedMessageFromJson(json['request'] as Map),
+      balance: Amount.fromJson(json['balance'] as Map));
 }
 
 Map<String, dynamic> _$AccountBalanceResponseToJson(
         AccountBalanceResponse instance) =>
-    <String, dynamic>{'request': instance.request, 'balance': instance.balance};
+    <String, dynamic>{
+      'request': instance.request.toJson(),
+      'balance': instance.balance.toJson()
+    };

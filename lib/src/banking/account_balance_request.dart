@@ -69,11 +69,11 @@ class AccountBalanceRequest extends SignableRequestMessage with ProxyUtils {
   @override
   Map<String, dynamic> toJson() => _$AccountBalanceRequestToJson(this);
 
-  static AccountBalanceRequest fromJson(Map<String, dynamic> json) =>
+  static AccountBalanceRequest fromJson(Map json) =>
       _$AccountBalanceRequestFromJson(json);
 
   static SignedMessage<AccountBalanceRequest> signedMessageFromJson(
-      Map<String, dynamic> json) {
+      Map json) {
     SignedMessage<AccountBalanceRequest> signed =
         SignedMessage.fromJson<AccountBalanceRequest>(json);
     signed.message = MessageBuilder.instance()

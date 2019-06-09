@@ -6,7 +6,7 @@ part of 'proxy_account_id.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProxyAccountId _$ProxyAccountIdFromJson(Map<String, dynamic> json) {
+ProxyAccountId _$ProxyAccountIdFromJson(Map json) {
   return ProxyAccountId(
       accountId: json['accountId'] as String,
       bankId: json['bankId'] as String,

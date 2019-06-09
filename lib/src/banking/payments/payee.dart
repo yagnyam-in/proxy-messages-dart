@@ -80,6 +80,6 @@ class Payee extends ProxyBaseObject with ProxyUtils {
 
   Map<String, dynamic> toJson() => _$PayeeToJson(this);
 
-  factory Payee.fromJson(Map<String, dynamic> json) =>
+  factory Payee.fromJson(Map json) =>
       _$PayeeFromJson(json);
 }

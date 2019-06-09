@@ -81,9 +81,9 @@ class DepositRequest extends SignableMessage with ProxyUtils {
     return null;
   }
 
-  static DepositRequest fromJson(Map<String, dynamic> json) => _$DepositRequestFromJson(json);
+  static DepositRequest fromJson(Map json) => _$DepositRequestFromJson(json);
 
-  static SignedMessage<DepositRequest> signedMessageFromJson(Map<String, dynamic> json) {
+  static SignedMessage<DepositRequest> signedMessageFromJson(Map json) {
     SignedMessage<DepositRequest> signedMessage = SignedMessage.fromJson<DepositRequest>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;

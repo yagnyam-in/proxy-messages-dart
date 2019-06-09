@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/banking.dart';
 
@@ -12,8 +13,10 @@ class Amount extends ProxyBaseObject with ProxyUtils {
   @JsonKey(nullable: false)
   final double value;
 
-  Amount(this.currency, this.value)
-      : assert(Currency.isValidCurrency(currency)),
+  Amount({
+    @required this.currency,
+    @required this.value,
+  })  : assert(Currency.isValidCurrency(currency)),
         assert(value != null);
 
   @override
@@ -36,17 +39,17 @@ class Amount extends ProxyBaseObject with ProxyUtils {
     if (currency != amount.currency) {
       throw ArgumentError("Currencies " + currency + ", " + amount.currency + " are not same");
     }
-    return Amount(currency, value + amount.value);
+    return Amount(currency: currency, value: value + amount.value);
   }
 
   Amount subtract(Amount amount) {
     if (currency != amount.currency) {
       throw ArgumentError("Currencies " + currency + ", " + amount.currency + " are not same");
     }
-    return Amount(currency, value - amount.value);
+    return Amount(currency: currency, value: value - amount.value);
   }
 
-  factory Amount.fromJson(Map<String, dynamic> json) => _$AmountFromJson(json);
+  factory Amount.fromJson(Map json) => _$AmountFromJson(json);
 
   Map<String, dynamic> toJson() => _$AmountToJson(this);
 }

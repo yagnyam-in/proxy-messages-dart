@@ -85,11 +85,11 @@ class PaymentEncashment extends SignableRequestMessage with ProxyUtils {
   @override
   Map<String, dynamic> toJson() => _$PaymentEncashmentToJson(this);
 
-  static PaymentEncashment fromJson(Map<String, dynamic> json) =>
+  static PaymentEncashment fromJson(Map json) =>
       _$PaymentEncashmentFromJson(json);
 
   static SignedMessage<PaymentEncashment> signedMessageFromJson(
-      Map<String, dynamic> json) {
+      Map json) {
     SignedMessage<PaymentEncashment> signed =
         SignedMessage.fromJson<PaymentEncashment>(json);
     signed.message = MessageBuilder.instance()

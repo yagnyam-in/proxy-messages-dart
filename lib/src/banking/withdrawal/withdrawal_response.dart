@@ -54,11 +54,11 @@ class WithdrawalResponse extends SignableMessage with ProxyUtils {
   @override
   Map<String, dynamic> toJson() => _$WithdrawalResponseToJson(this);
 
-  static WithdrawalResponse fromJson(Map<String, dynamic> json) =>
+  static WithdrawalResponse fromJson(Map json) =>
       _$WithdrawalResponseFromJson(json);
 
   static SignedMessage<WithdrawalResponse> signedMessageFromJson(
-      Map<String, dynamic> json) {
+      Map json) {
     SignedMessage<WithdrawalResponse> signed =
         SignedMessage.fromJson<WithdrawalResponse>(json);
     signed.message = MessageBuilder.instance()

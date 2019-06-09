@@ -75,11 +75,11 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
     maximumAmountPerTransaction.assertValid();
   }
 
-  static ProxyAccount fromJson(Map<String, dynamic> json) =>
+  static ProxyAccount fromJson(Map json) =>
       _$ProxyAccountFromJson(json);
 
   static SignedMessage<ProxyAccount> signedMessageFromJson(
-      Map<String, dynamic> json) {
+      Map json) {
     SignedMessage<ProxyAccount> signedMessage =
         SignedMessage.fromJson<ProxyAccount>(json);
     signedMessage.message = MessageBuilder.instance()

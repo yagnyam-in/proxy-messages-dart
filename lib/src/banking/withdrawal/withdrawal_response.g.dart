@@ -6,16 +6,15 @@ part of 'withdrawal_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-WithdrawalResponse _$WithdrawalResponseFromJson(Map<String, dynamic> json) {
+WithdrawalResponse _$WithdrawalResponseFromJson(Map json) {
   return WithdrawalResponse(
-      request: Withdrawal.signedMessageFromJson(
-          json['request'] as Map<String, dynamic>),
+      request: Withdrawal.signedMessageFromJson(json['request'] as Map),
       status: _$enumDecode(_$WithdrawalStatusEnumEnumMap, json['status']));
 }
 
 Map<String, dynamic> _$WithdrawalResponseToJson(WithdrawalResponse instance) =>
     <String, dynamic>{
-      'request': instance.request,
+      'request': instance.request.toJson(),
       'status': _$WithdrawalStatusEnumEnumMap[instance.status]
     };
 

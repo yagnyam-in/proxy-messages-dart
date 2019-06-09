@@ -7,16 +7,16 @@ part of 'payment_authorization_status_request.dart';
 // **************************************************************************
 
 PaymentAuthorizationStatusRequest _$PaymentAuthorizationStatusRequestFromJson(
-    Map<String, dynamic> json) {
+    Map json) {
   return PaymentAuthorizationStatusRequest(
       requestId: json['requestId'] as String,
       paymentAuthorization: PaymentAuthorization.signedMessageFromJson(
-          json['paymentAuthorization'] as Map<String, dynamic>));
+          json['paymentAuthorization'] as Map));
 }
 
 Map<String, dynamic> _$PaymentAuthorizationStatusRequestToJson(
         PaymentAuthorizationStatusRequest instance) =>
     <String, dynamic>{
       'requestId': instance.requestId,
-      'paymentAuthorization': instance.paymentAuthorization
+      'paymentAuthorization': instance.paymentAuthorization.toJson()
     };

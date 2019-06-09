@@ -59,11 +59,11 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage
       _$PaymentAuthorizationStatusRequestToJson(this);
 
   static PaymentAuthorizationStatusRequest fromJson(
-          Map<String, dynamic> json) =>
+          Map json) =>
       _$PaymentAuthorizationStatusRequestFromJson(json);
 
   static SignedMessage<PaymentAuthorizationStatusRequest> signedMessageFromJson(
-      Map<String, dynamic> json) {
+      Map json) {
     SignedMessage<PaymentAuthorizationStatusRequest> signed =
         SignedMessage.fromJson<PaymentAuthorizationStatusRequest>(json);
     signed.message = MessageBuilder.instance()

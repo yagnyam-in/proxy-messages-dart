@@ -7,10 +7,10 @@ part of 'payment_authorization_registered.dart';
 // **************************************************************************
 
 PaymentAuthorizationRegistered _$PaymentAuthorizationRegisteredFromJson(
-    Map<String, dynamic> json) {
+    Map json) {
   return PaymentAuthorizationRegistered(
       paymentAuthorization: PaymentAuthorization.signedMessageFromJson(
-          json['paymentAuthorization'] as Map<String, dynamic>),
+          json['paymentAuthorization'] as Map),
       paymentAuthorizationStatus: _$enumDecode(
           _$PaymentAuthorizationStatusEnumEnumMap,
           json['paymentAuthorizationStatus']));
@@ -19,7 +19,7 @@ PaymentAuthorizationRegistered _$PaymentAuthorizationRegisteredFromJson(
 Map<String, dynamic> _$PaymentAuthorizationRegisteredToJson(
         PaymentAuthorizationRegistered instance) =>
     <String, dynamic>{
-      'paymentAuthorization': instance.paymentAuthorization,
+      'paymentAuthorization': instance.paymentAuthorization.toJson(),
       'paymentAuthorizationStatus': _$PaymentAuthorizationStatusEnumEnumMap[
           instance.paymentAuthorizationStatus]
     };

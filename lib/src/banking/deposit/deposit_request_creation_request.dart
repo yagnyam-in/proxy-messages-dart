@@ -42,7 +42,7 @@ class RequestingCustomer extends ProxyBaseObject with ProxyUtils {
 
   Map<String, dynamic> toJson() => _$RequestingCustomerToJson(this);
 
-  factory RequestingCustomer.fromJson(Map<String, dynamic> json) => _$RequestingCustomerFromJson(json);
+  factory RequestingCustomer.fromJson(Map json) => _$RequestingCustomerFromJson(json);
 
 }
 
@@ -122,9 +122,9 @@ class DepositRequestCreationRequest extends SignableRequestMessage with ProxyUti
   @override
   Map<String, dynamic> toJson() => _$DepositRequestCreationRequestToJson(this);
 
-  static DepositRequestCreationRequest fromJson(Map<String, dynamic> json) => _$DepositRequestCreationRequestFromJson(json);
+  static DepositRequestCreationRequest fromJson(Map json) => _$DepositRequestCreationRequestFromJson(json);
 
-  static SignedMessage<DepositRequestCreationRequest> signedMessageFromJson(Map<String, dynamic> json) {
+  static SignedMessage<DepositRequestCreationRequest> signedMessageFromJson(Map json) {
     SignedMessage<DepositRequestCreationRequest> signed = SignedMessage.fromJson<DepositRequestCreationRequest>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;

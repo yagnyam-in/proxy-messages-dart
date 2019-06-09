@@ -6,18 +6,17 @@ part of 'deposit_request_cancel_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DepositRequestCancelResponse _$DepositRequestCancelResponseFromJson(
-    Map<String, dynamic> json) {
+DepositRequestCancelResponse _$DepositRequestCancelResponseFromJson(Map json) {
   return DepositRequestCancelResponse(
       request: DepositRequestCancelRequest.signedMessageFromJson(
-          json['request'] as Map<String, dynamic>),
+          json['request'] as Map),
       status: _$enumDecode(_$DepositStatusEnumEnumMap, json['status']));
 }
 
 Map<String, dynamic> _$DepositRequestCancelResponseToJson(
         DepositRequestCancelResponse instance) =>
     <String, dynamic>{
-      'request': instance.request,
+      'request': instance.request.toJson(),
       'status': _$DepositStatusEnumEnumMap[instance.status]
     };
 

@@ -52,9 +52,9 @@ class PaymentAuthorizationRegistered extends SignableMessage with ProxyUtils {
 
   @override
   Map<String, dynamic> toJson() => _$PaymentAuthorizationRegisteredToJson(this);
-  static PaymentAuthorizationRegistered fromJson(Map<String, dynamic> json) => _$PaymentAuthorizationRegisteredFromJson(json);
+  static PaymentAuthorizationRegistered fromJson(Map json) => _$PaymentAuthorizationRegisteredFromJson(json);
 
-  static SignedMessage<PaymentAuthorizationRegistered> signedMessageFromJson(Map<String, dynamic> json) {
+  static SignedMessage<PaymentAuthorizationRegistered> signedMessageFromJson(Map json) {
     SignedMessage<PaymentAuthorizationRegistered> signed = SignedMessage.fromJson<PaymentAuthorizationRegistered>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;

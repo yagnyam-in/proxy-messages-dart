@@ -95,6 +95,6 @@ class NonProxyAccount extends ProxyBaseObject with ProxyUtils {
 
   Map<String, dynamic> toJson() => _$NonProxyAccountToJson(this);
 
-  factory NonProxyAccount.fromJson(Map<String, dynamic> json) =>
+  factory NonProxyAccount.fromJson(Map json) =>
       _$NonProxyAccountFromJson(json);
 }

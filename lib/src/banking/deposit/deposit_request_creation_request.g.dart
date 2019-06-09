@@ -6,7 +6,7 @@ part of 'deposit_request_creation_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RequestingCustomer _$RequestingCustomerFromJson(Map<String, dynamic> json) {
+RequestingCustomer _$RequestingCustomerFromJson(Map json) {
   return RequestingCustomer(
       name: json['name'] as String,
       phone: json['phone'] as String,
@@ -21,26 +21,25 @@ Map<String, dynamic> _$RequestingCustomerToJson(RequestingCustomer instance) =>
     };
 
 DepositRequestCreationRequest _$DepositRequestCreationRequestFromJson(
-    Map<String, dynamic> json) {
+    Map json) {
   return DepositRequestCreationRequest(
       depositId: json['depositId'] as String,
-      proxyAccount: ProxyAccount.signedMessageFromJson(
-          json['proxyAccount'] as Map<String, dynamic>),
+      proxyAccount:
+          ProxyAccount.signedMessageFromJson(json['proxyAccount'] as Map),
       message: json['message'] as String,
-      amount: Amount.fromJson(json['amount'] as Map<String, dynamic>),
+      amount: Amount.fromJson(json['amount'] as Map),
       requestingCustomer: json['requestingCustomer'] == null
           ? null
-          : RequestingCustomer.fromJson(
-              json['requestingCustomer'] as Map<String, dynamic>));
+          : RequestingCustomer.fromJson(json['requestingCustomer'] as Map));
 }
 
 Map<String, dynamic> _$DepositRequestCreationRequestToJson(
     DepositRequestCreationRequest instance) {
   final val = <String, dynamic>{
     'depositId': instance.depositId,
-    'proxyAccount': instance.proxyAccount,
+    'proxyAccount': instance.proxyAccount.toJson(),
     'message': instance.message,
-    'amount': instance.amount,
+    'amount': instance.amount.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -49,6 +48,6 @@ Map<String, dynamic> _$DepositRequestCreationRequestToJson(
     }
   }
 
-  writeNotNull('requestingCustomer', instance.requestingCustomer);
+  writeNotNull('requestingCustomer', instance.requestingCustomer?.toJson());
   return val;
 }

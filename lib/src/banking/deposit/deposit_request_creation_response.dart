@@ -69,9 +69,9 @@ class DepositRequestCreationResponse extends SignableMessage with ProxyUtils {
 
   @override
   Map<String, dynamic> toJson() => _$DepositRequestCreationResponseToJson(this);
-  static DepositRequestCreationResponse fromJson(Map<String, dynamic> json) => _$DepositRequestCreationResponseFromJson(json);
+  static DepositRequestCreationResponse fromJson(Map json) => _$DepositRequestCreationResponseFromJson(json);
 
-  static SignedMessage<DepositRequestCreationResponse> signedMessageFromJson(Map<String, dynamic> json) {
+  static SignedMessage<DepositRequestCreationResponse> signedMessageFromJson(Map json) {
     SignedMessage<DepositRequestCreationResponse> signed = SignedMessage.fromJson<DepositRequestCreationResponse>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;

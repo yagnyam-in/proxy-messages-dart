@@ -6,17 +6,16 @@ part of 'payee.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Payee _$PayeeFromJson(Map<String, dynamic> json) {
+Payee _$PayeeFromJson(Map json) {
   return Payee(
       paymentEncashmentId: json['paymentEncashmentId'] as String,
       payeeType: _$enumDecode(_$PayeeTypeEnumEnumMap, json['payeeType']),
       proxyAccountId: json['proxyAccountId'] == null
           ? null
-          : ProxyAccountId.fromJson(
-              json['proxyAccountId'] as Map<String, dynamic>),
+          : ProxyAccountId.fromJson(json['proxyAccountId'] as Map),
       proxyId: json['proxyId'] == null
           ? null
-          : ProxyId.fromJson(json['proxyId'] as Map<String, dynamic>),
+          : ProxyId.fromJson(json['proxyId'] as Map),
       emailHash: json['emailHash'] as String,
       phoneHash: json['phoneHash'] as String,
       secretHash: json['secretHash'] as String);
@@ -25,8 +24,8 @@ Payee _$PayeeFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$PayeeToJson(Payee instance) => <String, dynamic>{
       'paymentEncashmentId': instance.paymentEncashmentId,
       'payeeType': _$PayeeTypeEnumEnumMap[instance.payeeType],
-      'proxyAccountId': instance.proxyAccountId,
-      'proxyId': instance.proxyId,
+      'proxyAccountId': instance.proxyAccountId?.toJson(),
+      'proxyId': instance.proxyId?.toJson(),
       'emailHash': instance.emailHash,
       'phoneHash': instance.phoneHash,
       'secretHash': instance.secretHash

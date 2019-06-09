@@ -86,9 +86,9 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
   @override
   Map<String, dynamic> toJson() => _$ProxyWalletCreationRequestToJson(this);
 
-  static ProxyWalletCreationRequest fromJson(Map<String, dynamic> json) => _$ProxyWalletCreationRequestFromJson(json);
+  static ProxyWalletCreationRequest fromJson(Map json) => _$ProxyWalletCreationRequestFromJson(json);
 
-  static SignedMessage<ProxyWalletCreationRequest> signedMessageFromJson(Map<String, dynamic> json) {
+  static SignedMessage<ProxyWalletCreationRequest> signedMessageFromJson(Map json) {
     SignedMessage<ProxyWalletCreationRequest> signedMessage = SignedMessage.fromJson<ProxyWalletCreationRequest>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;

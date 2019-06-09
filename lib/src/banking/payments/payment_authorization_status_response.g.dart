@@ -7,10 +7,10 @@ part of 'payment_authorization_status_response.dart';
 // **************************************************************************
 
 PaymentAuthorizationStatusResponse _$PaymentAuthorizationStatusResponseFromJson(
-    Map<String, dynamic> json) {
+    Map json) {
   return PaymentAuthorizationStatusResponse(
       request: PaymentAuthorizationStatusRequest.signedMessageFromJson(
-          json['request'] as Map<String, dynamic>),
+          json['request'] as Map),
       paymentAuthorizationStatus: _$enumDecode(
           _$PaymentAuthorizationStatusEnumEnumMap,
           json['paymentAuthorizationStatus']));
@@ -19,7 +19,7 @@ PaymentAuthorizationStatusResponse _$PaymentAuthorizationStatusResponseFromJson(
 Map<String, dynamic> _$PaymentAuthorizationStatusResponseToJson(
         PaymentAuthorizationStatusResponse instance) =>
     <String, dynamic>{
-      'request': instance.request,
+      'request': instance.request.toJson(),
       'paymentAuthorizationStatus': _$PaymentAuthorizationStatusEnumEnumMap[
           instance.paymentAuthorizationStatus]
     };
