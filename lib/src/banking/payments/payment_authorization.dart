@@ -9,6 +9,7 @@ import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 part 'payment_authorization.g.dart';
 
 enum PaymentAuthorizationStatusEnum {
+  Created,
   Registered,
   Rejected,
   InsufficientFunds,

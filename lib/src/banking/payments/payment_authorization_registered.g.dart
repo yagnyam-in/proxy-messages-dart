@@ -39,6 +39,7 @@ T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
 
 const _$PaymentAuthorizationStatusEnumEnumMap =
     <PaymentAuthorizationStatusEnum, dynamic>{
+  PaymentAuthorizationStatusEnum.Created: 'Created',
   PaymentAuthorizationStatusEnum.Registered: 'Registered',
   PaymentAuthorizationStatusEnum.Rejected: 'Rejected',
   PaymentAuthorizationStatusEnum.InsufficientFunds: 'InsufficientFunds',

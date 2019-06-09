@@ -10,9 +10,6 @@ Payee _$PayeeFromJson(Map json) {
   return Payee(
       paymentEncashmentId: json['paymentEncashmentId'] as String,
       payeeType: _$enumDecode(_$PayeeTypeEnumEnumMap, json['payeeType']),
-      proxyAccountId: json['proxyAccountId'] == null
-          ? null
-          : ProxyAccountId.fromJson(json['proxyAccountId'] as Map),
       proxyId: json['proxyId'] == null
           ? null
           : ProxyId.fromJson(json['proxyId'] as Map),
@@ -21,15 +18,24 @@ Payee _$PayeeFromJson(Map json) {
       secretHash: json['secretHash'] as String);
 }
 
-Map<String, dynamic> _$PayeeToJson(Payee instance) => <String, dynamic>{
-      'paymentEncashmentId': instance.paymentEncashmentId,
-      'payeeType': _$PayeeTypeEnumEnumMap[instance.payeeType],
-      'proxyAccountId': instance.proxyAccountId?.toJson(),
-      'proxyId': instance.proxyId?.toJson(),
-      'emailHash': instance.emailHash,
-      'phoneHash': instance.phoneHash,
-      'secretHash': instance.secretHash
-    };
+Map<String, dynamic> _$PayeeToJson(Payee instance) {
+  final val = <String, dynamic>{
+    'paymentEncashmentId': instance.paymentEncashmentId,
+    'payeeType': _$PayeeTypeEnumEnumMap[instance.payeeType],
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('proxyId', instance.proxyId?.toJson());
+  writeNotNull('emailHash', instance.emailHash);
+  writeNotNull('phoneHash', instance.phoneHash);
+  writeNotNull('secretHash', instance.secretHash);
+  return val;
+}
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
   if (source == null) {

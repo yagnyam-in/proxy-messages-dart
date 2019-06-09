@@ -16,10 +16,19 @@ PaymentEncashment _$PaymentEncashmentFromJson(Map json) {
       secret: json['secret'] as String);
 }
 
-Map<String, dynamic> _$PaymentEncashmentToJson(PaymentEncashment instance) =>
-    <String, dynamic>{
-      'paymentEncashmentId': instance.paymentEncashmentId,
-      'paymentAuthorization': instance.paymentAuthorization.toJson(),
-      'payeeAccount': instance.payeeAccount.toJson(),
-      'secret': instance.secret
-    };
+Map<String, dynamic> _$PaymentEncashmentToJson(PaymentEncashment instance) {
+  final val = <String, dynamic>{
+    'paymentEncashmentId': instance.paymentEncashmentId,
+    'paymentAuthorization': instance.paymentAuthorization.toJson(),
+    'payeeAccount': instance.payeeAccount.toJson(),
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('secret', instance.secret);
+  return val;
+}

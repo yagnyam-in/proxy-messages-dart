@@ -22,9 +22,6 @@ class Payee extends ProxyBaseObject with ProxyUtils {
   final PayeeTypeEnum payeeType;
 
   @JsonKey(nullable: true)
-  final ProxyAccountId proxyAccountId;
-
-  @JsonKey(nullable: true)
   final ProxyId proxyId;
 
   @JsonKey(nullable: true)
@@ -39,7 +36,6 @@ class Payee extends ProxyBaseObject with ProxyUtils {
   Payee({
     @required this.paymentEncashmentId,
     @required this.payeeType,
-    this.proxyAccountId,
     this.proxyId,
     this.emailHash,
     this.phoneHash,
