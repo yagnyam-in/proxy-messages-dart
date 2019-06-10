@@ -8,6 +8,7 @@ import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 part 'payment_encashment.g.dart';
 
 enum PaymentEncashmentStatusEnum {
+  Created,
   Registered,
   Rejected,
   InsufficientFunds,
@@ -21,8 +22,6 @@ enum PaymentEncashmentStatusEnum {
 
 @JsonSerializable()
 class PaymentEncashment extends SignableRequestMessage with ProxyUtils {
-
-
   @JsonKey(nullable: false)
   final String paymentEncashmentId;
 
@@ -66,8 +65,7 @@ class PaymentEncashment extends SignableRequestMessage with ProxyUtils {
   }
 
   @override
-  String get messageType =>
-      "in.yagnyam.proxy.messages.payments.PaymentEncashment";
+  String get messageType => "in.yagnyam.proxy.messages.payments.PaymentEncashment";
 
   @override
   String get requestId => paymentEncashmentId;
@@ -85,15 +83,11 @@ class PaymentEncashment extends SignableRequestMessage with ProxyUtils {
   @override
   Map<String, dynamic> toJson() => _$PaymentEncashmentToJson(this);
 
-  static PaymentEncashment fromJson(Map json) =>
-      _$PaymentEncashmentFromJson(json);
+  static PaymentEncashment fromJson(Map json) => _$PaymentEncashmentFromJson(json);
 
-  static SignedMessage<PaymentEncashment> signedMessageFromJson(
-      Map json) {
-    SignedMessage<PaymentEncashment> signed =
-        SignedMessage.fromJson<PaymentEncashment>(json);
-    signed.message = MessageBuilder.instance()
-        .buildSignableMessage(signed.payload, fromJson);
+  static SignedMessage<PaymentEncashment> signedMessageFromJson(Map json) {
+    SignedMessage<PaymentEncashment> signed = SignedMessage.fromJson<PaymentEncashment>(json);
+    signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
 
