@@ -6,4 +6,5 @@ export 'package:proxy_messages/src/banking/payments/payment_authorization_status
 export 'package:proxy_messages/src/banking/payments/payment_authorization_status_response.dart';
 export 'package:proxy_messages/src/banking/payments/payment_encashment.dart';
 
-export 'package:proxy_messages/src/banking/alerts/payment_updated_alert.dart';
+export 'package:proxy_messages/src/banking/alerts/payment_authorization_updated_alert.dart';
+export 'package:proxy_messages/src/banking/alerts/payment_encashment_updated_alert.dart';
