@@ -1,20 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
-import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
 part 'payee.g.dart';
 
-enum PayeeTypeEnum {
-  ProxyId,
-  Email,
-  Phone,
-  AnyoneWithSecret
-}
+enum PayeeTypeEnum { ProxyId, Email, Phone, AnyoneWithSecret }
 
 @JsonSerializable()
 class Payee extends ProxyBaseObject with ProxyUtils {
-
   @JsonKey(nullable: false)
   String paymentEncashmentId;
 
@@ -25,13 +18,13 @@ class Payee extends ProxyBaseObject with ProxyUtils {
   final ProxyId proxyId;
 
   @JsonKey(nullable: true)
-  final String emailHash;
+  final HashValue emailHash;
 
   @JsonKey(nullable: true)
-  final String phoneHash;
+  final HashValue phoneHash;
 
   @JsonKey(nullable: true)
-  final String secretHash;
+  final HashValue secretHash;
 
   Payee({
     @required this.paymentEncashmentId,
@@ -59,13 +52,13 @@ class Payee extends ProxyBaseObject with ProxyUtils {
     }
     switch (payeeType) {
       case PayeeTypeEnum.ProxyId:
-        return proxyId != null && proxyId.isValid();
+        return isValidProxyObject(proxyId);
       case PayeeTypeEnum.Email:
-        return isNotEmpty(emailHash) && isNotEmpty(secretHash);
+        return isValidProxyObject(emailHash) && isValidProxyObject(secretHash);
       case PayeeTypeEnum.Phone:
-        return isNotEmpty(phoneHash) && isNotEmpty(secretHash);
+        return isValidProxyObject(phoneHash) && isValidProxyObject(secretHash);
       case PayeeTypeEnum.AnyoneWithSecret:
-        return isNotEmpty(secretHash);
+        return isValidProxyObject(secretHash);
       default:
         return false;
     }
@@ -76,6 +69,5 @@ class Payee extends ProxyBaseObject with ProxyUtils {
 
   Map<String, dynamic> toJson() => _$PayeeToJson(this);
 
-  factory Payee.fromJson(Map json) =>
-      _$PayeeFromJson(json);
+  factory Payee.fromJson(Map json) => _$PayeeFromJson(json);
 }

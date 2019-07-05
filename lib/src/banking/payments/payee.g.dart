@@ -13,9 +13,15 @@ Payee _$PayeeFromJson(Map json) {
       proxyId: json['proxyId'] == null
           ? null
           : ProxyId.fromJson(json['proxyId'] as Map),
-      emailHash: json['emailHash'] as String,
-      phoneHash: json['phoneHash'] as String,
-      secretHash: json['secretHash'] as String);
+      emailHash: json['emailHash'] == null
+          ? null
+          : HashValue.fromJson(json['emailHash'] as Map),
+      phoneHash: json['phoneHash'] == null
+          ? null
+          : HashValue.fromJson(json['phoneHash'] as Map),
+      secretHash: json['secretHash'] == null
+          ? null
+          : HashValue.fromJson(json['secretHash'] as Map));
 }
 
 Map<String, dynamic> _$PayeeToJson(Payee instance) {
@@ -31,9 +37,9 @@ Map<String, dynamic> _$PayeeToJson(Payee instance) {
   }
 
   writeNotNull('proxyId', instance.proxyId?.toJson());
-  writeNotNull('emailHash', instance.emailHash);
-  writeNotNull('phoneHash', instance.phoneHash);
-  writeNotNull('secretHash', instance.secretHash);
+  writeNotNull('emailHash', instance.emailHash?.toJson());
+  writeNotNull('phoneHash', instance.phoneHash?.toJson());
+  writeNotNull('secretHash', instance.secretHash?.toJson());
   return val;
 }
 
