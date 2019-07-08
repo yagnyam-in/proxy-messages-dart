@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
+import 'package:proxy_messages/banking.dart';
 import 'package:proxy_messages/src/banking/payments/payment_authorization.dart';
 import 'package:proxy_messages/src/banking/proxy_account.dart';
 import 'package:proxy_messages/src/banking/proxy_account_id.dart';
@@ -125,5 +126,13 @@ class PaymentEncashment extends SignableRequestMessage with ProxyUtils {
 
   ProxyId get payeeBankProxyId {
     return payeeAccount.signedBy;
+  }
+
+  String get paymentAuthorizationId {
+    return paymentAuthorization.message.paymentAuthorizationId;
+  }
+
+  Amount get amount {
+    return paymentAuthorization.message.amount;
   }
 }
