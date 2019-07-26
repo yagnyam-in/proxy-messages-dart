@@ -75,15 +75,11 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
     maximumAmountPerTransaction.assertValid();
   }
 
-  static ProxyAccount fromJson(Map json) =>
-      _$ProxyAccountFromJson(json);
+  static ProxyAccount fromJson(Map json) => _$ProxyAccountFromJson(json);
 
-  static SignedMessage<ProxyAccount> signedMessageFromJson(
-      Map json) {
-    SignedMessage<ProxyAccount> signedMessage =
-        SignedMessage.fromJson<ProxyAccount>(json);
-    signedMessage.message = MessageBuilder.instance()
-        .buildSignableMessage(signedMessage.payload, fromJson);
+  static SignedMessage<ProxyAccount> signedMessageFromJson(Map json) {
+    SignedMessage<ProxyAccount> signedMessage = SignedMessage.fromJson<ProxyAccount>(json);
+    signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;
   }
 
@@ -91,7 +87,12 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
   Map<String, dynamic> toJson() => _$ProxyAccountToJson(this);
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
+    return [];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
     return [];
   }
 

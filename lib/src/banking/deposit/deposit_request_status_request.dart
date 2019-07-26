@@ -42,8 +42,13 @@ class DepositRequestStatusRequest extends SignableRequestMessage with ProxyUtils
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [depositRequest];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
   }
 
   @override
@@ -65,7 +70,6 @@ class DepositRequestStatusRequest extends SignableRequestMessage with ProxyUtils
     return signed;
   }
 
-
   String get depositId {
     return depositRequest.message.depositId;
   }
@@ -77,7 +81,6 @@ class DepositRequestStatusRequest extends SignableRequestMessage with ProxyUtils
   ProxyId get ownerProxyId {
     return depositRequest.message.ownerProxyId;
   }
-
 
   String get proxyUniverse {
     return proxyAccountId.proxyUniverse;

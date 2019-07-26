@@ -43,7 +43,7 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
     @required this.proxyId,
     @required this.bankId,
     @required this.currency,
-  })  {
+  }) {
     assertValid();
   }
 
@@ -71,7 +71,12 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
+    return [];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
     return [];
   }
 
@@ -93,5 +98,4 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;
   }
-
 }

@@ -7,7 +7,6 @@ part 'payment_encashment_status_response.g.dart';
 
 @JsonSerializable()
 class PaymentEncashmentStatusResponse extends SignableMessage with ProxyUtils {
-
   @JsonKey(nullable: false, fromJson: PaymentEncashmentStatusRequest.signedMessageFromJson)
   final SignedMessage<PaymentEncashmentStatusRequest> request;
 
@@ -35,12 +34,17 @@ class PaymentEncashmentStatusResponse extends SignableMessage with ProxyUtils {
 
   @override
   ProxyId getSigner() {
-     return request.message.payerBankProxyId;
+    return request.message.payerBankProxyId;
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [request];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
   }
 
   @override
@@ -57,7 +61,8 @@ class PaymentEncashmentStatusResponse extends SignableMessage with ProxyUtils {
   static PaymentEncashmentStatusResponse fromJson(Map json) => _$PaymentEncashmentStatusResponseFromJson(json);
 
   static SignedMessage<PaymentEncashmentStatusResponse> signedMessageFromJson(Map json) {
-    SignedMessage<PaymentEncashmentStatusResponse> signed = SignedMessage.fromJson<PaymentEncashmentStatusResponse>(json);
+    SignedMessage<PaymentEncashmentStatusResponse> signed =
+        SignedMessage.fromJson<PaymentEncashmentStatusResponse>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }

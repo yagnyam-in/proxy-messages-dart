@@ -51,14 +51,18 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
     amount.assertValid();
     assert(payees != null);
     assert(payees.isNotEmpty);
-    assert(payees.map((p) => p.paymentEncashmentId).toSet().length ==
-        payees.length);
+    assert(payees.map((p) => p.paymentEncashmentId).toSet().length == payees.length);
     payees.forEach((p) => p.assertValid());
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [proxyAccount];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
   }
 
   @override
@@ -70,14 +74,12 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
         amount.isValid() &&
         payees != null &&
         payees.isNotEmpty &&
-        payees.map((p) => p.paymentEncashmentId).toSet().length ==
-            payees.length &&
+        payees.map((p) => p.paymentEncashmentId).toSet().length == payees.length &&
         payees.every((p) => p.isValid());
   }
 
   @override
-  String get messageType =>
-      "in.yagnyam.proxy.messages.payments.PaymentAuthorization";
+  String get messageType => "in.yagnyam.proxy.messages.payments.PaymentAuthorization";
 
   @override
   String get requestId => paymentAuthorizationId;
@@ -95,15 +97,11 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
   @override
   Map<String, dynamic> toJson() => _$PaymentAuthorizationToJson(this);
 
-  static PaymentAuthorization fromJson(Map json) =>
-      _$PaymentAuthorizationFromJson(json);
+  static PaymentAuthorization fromJson(Map json) => _$PaymentAuthorizationFromJson(json);
 
-  static SignedMessage<PaymentAuthorization> signedMessageFromJson(
-      Map json) {
-    SignedMessage<PaymentAuthorization> signed =
-        SignedMessage.fromJson<PaymentAuthorization>(json);
-    signed.message = MessageBuilder.instance()
-        .buildSignableMessage(signed.payload, fromJson);
+  static SignedMessage<PaymentAuthorization> signedMessageFromJson(Map json) {
+    SignedMessage<PaymentAuthorization> signed = SignedMessage.fromJson<PaymentAuthorization>(json);
+    signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
 

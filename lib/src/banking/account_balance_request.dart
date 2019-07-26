@@ -34,20 +34,22 @@ class AccountBalanceRequest extends SignableRequestMessage with ProxyUtils {
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [proxyAccount];
   }
 
   @override
-  bool isValid() {
-    return isNotEmpty(requestId) &&
-        proxyAccount != null &&
-        proxyAccount.isValid();
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
   }
 
   @override
-  String get messageType =>
-      'in.yagnyam.proxy.messages.banking.AccountBalanceRequest';
+  bool isValid() {
+    return isNotEmpty(requestId) && proxyAccount != null && proxyAccount.isValid();
+  }
+
+  @override
+  String get messageType => 'in.yagnyam.proxy.messages.banking.AccountBalanceRequest';
 
   @override
   String toReadableString() {
@@ -60,24 +62,21 @@ class AccountBalanceRequest extends SignableRequestMessage with ProxyUtils {
 
   @override
   String toString() {
-    return "AccountBalanceRequest: " + {
-      "requestId": requestId,
-      "proxyAccountId": proxyAccountId.toString(),
-    }.toString();
+    return "AccountBalanceRequest: " +
+        {
+          "requestId": requestId,
+          "proxyAccountId": proxyAccountId.toString(),
+        }.toString();
   }
 
   @override
   Map<String, dynamic> toJson() => _$AccountBalanceRequestToJson(this);
 
-  static AccountBalanceRequest fromJson(Map json) =>
-      _$AccountBalanceRequestFromJson(json);
+  static AccountBalanceRequest fromJson(Map json) => _$AccountBalanceRequestFromJson(json);
 
-  static SignedMessage<AccountBalanceRequest> signedMessageFromJson(
-      Map json) {
-    SignedMessage<AccountBalanceRequest> signed =
-        SignedMessage.fromJson<AccountBalanceRequest>(json);
-    signed.message = MessageBuilder.instance()
-        .buildSignableMessage(signed.payload, fromJson);
+  static SignedMessage<AccountBalanceRequest> signedMessageFromJson(Map json) {
+    SignedMessage<AccountBalanceRequest> signed = SignedMessage.fromJson<AccountBalanceRequest>(json);
+    signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
 }

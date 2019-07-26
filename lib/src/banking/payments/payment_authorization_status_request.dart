@@ -7,13 +7,11 @@ import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 part 'payment_authorization_status_request.g.dart';
 
 @JsonSerializable()
-class PaymentAuthorizationStatusRequest extends SignableRequestMessage
-    with ProxyUtils {
+class PaymentAuthorizationStatusRequest extends SignableRequestMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final String requestId;
 
-  @JsonKey(
-      nullable: false, fromJson: PaymentAuthorization.signedMessageFromJson)
+  @JsonKey(nullable: false, fromJson: PaymentAuthorization.signedMessageFromJson)
   final SignedMessage<PaymentAuthorization> paymentAuthorization;
 
   PaymentAuthorizationStatusRequest({
@@ -41,13 +39,17 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [paymentAuthorization];
   }
 
   @override
-  String get messageType =>
-      "in.yagnyam.proxy.messages.payments.PaymentAuthorizationStatusRequest";
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
+  }
+
+  @override
+  String get messageType => "in.yagnyam.proxy.messages.payments.PaymentAuthorizationStatusRequest";
 
   @override
   String toReadableString() {
@@ -55,19 +57,14 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage
   }
 
   @override
-  Map<String, dynamic> toJson() =>
-      _$PaymentAuthorizationStatusRequestToJson(this);
+  Map<String, dynamic> toJson() => _$PaymentAuthorizationStatusRequestToJson(this);
 
-  static PaymentAuthorizationStatusRequest fromJson(
-          Map json) =>
-      _$PaymentAuthorizationStatusRequestFromJson(json);
+  static PaymentAuthorizationStatusRequest fromJson(Map json) => _$PaymentAuthorizationStatusRequestFromJson(json);
 
-  static SignedMessage<PaymentAuthorizationStatusRequest> signedMessageFromJson(
-      Map json) {
+  static SignedMessage<PaymentAuthorizationStatusRequest> signedMessageFromJson(Map json) {
     SignedMessage<PaymentAuthorizationStatusRequest> signed =
         SignedMessage.fromJson<PaymentAuthorizationStatusRequest>(json);
-    signed.message = MessageBuilder.instance()
-        .buildSignableMessage(signed.payload, fromJson);
+    signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
 

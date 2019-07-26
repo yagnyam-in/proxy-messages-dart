@@ -35,9 +35,7 @@ class DepositRequestCreationResponse extends SignableMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return isValidProxyObject(request)
-        && isValidProxyObject(depositRequest)
-        && status != null;
+    return isValidProxyObject(request) && isValidProxyObject(depositRequest) && status != null;
   }
 
   @override
@@ -55,8 +53,13 @@ class DepositRequestCreationResponse extends SignableMessage with ProxyUtils {
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [request];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
   }
 
   @override
@@ -69,6 +72,7 @@ class DepositRequestCreationResponse extends SignableMessage with ProxyUtils {
 
   @override
   Map<String, dynamic> toJson() => _$DepositRequestCreationResponseToJson(this);
+
   static DepositRequestCreationResponse fromJson(Map json) => _$DepositRequestCreationResponseFromJson(json);
 
   static SignedMessage<DepositRequestCreationResponse> signedMessageFromJson(Map json) {
@@ -77,9 +81,7 @@ class DepositRequestCreationResponse extends SignableMessage with ProxyUtils {
     return signed;
   }
 
-
   String get depositLink {
     return depositRequest.message.depositLink;
   }
-
 }

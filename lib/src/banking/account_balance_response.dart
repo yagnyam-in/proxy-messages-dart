@@ -46,8 +46,13 @@ class AccountBalanceResponse extends SignableMessage with ProxyUtils {
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [request];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
   }
 
   @override
@@ -68,16 +73,17 @@ class AccountBalanceResponse extends SignableMessage with ProxyUtils {
 
   @override
   String toString() {
-    return "AccountBalanceResponse: " + {
-      "requestId": requestId,
-      "proxyAccountId": proxyAccountId.toString(),
-      "balance": balance.toString(),
-    }.toString();
+    return "AccountBalanceResponse: " +
+        {
+          "requestId": requestId,
+          "proxyAccountId": proxyAccountId.toString(),
+          "balance": balance.toString(),
+        }.toString();
   }
-
 
   @override
   Map<String, dynamic> toJson() => _$AccountBalanceResponseToJson(this);
+
   static AccountBalanceResponse fromJson(Map json) => _$AccountBalanceResponseFromJson(json);
 
   static SignedMessage<AccountBalanceResponse> signedMessageFromJson(Map json) {
@@ -85,5 +91,4 @@ class AccountBalanceResponse extends SignableMessage with ProxyUtils {
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
-
 }

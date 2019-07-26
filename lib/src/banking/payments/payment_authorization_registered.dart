@@ -38,8 +38,13 @@ class PaymentAuthorizationRegistered extends SignableMessage with ProxyUtils {
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [paymentAuthorization];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
   }
 
   @override
@@ -52,6 +57,7 @@ class PaymentAuthorizationRegistered extends SignableMessage with ProxyUtils {
 
   @override
   Map<String, dynamic> toJson() => _$PaymentAuthorizationRegisteredToJson(this);
+
   static PaymentAuthorizationRegistered fromJson(Map json) => _$PaymentAuthorizationRegisteredFromJson(json);
 
   static SignedMessage<PaymentAuthorizationRegistered> signedMessageFromJson(Map json) {
@@ -59,5 +65,4 @@ class PaymentAuthorizationRegistered extends SignableMessage with ProxyUtils {
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
-
 }

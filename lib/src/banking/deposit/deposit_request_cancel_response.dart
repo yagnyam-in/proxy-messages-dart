@@ -40,12 +40,17 @@ class DepositRequestCancelResponse extends SignableMessage with ProxyUtils {
 
   @override
   ProxyId getSigner() {
-     return request.message.depositRequest.signedBy;
+    return request.message.depositRequest.signedBy;
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [request];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
   }
 
   @override

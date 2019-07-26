@@ -44,7 +44,6 @@ class RequestingCustomer extends ProxyBaseObject with ProxyUtils {
   Map<String, dynamic> toJson() => _$RequestingCustomerToJson(this);
 
   factory RequestingCustomer.fromJson(Map json) => _$RequestingCustomerFromJson(json);
-
 }
 
 @JsonSerializable()
@@ -87,15 +86,19 @@ class DepositRequestCreationRequest extends SignableRequestMessage with ProxyUti
     }
   }
 
-
   @override
   ProxyId getSigner() {
     return proxyAccount.message.ownerProxyId;
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [proxyAccount];
+  }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
   }
 
   @override
@@ -142,5 +145,4 @@ class DepositRequestCreationRequest extends SignableRequestMessage with ProxyUti
   String get proxyUniverse {
     return proxyAccountId.proxyUniverse;
   }
-
 }

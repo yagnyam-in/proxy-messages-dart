@@ -7,13 +7,11 @@ import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 part 'payment_encashment_status_request.g.dart';
 
 @JsonSerializable()
-class PaymentEncashmentStatusRequest extends SignableRequestMessage
-    with ProxyUtils {
+class PaymentEncashmentStatusRequest extends SignableRequestMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final String requestId;
 
-  @JsonKey(
-      nullable: false, fromJson: PaymentEncashment.signedMessageFromJson)
+  @JsonKey(nullable: false, fromJson: PaymentEncashment.signedMessageFromJson)
   final SignedMessage<PaymentEncashment> paymentEncashment;
 
   PaymentEncashmentStatusRequest({
@@ -41,13 +39,17 @@ class PaymentEncashmentStatusRequest extends SignableRequestMessage
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [paymentEncashment];
   }
 
   @override
-  String get messageType =>
-      "in.yagnyam.proxy.messages.payments.PaymentEncashmentStatusRequest";
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
+  }
+
+  @override
+  String get messageType => "in.yagnyam.proxy.messages.payments.PaymentEncashmentStatusRequest";
 
   @override
   String toReadableString() {
@@ -55,19 +57,13 @@ class PaymentEncashmentStatusRequest extends SignableRequestMessage
   }
 
   @override
-  Map<String, dynamic> toJson() =>
-      _$PaymentEncashmentStatusRequestToJson(this);
+  Map<String, dynamic> toJson() => _$PaymentEncashmentStatusRequestToJson(this);
 
-  static PaymentEncashmentStatusRequest fromJson(
-          Map json) =>
-      _$PaymentEncashmentStatusRequestFromJson(json);
+  static PaymentEncashmentStatusRequest fromJson(Map json) => _$PaymentEncashmentStatusRequestFromJson(json);
 
-  static SignedMessage<PaymentEncashmentStatusRequest> signedMessageFromJson(
-      Map json) {
-    SignedMessage<PaymentEncashmentStatusRequest> signed =
-        SignedMessage.fromJson<PaymentEncashmentStatusRequest>(json);
-    signed.message = MessageBuilder.instance()
-        .buildSignableMessage(signed.payload, fromJson);
+  static SignedMessage<PaymentEncashmentStatusRequest> signedMessageFromJson(Map json) {
+    SignedMessage<PaymentEncashmentStatusRequest> signed = SignedMessage.fromJson<PaymentEncashmentStatusRequest>(json);
+    signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
 

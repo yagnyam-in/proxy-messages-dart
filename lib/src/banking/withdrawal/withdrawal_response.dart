@@ -38,13 +38,17 @@ class WithdrawalResponse extends SignableMessage with ProxyUtils {
   }
 
   @override
-  List<SignedMessage<SignableMessage>> getChildMessages() {
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
     return [request];
   }
 
   @override
-  String get messageType =>
-      "in.yagnyam.proxy.messages.banking.WithdrawalResponse";
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
+  }
+
+  @override
+  String get messageType => "in.yagnyam.proxy.messages.banking.WithdrawalResponse";
 
   @override
   String toReadableString() {
@@ -54,15 +58,11 @@ class WithdrawalResponse extends SignableMessage with ProxyUtils {
   @override
   Map<String, dynamic> toJson() => _$WithdrawalResponseToJson(this);
 
-  static WithdrawalResponse fromJson(Map json) =>
-      _$WithdrawalResponseFromJson(json);
+  static WithdrawalResponse fromJson(Map json) => _$WithdrawalResponseFromJson(json);
 
-  static SignedMessage<WithdrawalResponse> signedMessageFromJson(
-      Map json) {
-    SignedMessage<WithdrawalResponse> signed =
-        SignedMessage.fromJson<WithdrawalResponse>(json);
-    signed.message = MessageBuilder.instance()
-        .buildSignableMessage(signed.payload, fromJson);
+  static SignedMessage<WithdrawalResponse> signedMessageFromJson(Map json) {
+    SignedMessage<WithdrawalResponse> signed = SignedMessage.fromJson<WithdrawalResponse>(json);
+    signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;
   }
 }
