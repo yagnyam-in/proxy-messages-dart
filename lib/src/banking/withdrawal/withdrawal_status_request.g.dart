@@ -8,13 +8,14 @@ part of 'withdrawal_status_request.dart';
 
 WithdrawalStatusRequest _$WithdrawalStatusRequestFromJson(Map json) {
   return WithdrawalStatusRequest(
-      requestId: json['requestId'] as String,
-      request: Withdrawal.signedMessageFromJson(json['request'] as Map));
+    requestId: json['requestId'] as String,
+    request: Withdrawal.signedMessageFromJson(json['request'] as Map),
+  );
 }
 
 Map<String, dynamic> _$WithdrawalStatusRequestToJson(
         WithdrawalStatusRequest instance) =>
     <String, dynamic>{
       'requestId': instance.requestId,
-      'request': instance.request.toJson()
+      'request': instance.request.toJson(),
     };

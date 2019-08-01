@@ -51,28 +51,22 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return proxyAccountId != null &&
-        proxyAccountId.isValid() &&
-        ownerProxyId != null &&
-        ownerProxyId.isValid() &&
+    return isValidProxyObject(proxyAccountId) &&
+        isValidProxyId(ownerProxyId) &&
         isValidDateTime(creationDate) &&
         isValidDateTime(expiryDate) &&
         Currency.isValidCurrency(currency) &&
-        maximumAmountPerTransaction != null &&
-        maximumAmountPerTransaction.isValid();
+        isValidProxyObject(maximumAmountPerTransaction);
   }
 
   @override
   void assertValid() {
-    assert(proxyAccountId != null);
-    proxyAccountId.assertValid();
-    assert(ownerProxyId != null);
-    ownerProxyId.assertValid();
-    assert(isValidDateTime(creationDate));
-    assert(isValidDateTime(expiryDate));
+    assertValidProxyObject(proxyAccountId);
+    assertValidProxyId(ownerProxyId);
+    assertValidDateTime(creationDate);
+    assertValidDateTime(expiryDate);
     assert(Currency.isValidCurrency(currency));
-    assert(maximumAmountPerTransaction != null);
-    maximumAmountPerTransaction.assertValid();
+    assertValidProxyObject(maximumAmountPerTransaction);
   }
 
   static ProxyAccount fromJson(Map json) => _$ProxyAccountFromJson(json);

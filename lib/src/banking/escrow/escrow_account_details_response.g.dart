@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'deposit_request_status_response.dart';
+part of 'escrow_account_details_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DepositRequestStatusResponse _$DepositRequestStatusResponseFromJson(Map json) {
-  return DepositRequestStatusResponse(
-    request: DepositRequestStatusRequest.signedMessageFromJson(
+EscrowAccountDetailsResponse _$EscrowAccountDetailsResponseFromJson(Map json) {
+  return EscrowAccountDetailsResponse(
+    request: EscrowAccountDetailsRequest.signedMessageFromJson(
         json['request'] as Map),
-    status: _$enumDecode(_$DepositStatusEnumEnumMap, json['status']),
+    status: _$enumDecode(_$EscrowAccountStatusEnumEnumMap, json['status']),
   );
 }
 
-Map<String, dynamic> _$DepositRequestStatusResponseToJson(
-        DepositRequestStatusResponse instance) =>
+Map<String, dynamic> _$EscrowAccountDetailsResponseToJson(
+        EscrowAccountDetailsResponse instance) =>
     <String, dynamic>{
       'request': instance.request.toJson(),
-      'status': _$DepositStatusEnumEnumMap[instance.status],
+      'status': _$EscrowAccountStatusEnumEnumMap[instance.status],
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
@@ -34,11 +34,8 @@ T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
       .key;
 }
 
-const _$DepositStatusEnumEnumMap = <DepositStatusEnum, dynamic>{
-  DepositStatusEnum.Created: 'Created',
-  DepositStatusEnum.Registered: 'Registered',
-  DepositStatusEnum.Rejected: 'Rejected',
-  DepositStatusEnum.InProcess: 'InProcess',
-  DepositStatusEnum.Completed: 'Completed',
-  DepositStatusEnum.Cancelled: 'Cancelled'
+const _$EscrowAccountStatusEnumEnumMap = <EscrowAccountStatusEnum, dynamic>{
+  EscrowAccountStatusEnum.Ready: 'Ready',
+  EscrowAccountStatusEnum.Completed: 'Completed',
+  EscrowAccountStatusEnum.Cancelled: 'Cancelled'
 };

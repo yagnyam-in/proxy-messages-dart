@@ -21,7 +21,7 @@ class EscrowAccountUpdatedAlert extends Alert {
     EscrowAccountId escrowAccountId = EscrowAccountId(
       proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
       accountId: map['accountId'],
-      bankId: map['bankId'],
+      bankProxyId: map['bankProxyId'],
     );
     return EscrowAccountUpdatedAlert(
       proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],

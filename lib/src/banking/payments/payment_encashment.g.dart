@@ -8,12 +8,13 @@ part of 'payment_encashment.dart';
 
 PaymentEncashment _$PaymentEncashmentFromJson(Map json) {
   return PaymentEncashment(
-      paymentEncashmentId: json['paymentEncashmentId'] as String,
-      paymentAuthorization: PaymentAuthorization.signedMessageFromJson(
-          json['paymentAuthorization'] as Map),
-      payeeAccount:
-          ProxyAccount.signedMessageFromJson(json['payeeAccount'] as Map),
-      secret: json['secret'] as String);
+    paymentEncashmentId: json['paymentEncashmentId'] as String,
+    paymentAuthorization: PaymentAuthorization.signedMessageFromJson(
+        json['paymentAuthorization'] as Map),
+    payeeAccount:
+        ProxyAccount.signedMessageFromJson(json['payeeAccount'] as Map),
+    secret: json['secret'] as String,
+  );
 }
 
 Map<String, dynamic> _$PaymentEncashmentToJson(PaymentEncashment instance) {

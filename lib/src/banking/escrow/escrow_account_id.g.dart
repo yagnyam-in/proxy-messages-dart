@@ -8,14 +8,15 @@ part of 'escrow_account_id.dart';
 
 EscrowAccountId _$EscrowAccountIdFromJson(Map json) {
   return EscrowAccountId(
-      accountId: json['accountId'] as String,
-      bankId: json['bankId'] as String,
-      proxyUniverse: json['proxyUniverse'] as String);
+    accountId: json['accountId'] as String,
+    bankProxyId: ProxyId.fromJson(json['bankProxyId'] as Map),
+    proxyUniverse: json['proxyUniverse'] as String,
+  );
 }
 
 Map<String, dynamic> _$EscrowAccountIdToJson(EscrowAccountId instance) =>
     <String, dynamic>{
       'accountId': instance.accountId,
-      'bankId': instance.bankId,
-      'proxyUniverse': instance.proxyUniverse
+      'bankProxyId': instance.bankProxyId.toJson(),
+      'proxyUniverse': instance.proxyUniverse,
     };
