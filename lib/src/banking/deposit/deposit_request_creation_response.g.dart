@@ -9,12 +9,11 @@ part of 'deposit_request_creation_response.dart';
 DepositRequestCreationResponse _$DepositRequestCreationResponseFromJson(
     Map json) {
   return DepositRequestCreationResponse(
-    request: DepositRequestCreationRequest.signedMessageFromJson(
-        json['request'] as Map),
-    depositRequest:
-        DepositRequest.signedMessageFromJson(json['depositRequest'] as Map),
-    status: _$enumDecode(_$DepositStatusEnumEnumMap, json['status']),
-  );
+      request: DepositRequestCreationRequest.signedMessageFromJson(
+          json['request'] as Map),
+      depositRequest:
+          DepositRequest.signedMessageFromJson(json['depositRequest'] as Map),
+      status: _$enumDecode(_$DepositStatusEnumEnumMap, json['status']));
 }
 
 Map<String, dynamic> _$DepositRequestCreationResponseToJson(
@@ -22,7 +21,7 @@ Map<String, dynamic> _$DepositRequestCreationResponseToJson(
     <String, dynamic>{
       'request': instance.request.toJson(),
       'depositRequest': instance.depositRequest.toJson(),
-      'status': _$DepositStatusEnumEnumMap[instance.status],
+      'status': _$DepositStatusEnumEnumMap[instance.status]
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {

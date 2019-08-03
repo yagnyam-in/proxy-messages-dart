@@ -8,15 +8,14 @@ part of 'escrow_account_proposal_status.dart';
 
 EscrowAccountProposalStatus _$EscrowAccountProposalStatusFromJson(Map json) {
   return EscrowAccountProposalStatus(
-    escrowAccountProposal: EscrowAccountProposal.signedMessageFromJson(
-        json['escrowAccountProposal'] as Map),
-    escrowProxyId: json['escrowProxyId'] == null
-        ? null
-        : ProxyId.fromJson(json['escrowProxyId'] as Map),
-    payeeProxyId: json['payeeProxyId'] == null
-        ? null
-        : ProxyId.fromJson(json['payeeProxyId'] as Map),
-  );
+      escrowAccountProposal: EscrowAccountProposal.signedMessageFromJson(
+          json['escrowAccountProposal'] as Map),
+      escrowProxyId: json['escrowProxyId'] == null
+          ? null
+          : ProxyId.fromJson(json['escrowProxyId'] as Map),
+      payeeProxyId: json['payeeProxyId'] == null
+          ? null
+          : ProxyId.fromJson(json['payeeProxyId'] as Map));
 }
 
 Map<String, dynamic> _$EscrowAccountProposalStatusToJson(

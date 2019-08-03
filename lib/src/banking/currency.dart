@@ -32,6 +32,17 @@ class Currency {
     return currency != null && currenciesSupported.contains(currency);
   }
 
+  /**
+   * Check if the given currency is valid
+   *
+   * @param currency Currency to check
+   * @return true if a valid currency
+   */
+  static void assertValidCurrency(String currency) {
+    assert(currency != null);
+    assert(currenciesSupported.contains(currency), "$currency is not supported");
+  }
+
   static String currencySymbol(String currency) {
     return currencySymbols[currency] ?? currency;
   }

@@ -10,14 +10,16 @@ class ProxyAccountId extends ProxyBaseObject with ProxyUtils {
   final String accountId;
 
   @JsonKey(nullable: false)
-  final String bankId;
+  final ProxyId bankProxyId;
 
   @JsonKey(nullable: false)
   final String proxyUniverse;
 
-  ProxyAccountId({@required this.accountId, @required String this.bankId, @required this.proxyUniverse}) {
+  ProxyAccountId({@required this.accountId, @required this.bankProxyId, @required this.proxyUniverse}) {
     assertValid();
   }
+
+  String get bankId => bankProxyId?.id;
 
   @override
   bool operator ==(dynamic other) {
@@ -25,22 +27,22 @@ class ProxyAccountId extends ProxyBaseObject with ProxyUtils {
       return false;
     }
     ProxyAccountId otherProxyAccountId = other as ProxyAccountId;
-    return accountId == otherProxyAccountId.accountId && bankId == otherProxyAccountId.bankId;
+    return accountId == otherProxyAccountId.accountId && bankProxyId == otherProxyAccountId.bankProxyId;
   }
 
   String toString() {
-    return "(accountId: $accountId, bankId: $bankId)";
+    return "(accountId: $accountId, bankProxyId: $bankProxyId)";
   }
 
   @override
   bool isValid() {
-    return isValidId(accountId) && isValidId(bankId) && isValidId(proxyUniverse);
+    return isValidId(accountId) && isValidProxyId(bankProxyId) && isValidId(proxyUniverse);
   }
 
   @override
   void assertValid() {
     assert(isValidId(accountId), "Invalid accountId $accountId");
-    assert(isValidId(bankId), "Invalid bankId $bankId");
+    assert(isValidProxyId(bankProxyId), "Invalid bankProxyId $bankProxyId");
     assert(isValidId(proxyUniverse), "Invalid proxyUniverse $proxyUniverse");
   }
 

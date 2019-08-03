@@ -22,7 +22,10 @@ class DepositUpdatedAlert extends Alert {
 
   factory DepositUpdatedAlert.fromJson(Map<dynamic, dynamic> map) {
     ProxyAccountId proxyAccountId = ProxyAccountId(
-        proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE], accountId: map['accountId'], bankId: map['bankId']);
+      proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
+      accountId: map['accountId'],
+      bankProxyId: ProxyId.fromUniqueId(map['bankProxyId']),
+    );
     return DepositUpdatedAlert(
       proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
       depositId: map['depositId'],

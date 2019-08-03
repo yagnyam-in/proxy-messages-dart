@@ -9,12 +9,11 @@ part of 'payment_authorization_status_response.dart';
 PaymentAuthorizationStatusResponse _$PaymentAuthorizationStatusResponseFromJson(
     Map json) {
   return PaymentAuthorizationStatusResponse(
-    request: PaymentAuthorizationStatusRequest.signedMessageFromJson(
-        json['request'] as Map),
-    paymentAuthorizationStatus: _$enumDecode(
-        _$PaymentAuthorizationStatusEnumEnumMap,
-        json['paymentAuthorizationStatus']),
-  );
+      request: PaymentAuthorizationStatusRequest.signedMessageFromJson(
+          json['request'] as Map),
+      paymentAuthorizationStatus: _$enumDecode(
+          _$PaymentAuthorizationStatusEnumEnumMap,
+          json['paymentAuthorizationStatus']));
 }
 
 Map<String, dynamic> _$PaymentAuthorizationStatusResponseToJson(
@@ -22,7 +21,7 @@ Map<String, dynamic> _$PaymentAuthorizationStatusResponseToJson(
     <String, dynamic>{
       'request': instance.request.toJson(),
       'paymentAuthorizationStatus': _$PaymentAuthorizationStatusEnumEnumMap[
-          instance.paymentAuthorizationStatus],
+          instance.paymentAuthorizationStatus]
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {

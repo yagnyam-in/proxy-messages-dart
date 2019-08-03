@@ -8,15 +8,14 @@ part of 'non_proxy_account.dart';
 
 NonProxyAccount _$NonProxyAccountFromJson(Map json) {
   return NonProxyAccount(
-    bank: json['bank'] as String,
-    accountNumber: json['accountNumber'] as String,
-    accountHolder: json['accountHolder'] as String,
-    currency: json['currency'] as String,
-    ifscCode: json['ifscCode'] as String,
-    email: json['email'] as String,
-    phone: json['phone'] as String,
-    address: json['address'] as String,
-  );
+      bank: json['bank'] as String,
+      accountNumber: json['accountNumber'] as String,
+      accountHolder: json['accountHolder'] as String,
+      currency: json['currency'] as String,
+      ifscCode: json['ifscCode'] as String,
+      email: json['email'] as String,
+      phone: json['phone'] as String,
+      address: json['address'] as String);
 }
 
 Map<String, dynamic> _$NonProxyAccountToJson(NonProxyAccount instance) {

@@ -8,13 +8,10 @@ part of 'escrow_account_details_request.dart';
 
 EscrowAccountDetailsRequest _$EscrowAccountDetailsRequestFromJson(Map json) {
   return EscrowAccountDetailsRequest(
-    escrowAccount:
-        EscrowAccount.signedMessageFromJson(json['escrowAccount'] as Map),
-  );
+      escrowAccount:
+          EscrowAccount.signedMessageFromJson(json['escrowAccount'] as Map));
 }
 
 Map<String, dynamic> _$EscrowAccountDetailsRequestToJson(
         EscrowAccountDetailsRequest instance) =>
-    <String, dynamic>{
-      'escrowAccount': instance.escrowAccount.toJson(),
-    };
+    <String, dynamic>{'escrowAccount': instance.escrowAccount.toJson()};

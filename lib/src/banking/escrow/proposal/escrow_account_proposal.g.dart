@@ -8,14 +8,13 @@ part of 'escrow_account_proposal.dart';
 
 EscrowAccountProposal _$EscrowAccountProposalFromJson(Map json) {
   return EscrowAccountProposal(
-    proposalId: json['proposalId'] as String,
-    proxyUniverse: json['proxyUniverse'] as String,
-    payerProxyId: ProxyId.fromJson(json['payerProxyId'] as Map),
-    bankProxyId: ProxyId.fromJson(json['bankProxyId'] as Map),
-    amount: Amount.fromJson(json['amount'] as Map),
-    title: json['title'] as String,
-    description: json['description'] as String,
-  );
+      proposalId: json['proposalId'] as String,
+      proxyUniverse: json['proxyUniverse'] as String,
+      payerProxyId: ProxyId.fromJson(json['payerProxyId'] as Map),
+      bankProxyId: ProxyId.fromJson(json['bankProxyId'] as Map),
+      amount: Amount.fromJson(json['amount'] as Map),
+      title: json['title'] as String,
+      description: json['description'] as String);
 }
 
 Map<String, dynamic> _$EscrowAccountProposalToJson(

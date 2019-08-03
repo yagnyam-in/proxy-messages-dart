@@ -8,15 +8,14 @@ part of 'withdrawal_response.dart';
 
 WithdrawalResponse _$WithdrawalResponseFromJson(Map json) {
   return WithdrawalResponse(
-    request: Withdrawal.signedMessageFromJson(json['request'] as Map),
-    status: _$enumDecode(_$WithdrawalStatusEnumEnumMap, json['status']),
-  );
+      request: Withdrawal.signedMessageFromJson(json['request'] as Map),
+      status: _$enumDecode(_$WithdrawalStatusEnumEnumMap, json['status']));
 }
 
 Map<String, dynamic> _$WithdrawalResponseToJson(WithdrawalResponse instance) =>
     <String, dynamic>{
       'request': instance.request.toJson(),
-      'status': _$WithdrawalStatusEnumEnumMap[instance.status],
+      'status': _$WithdrawalStatusEnumEnumMap[instance.status]
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {

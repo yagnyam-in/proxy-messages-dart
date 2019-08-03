@@ -9,15 +9,14 @@ part of 'payment_authorization_status_request.dart';
 PaymentAuthorizationStatusRequest _$PaymentAuthorizationStatusRequestFromJson(
     Map json) {
   return PaymentAuthorizationStatusRequest(
-    requestId: json['requestId'] as String,
-    paymentAuthorization: PaymentAuthorization.signedMessageFromJson(
-        json['paymentAuthorization'] as Map),
-  );
+      requestId: json['requestId'] as String,
+      paymentAuthorization: PaymentAuthorization.signedMessageFromJson(
+          json['paymentAuthorization'] as Map));
 }
 
 Map<String, dynamic> _$PaymentAuthorizationStatusRequestToJson(
         PaymentAuthorizationStatusRequest instance) =>
     <String, dynamic>{
       'requestId': instance.requestId,
-      'paymentAuthorization': instance.paymentAuthorization.toJson(),
+      'paymentAuthorization': instance.paymentAuthorization.toJson()
     };

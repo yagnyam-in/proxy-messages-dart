@@ -23,13 +23,13 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
    * Proxy Id
    */
   @JsonKey(nullable: false)
-  final ProxyId proxyId;
+  final ProxyId ownerProxyId;
 
   /**
    * Bank Id
    */
   @JsonKey(nullable: false)
-  final ProxyId bankId;
+  final ProxyId bankProxyId;
 
   /**
    * Account Currency
@@ -40,8 +40,8 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
   ProxyWalletCreationRequest({
     @required this.requestId,
     @required this.proxyUniverse,
-    @required this.proxyId,
-    @required this.bankId,
+    @required this.ownerProxyId,
+    @required this.bankProxyId,
     @required this.currency,
   }) {
     assertValid();
@@ -51,23 +51,23 @@ class ProxyWalletCreationRequest extends SignableRequestMessage with ProxyUtils 
   bool isValid() {
     return isNotEmpty(requestId) &&
         isNotEmpty(proxyUniverse) &&
-        isValidProxyId(proxyId) &&
-        isValidProxyId(bankId) &&
+        isValidProxyId(ownerProxyId) &&
+        isValidProxyId(bankProxyId) &&
         Currency.isValidCurrency(currency);
   }
 
   @override
   void assertValid() {
-    assert(isNotEmpty(requestId));
-    assert(isNotEmpty(proxyUniverse));
-    proxyId.assertValid();
-    bankId.assertValid();
+    assertNotEmpty(requestId);
+    assertNotEmpty(proxyUniverse);
+    assertValidProxyId(ownerProxyId);
+    assertValidProxyId(bankProxyId);
     assert(Currency.isValidCurrency(currency));
   }
 
   @override
   ProxyId getSigner() {
-    return proxyId;
+    return ownerProxyId;
   }
 
   @override

@@ -41,7 +41,7 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
 
   @override
   ProxyId getSigner() {
-    return ProxyId(proxyAccountId.bankId);
+    return proxyAccountId.bankProxyId;
   }
 
   @override
@@ -93,7 +93,7 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
   @override
   String get messageType => "in.yagnyam.proxy.messages.banking.ProxyAccount";
 
-  String get bankId => proxyAccountId.bankId;
+  ProxyId get bankProxyId => proxyAccountId.bankProxyId;
 
   String get proxyUniverse => proxyAccountId.proxyUniverse;
 }

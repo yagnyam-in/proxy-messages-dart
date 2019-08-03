@@ -22,7 +22,10 @@ class WithdrawalUpdatedAlert extends Alert {
 
   factory WithdrawalUpdatedAlert.fromJson(Map<dynamic, dynamic> map) {
     ProxyAccountId proxyAccountId = ProxyAccountId(
-        proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE], accountId: map['accountId'], bankId: map['bankId']);
+      proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
+      accountId: map['accountId'],
+      bankProxyId: ProxyId.fromUniqueId(map['bankProxyId']),
+    );
     return WithdrawalUpdatedAlert(
       proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
       withdrawalId: map['withdrawalId'],

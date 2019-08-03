@@ -21,7 +21,7 @@ class AccountUpdatedAlert extends Alert {
     ProxyAccountId proxyAccountId = ProxyAccountId(
       proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
       accountId: map['accountId'],
-      bankId: map['bankId'],
+      bankProxyId: ProxyId.fromUniqueId(map['bankProxyId']),
     );
     return AccountUpdatedAlert(
       proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],

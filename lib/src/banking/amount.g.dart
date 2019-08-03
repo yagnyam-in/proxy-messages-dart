@@ -8,12 +8,9 @@ part of 'amount.dart';
 
 Amount _$AmountFromJson(Map json) {
   return Amount(
-    currency: json['currency'] as String,
-    value: (json['value'] as num).toDouble(),
-  );
+      currency: json['currency'] as String,
+      value: (json['value'] as num).toDouble());
 }
 
-Map<String, dynamic> _$AmountToJson(Amount instance) => <String, dynamic>{
-      'currency': instance.currency,
-      'value': instance.value,
-    };
+Map<String, dynamic> _$AmountToJson(Amount instance) =>
+    <String, dynamic>{'currency': instance.currency, 'value': instance.value};

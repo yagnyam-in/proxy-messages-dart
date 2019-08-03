@@ -30,19 +30,19 @@ class ProxyWalletCreationResponse extends SignableMessage with ProxyUtils {
   bool isValid() {
     return isValidProxyObject(request) &&
         isValidProxyObject(proxyAccount) &&
-        proxyAccount.signedBy.canSignOnBehalfOf(request.message.bankId);
+        proxyAccount.message.bankProxyId == request.message.bankProxyId;
   }
 
   @override
   void assertValid() {
-    request.assertValid();
-    proxyAccount.assertValid();
-    assert(proxyAccount.signedBy.canSignOnBehalfOf(request.message.bankId));
+    assertValidProxyObject(request);
+    assertValidProxyObject(proxyAccount);
+    assert(proxyAccount.message.bankProxyId == request.message.bankProxyId);
   }
 
   @override
   ProxyId getSigner() {
-    return request.message.bankId;
+    return request.message.bankProxyId;
   }
 
   @override

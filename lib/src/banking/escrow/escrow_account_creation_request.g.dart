@@ -8,18 +8,18 @@ part of 'escrow_account_creation_request.dart';
 
 EscrowAccountCreationRequest _$EscrowAccountCreationRequestFromJson(Map json) {
   return EscrowAccountCreationRequest(
-    escrowAccountId: EscrowAccountId.fromJson(json['escrowAccountId'] as Map),
-    escrowProxyId: json['escrowProxyId'] == null
-        ? null
-        : ProxyId.fromJson(json['escrowProxyId'] as Map),
-    payeeProxyId: json['payeeProxyId'] == null
-        ? null
-        : ProxyId.fromJson(json['payeeProxyId'] as Map),
-    debitProxyAccount: SignedMessage.fromJson(json['debitProxyAccount'] as Map),
-    amount: Amount.fromJson(json['amount'] as Map),
-    title: json['title'] as String,
-    description: json['description'] as String,
-  );
+      escrowAccountId: EscrowAccountId.fromJson(json['escrowAccountId'] as Map),
+      escrowProxyId: json['escrowProxyId'] == null
+          ? null
+          : ProxyId.fromJson(json['escrowProxyId'] as Map),
+      payeeProxyId: json['payeeProxyId'] == null
+          ? null
+          : ProxyId.fromJson(json['payeeProxyId'] as Map),
+      debitProxyAccount:
+          SignedMessage.fromJson(json['debitProxyAccount'] as Map),
+      amount: Amount.fromJson(json['amount'] as Map),
+      title: json['title'] as String,
+      description: json['description'] as String);
 }
 
 Map<String, dynamic> _$EscrowAccountCreationRequestToJson(

@@ -22,7 +22,10 @@ class PaymentAuthorizationUpdatedAlert extends Alert {
 
   factory PaymentAuthorizationUpdatedAlert.fromJson(Map<dynamic, dynamic> map) {
     ProxyAccountId payerAccountId = ProxyAccountId(
-        proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE], accountId: map['accountId'], bankId: map['bankId']);
+      proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
+      accountId: map['accountId'],
+      bankProxyId: ProxyId.fromUniqueId(map['bankProxyId']),
+    );
     return PaymentAuthorizationUpdatedAlert(
       proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
       paymentAuthorizationId: map['paymentAuthorizationId'],
