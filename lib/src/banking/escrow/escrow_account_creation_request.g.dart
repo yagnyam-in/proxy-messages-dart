@@ -8,7 +8,7 @@ part of 'escrow_account_creation_request.dart';
 
 EscrowAccountCreationRequest _$EscrowAccountCreationRequestFromJson(Map json) {
   return EscrowAccountCreationRequest(
-      escrowAccountId: EscrowAccountId.fromJson(json['escrowAccountId'] as Map),
+      escrownegotiationId: json['escrownegotiationId'] as String,
       escrowProxyId: json['escrowProxyId'] == null
           ? null
           : ProxyId.fromJson(json['escrowProxyId'] as Map),
@@ -25,7 +25,7 @@ EscrowAccountCreationRequest _$EscrowAccountCreationRequestFromJson(Map json) {
 Map<String, dynamic> _$EscrowAccountCreationRequestToJson(
     EscrowAccountCreationRequest instance) {
   final val = <String, dynamic>{
-    'escrowAccountId': instance.escrowAccountId.toJson(),
+    'escrownegotiationId': instance.escrownegotiationId,
   };
 
   void writeNotNull(String key, dynamic value) {

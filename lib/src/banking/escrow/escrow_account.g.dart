@@ -14,7 +14,7 @@ EscrowAccount _$EscrowAccountFromJson(Map json) {
       escrowProxyId: ProxyId.fromJson(json['escrowProxyId'] as Map),
       creationDate: DateTime.parse(json['creationDate'] as String),
       expiryDate: DateTime.parse(json['expiryDate'] as String),
-      amount: Amount.fromJson(json['amount'] as Map),
+      balance: Amount.fromJson(json['balance'] as Map),
       title: json['title'] as String,
       description: json['description'] as String);
 }
@@ -27,7 +27,7 @@ Map<String, dynamic> _$EscrowAccountToJson(EscrowAccount instance) {
     'escrowProxyId': instance.escrowProxyId.toJson(),
     'creationDate': instance.creationDate.toIso8601String(),
     'expiryDate': instance.expiryDate.toIso8601String(),
-    'amount': instance.amount.toJson(),
+    'balance': instance.balance.toJson(),
     'title': instance.title,
   };
 

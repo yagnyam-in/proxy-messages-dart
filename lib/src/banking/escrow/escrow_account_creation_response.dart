@@ -27,6 +27,7 @@ class EscrowAccountCreationResponse extends SignableMessage with ProxyUtils {
     EscrowAccount a = escrowAccount.message;
     return isValidProxyObject(request) &&
         isValidProxyObject(escrowAccount) &&
+        r.amount == a.balance &&
         r.escrowProxyId == a.escrowProxyId &&
         r.payerProxyId == a.payerProxyId &&
         r.payeeProxyId == a.payeeProxyId &&

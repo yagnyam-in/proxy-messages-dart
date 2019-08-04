@@ -3,14 +3,20 @@ import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/src/banking/escrow/escrow_account.dart';
 
+import 'escrow_account_id.dart';
+
 part 'escrow_account_details_request.g.dart';
 
 @JsonSerializable()
-class EscrowAccountDetailsRequest extends SignableMessage with ProxyUtils {
+class EscrowAccountDetailsRequest extends SignableRequestMessage with ProxyUtils {
+  @JsonKey(nullable: false)
+  final String requestId;
+
   @JsonKey(nullable: false, fromJson: EscrowAccount.signedMessageFromJson)
   final SignedMessage<EscrowAccount> escrowAccount;
 
   EscrowAccountDetailsRequest({
+    @required this.requestId,
     @required this.escrowAccount,
   }) {
     assertValid();
@@ -69,4 +75,8 @@ class EscrowAccountDetailsRequest extends SignableMessage with ProxyUtils {
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;
   }
+
+  EscrowAccountId get escrowAccountId => escrowAccount.message.escrowAccountId;
+
+  ProxyId get bankProxyId => escrowAccount.message.bankProxyId;
 }

@@ -34,7 +34,7 @@ class EscrowAccount extends SignableMessage with ProxyUtils {
   final DateTime expiryDate;
 
   @JsonKey(nullable: false)
-  final Amount amount;
+  final Amount balance;
 
   @JsonKey(nullable: false)
   final String title;
@@ -49,7 +49,7 @@ class EscrowAccount extends SignableMessage with ProxyUtils {
     @required this.escrowProxyId,
     @required this.creationDate,
     @required this.expiryDate,
-    @required this.amount,
+    @required this.balance,
     @required this.title,
     @required this.description,
   }) {
@@ -73,7 +73,7 @@ class EscrowAccount extends SignableMessage with ProxyUtils {
         isValidProxyId(payeeProxyId) &&
         isValidDateTime(creationDate) &&
         isValidDateTime(expiryDate) &&
-        isValidProxyObject(amount) &&
+        isValidProxyObject(balance) &&
         isNotEmpty(title);
   }
 
@@ -85,7 +85,7 @@ class EscrowAccount extends SignableMessage with ProxyUtils {
     assertValidProxyId(payeeProxyId);
     assertValidDateTime(creationDate);
     assertValidDateTime(expiryDate);
-    assertValidProxyObject(amount);
+    assertValidProxyObject(balance);
     assertNotEmpty(title);
   }
 

@@ -48,7 +48,7 @@ class EscrowAccountProposalPayeeAck extends SignableMessage with ProxyUtils {
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.escrow.EscrowAccountProposalPayeeAck";
+  String get messageType => "in.yagnyam.proxy.messages.escrow.negotiation.EscrowAccountProposalPayeeAck";
 
   @override
   String toReadableString() {

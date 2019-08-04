@@ -11,7 +11,7 @@ class EscrowAccountProposal extends SignableMessage with ProxyUtils {
    * Unique Request Id. No two requests shall have same request number
    */
   @JsonKey(nullable: false)
-  final String proposalId;
+  final String negotiationId;
 
   @JsonKey(nullable: false)
   final String proxyUniverse;
@@ -35,7 +35,7 @@ class EscrowAccountProposal extends SignableMessage with ProxyUtils {
   final String description;
 
   EscrowAccountProposal({
-    @required this.proposalId,
+    @required this.negotiationId,
     @required this.proxyUniverse,
     @required this.payerProxyId,
     @required this.bankProxyId,
@@ -48,7 +48,7 @@ class EscrowAccountProposal extends SignableMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return isNotEmpty(proposalId) &&
+    return isNotEmpty(negotiationId) &&
         isNotEmpty(proxyUniverse) &&
         isValidProxyId(payerProxyId) &&
         isValidProxyId(bankProxyId) &&
@@ -58,7 +58,7 @@ class EscrowAccountProposal extends SignableMessage with ProxyUtils {
 
   @override
   void assertValid() {
-    assertNotEmpty(proposalId);
+    assertNotEmpty(negotiationId);
     assertNotEmpty(proxyUniverse);
     assertValidProxyId(payerProxyId);
     assertValidProxyId(bankProxyId);
@@ -82,7 +82,7 @@ class EscrowAccountProposal extends SignableMessage with ProxyUtils {
   }
 
   @override
-  String get messageType => "in.yagnyam.proxy.messages.escrow.EscrowAccountProposal";
+  String get messageType => "in.yagnyam.proxy.messages.escrow.negotiation.EscrowAccountProposal";
 
   @override
   String toReadableString() {
