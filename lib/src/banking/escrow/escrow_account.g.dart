@@ -8,15 +8,16 @@ part of 'escrow_account.dart';
 
 EscrowAccount _$EscrowAccountFromJson(Map json) {
   return EscrowAccount(
-      escrowAccountId: EscrowAccountId.fromJson(json['escrowAccountId'] as Map),
-      payerProxyId: ProxyId.fromJson(json['payerProxyId'] as Map),
-      payeeProxyId: ProxyId.fromJson(json['payeeProxyId'] as Map),
-      escrowProxyId: ProxyId.fromJson(json['escrowProxyId'] as Map),
-      creationDate: DateTime.parse(json['creationDate'] as String),
-      expiryDate: DateTime.parse(json['expiryDate'] as String),
-      balance: Amount.fromJson(json['balance'] as Map),
-      title: json['title'] as String,
-      description: json['description'] as String);
+    escrowAccountId: EscrowAccountId.fromJson(json['escrowAccountId'] as Map),
+    payerProxyId: ProxyId.fromJson(json['payerProxyId'] as Map),
+    payeeProxyId: ProxyId.fromJson(json['payeeProxyId'] as Map),
+    escrowProxyId: ProxyId.fromJson(json['escrowProxyId'] as Map),
+    creationDate: DateTime.parse(json['creationDate'] as String),
+    expiryDate: DateTime.parse(json['expiryDate'] as String),
+    balance: Amount.fromJson(json['balance'] as Map),
+    title: json['title'] as String,
+    description: json['description'] as String,
+  );
 }
 
 Map<String, dynamic> _$EscrowAccountToJson(EscrowAccount instance) {

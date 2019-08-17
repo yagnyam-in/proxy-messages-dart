@@ -10,7 +10,7 @@ part 'escrow_account_creation_request.g.dart';
 @JsonSerializable()
 class EscrowAccountCreationRequest extends SignableRequestMessage with ProxyUtils {
   @JsonKey(nullable: false)
-  final String escrownegotiationId;
+  final String escrowNegotiationId;
 
   @JsonKey(nullable: true)
   final ProxyId escrowProxyId;
@@ -30,7 +30,7 @@ class EscrowAccountCreationRequest extends SignableRequestMessage with ProxyUtil
   final String description;
 
   EscrowAccountCreationRequest({
-    @required this.escrownegotiationId,
+    @required this.escrowNegotiationId,
     @required this.escrowProxyId,
     @required this.payeeProxyId,
     @required this.debitProxyAccount,
@@ -43,7 +43,7 @@ class EscrowAccountCreationRequest extends SignableRequestMessage with ProxyUtil
 
   @override
   bool isValid() {
-    return isNotEmpty(escrownegotiationId) &&
+    return isNotEmpty(escrowNegotiationId) &&
         isValidProxyId(escrowProxyId) &&
         isValidProxyId(payeeProxyId) &&
         isValidProxyObject(debitProxyAccount) &&
@@ -53,7 +53,7 @@ class EscrowAccountCreationRequest extends SignableRequestMessage with ProxyUtil
 
   @override
   void assertValid() {
-    assertNotEmpty(escrownegotiationId);
+    assertNotEmpty(escrowNegotiationId);
     assertValidProxyId(escrowProxyId);
     assertValidProxyId(payeeProxyId);
     assertValidProxyObject(debitProxyAccount);
@@ -105,5 +105,5 @@ class EscrowAccountCreationRequest extends SignableRequestMessage with ProxyUtil
   ProxyAccountId get debitProxyAccountId => debitProxyAccount.message.proxyAccountId;
 
   @override
-  String get requestId => escrownegotiationId;
+  String get requestId => escrowNegotiationId;
 }
