@@ -1,36 +1,80 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
-class WithdrawalUpdatedAlert extends Alert {
+part 'withdrawal_updated_alert.g.dart';
+
+@JsonSerializable()
+class WithdrawalUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   static const ALERT_TYPE = "in.yagnyam.proxy.messages.banking.alerts.WithdrawalUpdatedAlert";
 
-  final String withdrawalId;
-
+  @JsonKey(nullable: false)
   final ProxyAccountId proxyAccountId;
 
-  WithdrawalUpdatedAlert({
-    @required String alertId,
-    @required String proxyUniverse,
-    @required this.withdrawalId,
-    @required this.proxyAccountId,
-  }) : super(
-          alertId: alertId,
-          alertType: ALERT_TYPE,
-          proxyUniverse: proxyUniverse,
-        );
+  @JsonKey(nullable: false)
+  final String alertId;
 
-  factory WithdrawalUpdatedAlert.fromJson(Map<dynamic, dynamic> map) {
-    ProxyAccountId proxyAccountId = ProxyAccountId(
-      proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
-      accountId: map['accountId'],
-      bankProxyId: ProxyId.fromUniqueId(map['bankProxyId']),
-    );
-    return WithdrawalUpdatedAlert(
-      proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
-      withdrawalId: map['withdrawalId'],
-      proxyAccountId: proxyAccountId,
-      alertId: map[SignableAlertMessage.ALERT_ID],
-    );
+  @JsonKey(nullable: false)
+  final String withdrawalId;
+
+  @JsonKey(nullable: false)
+  final ProxyId receiverId;
+
+  WithdrawalUpdatedAlert({
+    @required this.alertId,
+    @required this.proxyAccountId,
+    @required this.withdrawalId,
+    @required this.receiverId,
+  });
+
+  @override
+  void assertValid() {
+    assertNotEmpty(alertId);
+    assertNotEmpty(withdrawalId);
+    assertValidProxyId(receiverId);
+    assertValidProxyObject(proxyAccountId);
   }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
+  }
+
+  @override
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
+    return [];
+  }
+
+  @override
+  bool isValid() {
+    return isNotEmpty(alertId) && isNotEmpty(withdrawalId) && isValidProxyId(receiverId) && isValidProxyObject(proxyAccountId);
+  }
+
+  @override
+  String get messageType => ALERT_TYPE;
+
+  @override
+  String get proxyUniverse => proxyAccountId.proxyUniverse;
+
+  @override
+  List<ProxyId> get receivers => [receiverId];
+
+
+  @override
+  String toReadableString() {
+    return null;
+  }
+
+  static WithdrawalUpdatedAlert fromJson(Map json) => _$WithdrawalUpdatedAlertFromJson(json);
+
+  static SignedMessage<WithdrawalUpdatedAlert> signedMessageFromJson(Map json) {
+    SignedMessage<WithdrawalUpdatedAlert> signedMessage = SignedMessage.fromJson<WithdrawalUpdatedAlert>(json);
+    signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
+    return signedMessage;
+  }
+
+  @override
+  Map<String, dynamic> toJson() => _$WithdrawalUpdatedAlertToJson(this);
+
 }

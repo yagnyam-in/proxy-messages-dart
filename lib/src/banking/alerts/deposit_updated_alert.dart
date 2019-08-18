@@ -1,36 +1,80 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
-class DepositUpdatedAlert extends Alert {
+part 'deposit_updated_alert.g.dart';
+
+@JsonSerializable()
+class DepositUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   static const ALERT_TYPE = "in.yagnyam.proxy.messages.banking.alerts.DepositUpdatedAlert";
 
-  final String depositId;
-
+  @JsonKey(nullable: false)
   final ProxyAccountId proxyAccountId;
 
-  DepositUpdatedAlert({
-    @required String alertId,
-    @required String proxyUniverse,
-    @required this.depositId,
-    @required this.proxyAccountId,
-  }) : super(
-          alertId: alertId,
-          alertType: ALERT_TYPE,
-          proxyUniverse: proxyUniverse,
-        );
+  @JsonKey(nullable: false)
+  final String alertId;
 
-  factory DepositUpdatedAlert.fromJson(Map<dynamic, dynamic> map) {
-    ProxyAccountId proxyAccountId = ProxyAccountId(
-      proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
-      accountId: map['accountId'],
-      bankProxyId: ProxyId.fromUniqueId(map['bankProxyId']),
-    );
-    return DepositUpdatedAlert(
-      proxyUniverse: map[SignableAlertMessage.PROXY_UNIVERSE],
-      depositId: map['depositId'],
-      proxyAccountId: proxyAccountId,
-      alertId: map[SignableAlertMessage.ALERT_ID],
-    );
+  @JsonKey(nullable: false)
+  final String depositId;
+
+  @JsonKey(nullable: false)
+  final ProxyId receiverId;
+
+  DepositUpdatedAlert({
+    @required this.alertId,
+    @required this.proxyAccountId,
+    @required this.depositId,
+    @required this.receiverId,
+  });
+
+  @override
+  void assertValid() {
+    assertNotEmpty(alertId);
+    assertNotEmpty(depositId);
+    assertValidProxyId(receiverId);
+    assertValidProxyObject(proxyAccountId);
   }
+
+  @override
+  List<MultiSignedMessage<MultiSignableMessage>> getMultiSignedChildMessages() {
+    return [];
+  }
+
+  @override
+  List<SignedMessage<SignableMessage>> getSignedChildMessages() {
+    return [];
+  }
+
+  @override
+  bool isValid() {
+    return isNotEmpty(alertId) && isNotEmpty(depositId) && isValidProxyId(receiverId) && isValidProxyObject(proxyAccountId);
+  }
+
+  @override
+  String get messageType => ALERT_TYPE;
+
+  @override
+  String get proxyUniverse => proxyAccountId.proxyUniverse;
+
+  @override
+  List<ProxyId> get receivers => [receiverId];
+
+
+  @override
+  String toReadableString() {
+    return null;
+  }
+
+  static DepositUpdatedAlert fromJson(Map json) => _$DepositUpdatedAlertFromJson(json);
+
+  static SignedMessage<DepositUpdatedAlert> signedMessageFromJson(Map json) {
+    SignedMessage<DepositUpdatedAlert> signedMessage = SignedMessage.fromJson<DepositUpdatedAlert>(json);
+    signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
+    return signedMessage;
+  }
+
+  @override
+  Map<String, dynamic> toJson() => _$DepositUpdatedAlertToJson(this);
+
 }
