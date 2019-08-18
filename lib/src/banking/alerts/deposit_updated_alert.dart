@@ -8,6 +8,9 @@ part 'deposit_updated_alert.g.dart';
 @JsonSerializable()
 class DepositUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   static const ALERT_TYPE = "in.yagnyam.proxy.messages.banking.alerts.DepositUpdatedAlert";
+  static const FIELD_DEPOSIT_ID = "depositId";
+  static const FIELD_ACCOUNT_ID = "accountId";
+  static const FIELD_BANK_PROXY_ID = "bankProxyId";
 
   @JsonKey(nullable: false)
   final ProxyAccountId proxyAccountId;

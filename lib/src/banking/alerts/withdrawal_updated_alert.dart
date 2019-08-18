@@ -8,6 +8,9 @@ part 'withdrawal_updated_alert.g.dart';
 @JsonSerializable()
 class WithdrawalUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   static const ALERT_TYPE = "in.yagnyam.proxy.messages.banking.alerts.WithdrawalUpdatedAlert";
+  static const FIELD_WITHDRAWAL_ID = "withdrawalId";
+  static const FIELD_ACCOUNT_ID = "accountId";
+  static const FIELD_BANK_PROXY_ID = "bankProxyId";
 
   @JsonKey(nullable: false)
   final ProxyAccountId proxyAccountId;
@@ -48,7 +51,10 @@ class WithdrawalUpdatedAlert extends SignableAlertMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return isNotEmpty(alertId) && isNotEmpty(withdrawalId) && isValidProxyId(receiverId) && isValidProxyObject(proxyAccountId);
+    return isNotEmpty(alertId) &&
+        isNotEmpty(withdrawalId) &&
+        isValidProxyId(receiverId) &&
+        isValidProxyObject(proxyAccountId);
   }
 
   @override
@@ -59,7 +65,6 @@ class WithdrawalUpdatedAlert extends SignableAlertMessage with ProxyUtils {
 
   @override
   List<ProxyId> get receivers => [receiverId];
-
 
   @override
   String toReadableString() {
@@ -76,5 +81,4 @@ class WithdrawalUpdatedAlert extends SignableAlertMessage with ProxyUtils {
 
   @override
   Map<String, dynamic> toJson() => _$WithdrawalUpdatedAlertToJson(this);
-
 }

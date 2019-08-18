@@ -8,6 +8,8 @@ part 'escrow_account_updated_alert.g.dart';
 @JsonSerializable()
 class EscrowAccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   static const ALERT_TYPE = "in.yagnyam.proxy.messages.escrow.alerts.EscrowAccountUpdatedAlert";
+  static const FIELD_ESCROW_ACCOUNT_ID = "escrowAccountId";
+  static const FIELD_ESCROW_BANK_ID = "escrowAccountBankId";
 
   @JsonKey(nullable: false)
   final EscrowAccountId escrowAccountId;
@@ -52,7 +54,6 @@ class EscrowAccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   @override
   String get proxyUniverse => escrowAccountId.proxyUniverse;
 
-
   @override
   String toReadableString() {
     return null;
@@ -68,5 +69,4 @@ class EscrowAccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
 
   @override
   Map<String, dynamic> toJson() => _$EscrowAccountUpdatedAlertToJson(this);
-
 }

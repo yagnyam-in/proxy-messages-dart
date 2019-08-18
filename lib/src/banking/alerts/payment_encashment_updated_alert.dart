@@ -8,6 +8,10 @@ part 'payment_encashment_updated_alert.g.dart';
 @JsonSerializable()
 class PaymentEncashmentUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   static const ALERT_TYPE = "in.yagnyam.proxy.messages.payments.PaymentEncashmentUpdatedAlert";
+  static const FIELD_PAYMENT_AUTHORIZATION_ID = "paymentAuthorizationId";
+  static const FIELD_PAYMENT_ENCASHMENT_ID = "paymentEncashmentId";
+  static const FIELD_PAYER_ACCOUNT_ID = "payerAccountId";
+  static const FIELD_PAYER_BANK_ID = "payerBankId";
 
   @JsonKey(nullable: false)
   final ProxyAccountId payerAccountId;
