@@ -8,16 +8,17 @@ part of 'deposit_request_status_response.dart';
 
 DepositRequestStatusResponse _$DepositRequestStatusResponseFromJson(Map json) {
   return DepositRequestStatusResponse(
-      request: DepositRequestStatusRequest.signedMessageFromJson(
-          json['request'] as Map),
-      status: _$enumDecode(_$DepositStatusEnumEnumMap, json['status']));
+    request: DepositRequestStatusRequest.signedMessageFromJson(
+        json['request'] as Map),
+    status: _$enumDecode(_$DepositStatusEnumEnumMap, json['status']),
+  );
 }
 
 Map<String, dynamic> _$DepositRequestStatusResponseToJson(
         DepositRequestStatusResponse instance) =>
     <String, dynamic>{
       'request': instance.request.toJson(),
-      'status': _$DepositStatusEnumEnumMap[instance.status]
+      'status': _$DepositStatusEnumEnumMap[instance.status],
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {

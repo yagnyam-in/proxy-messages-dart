@@ -8,16 +8,17 @@ part of 'escrow_account_details_response.dart';
 
 EscrowAccountDetailsResponse _$EscrowAccountDetailsResponseFromJson(Map json) {
   return EscrowAccountDetailsResponse(
-      request: EscrowAccountDetailsRequest.signedMessageFromJson(
-          json['request'] as Map),
-      status: _$enumDecode(_$EscrowAccountStatusEnumEnumMap, json['status']));
+    request: EscrowAccountDetailsRequest.signedMessageFromJson(
+        json['request'] as Map),
+    status: _$enumDecode(_$EscrowAccountStatusEnumEnumMap, json['status']),
+  );
 }
 
 Map<String, dynamic> _$EscrowAccountDetailsResponseToJson(
         EscrowAccountDetailsResponse instance) =>
     <String, dynamic>{
       'request': instance.request.toJson(),
-      'status': _$EscrowAccountStatusEnumEnumMap[instance.status]
+      'status': _$EscrowAccountStatusEnumEnumMap[instance.status],
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {

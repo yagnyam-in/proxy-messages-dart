@@ -8,16 +8,17 @@ part of 'deposit_request_cancel_response.dart';
 
 DepositRequestCancelResponse _$DepositRequestCancelResponseFromJson(Map json) {
   return DepositRequestCancelResponse(
-      request: DepositRequestCancelRequest.signedMessageFromJson(
-          json['request'] as Map),
-      status: _$enumDecode(_$DepositStatusEnumEnumMap, json['status']));
+    request: DepositRequestCancelRequest.signedMessageFromJson(
+        json['request'] as Map),
+    status: _$enumDecode(_$DepositStatusEnumEnumMap, json['status']),
+  );
 }
 
 Map<String, dynamic> _$DepositRequestCancelResponseToJson(
         DepositRequestCancelResponse instance) =>
     <String, dynamic>{
       'request': instance.request.toJson(),
-      'status': _$DepositStatusEnumEnumMap[instance.status]
+      'status': _$DepositStatusEnumEnumMap[instance.status],
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {

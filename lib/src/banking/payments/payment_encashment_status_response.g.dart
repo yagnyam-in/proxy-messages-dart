@@ -9,19 +9,19 @@ part of 'payment_encashment_status_response.dart';
 PaymentEncashmentStatusResponse _$PaymentEncashmentStatusResponseFromJson(
     Map json) {
   return PaymentEncashmentStatusResponse(
-      request: PaymentEncashmentStatusRequest.signedMessageFromJson(
-          json['request'] as Map),
-      paymentEncashmentStatus: _$enumDecode(
-          _$PaymentEncashmentStatusEnumEnumMap,
-          json['paymentEncashmentStatus']));
+    request: PaymentEncashmentStatusRequest.signedMessageFromJson(
+        json['request'] as Map),
+    paymentEncashmentStatus: _$enumDecode(
+        _$PaymentEncashmentStatusEnumEnumMap, json['paymentEncashmentStatus']),
+  );
 }
 
 Map<String, dynamic> _$PaymentEncashmentStatusResponseToJson(
         PaymentEncashmentStatusResponse instance) =>
     <String, dynamic>{
       'request': instance.request.toJson(),
-      'paymentEncashmentStatus':
-          _$PaymentEncashmentStatusEnumEnumMap[instance.paymentEncashmentStatus]
+      'paymentEncashmentStatus': _$PaymentEncashmentStatusEnumEnumMap[
+          instance.paymentEncashmentStatus],
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {

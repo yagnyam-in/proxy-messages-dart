@@ -8,19 +8,19 @@ part of 'payment_encashment_registered.dart';
 
 PaymentEncashmentRegistered _$PaymentEncashmentRegisteredFromJson(Map json) {
   return PaymentEncashmentRegistered(
-      paymentEncashment: PaymentEncashment.signedMessageFromJson(
-          json['paymentEncashment'] as Map),
-      paymentEncashmentStatus: _$enumDecode(
-          _$PaymentEncashmentStatusEnumEnumMap,
-          json['paymentEncashmentStatus']));
+    paymentEncashment: PaymentEncashment.signedMessageFromJson(
+        json['paymentEncashment'] as Map),
+    paymentEncashmentStatus: _$enumDecode(
+        _$PaymentEncashmentStatusEnumEnumMap, json['paymentEncashmentStatus']),
+  );
 }
 
 Map<String, dynamic> _$PaymentEncashmentRegisteredToJson(
         PaymentEncashmentRegistered instance) =>
     <String, dynamic>{
       'paymentEncashment': instance.paymentEncashment.toJson(),
-      'paymentEncashmentStatus':
-          _$PaymentEncashmentStatusEnumEnumMap[instance.paymentEncashmentStatus]
+      'paymentEncashmentStatus': _$PaymentEncashmentStatusEnumEnumMap[
+          instance.paymentEncashmentStatus],
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
