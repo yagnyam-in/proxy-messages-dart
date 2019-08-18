@@ -8,20 +8,21 @@ part of 'payee.dart';
 
 Payee _$PayeeFromJson(Map json) {
   return Payee(
-      paymentEncashmentId: json['paymentEncashmentId'] as String,
-      payeeType: _$enumDecode(_$PayeeTypeEnumEnumMap, json['payeeType']),
-      proxyId: json['proxyId'] == null
-          ? null
-          : ProxyId.fromJson(json['proxyId'] as Map),
-      emailHash: json['emailHash'] == null
-          ? null
-          : HashValue.fromJson(json['emailHash'] as Map),
-      phoneHash: json['phoneHash'] == null
-          ? null
-          : HashValue.fromJson(json['phoneHash'] as Map),
-      secretHash: json['secretHash'] == null
-          ? null
-          : HashValue.fromJson(json['secretHash'] as Map));
+    paymentEncashmentId: json['paymentEncashmentId'] as String,
+    payeeType: _$enumDecode(_$PayeeTypeEnumEnumMap, json['payeeType']),
+    proxyId: json['proxyId'] == null
+        ? null
+        : ProxyId.fromJson(json['proxyId'] as Map),
+    emailHash: json['emailHash'] == null
+        ? null
+        : HashValue.fromJson(json['emailHash'] as Map),
+    phoneHash: json['phoneHash'] == null
+        ? null
+        : HashValue.fromJson(json['phoneHash'] as Map),
+    secretHash: json['secretHash'] == null
+        ? null
+        : HashValue.fromJson(json['secretHash'] as Map),
+  );
 }
 
 Map<String, dynamic> _$PayeeToJson(Payee instance) {

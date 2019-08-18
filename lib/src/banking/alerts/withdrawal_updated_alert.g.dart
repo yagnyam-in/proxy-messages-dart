@@ -8,10 +8,11 @@ part of 'withdrawal_updated_alert.dart';
 
 WithdrawalUpdatedAlert _$WithdrawalUpdatedAlertFromJson(Map json) {
   return WithdrawalUpdatedAlert(
-      alertId: json['alertId'] as String,
-      proxyAccountId: ProxyAccountId.fromJson(json['proxyAccountId'] as Map),
-      withdrawalId: json['withdrawalId'] as String,
-      receiverId: ProxyId.fromJson(json['receiverId'] as Map));
+    alertId: json['alertId'] as String,
+    proxyAccountId: ProxyAccountId.fromJson(json['proxyAccountId'] as Map),
+    withdrawalId: json['withdrawalId'] as String,
+    receiverId: ProxyId.fromJson(json['receiverId'] as Map),
+  );
 }
 
 Map<String, dynamic> _$WithdrawalUpdatedAlertToJson(
@@ -20,5 +21,5 @@ Map<String, dynamic> _$WithdrawalUpdatedAlertToJson(
       'proxyAccountId': instance.proxyAccountId.toJson(),
       'alertId': instance.alertId,
       'withdrawalId': instance.withdrawalId,
-      'receiverId': instance.receiverId.toJson()
+      'receiverId': instance.receiverId.toJson(),
     };

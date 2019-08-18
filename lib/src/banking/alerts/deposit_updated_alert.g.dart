@@ -8,10 +8,11 @@ part of 'deposit_updated_alert.dart';
 
 DepositUpdatedAlert _$DepositUpdatedAlertFromJson(Map json) {
   return DepositUpdatedAlert(
-      alertId: json['alertId'] as String,
-      proxyAccountId: ProxyAccountId.fromJson(json['proxyAccountId'] as Map),
-      depositId: json['depositId'] as String,
-      receiverId: ProxyId.fromJson(json['receiverId'] as Map));
+    alertId: json['alertId'] as String,
+    proxyAccountId: ProxyAccountId.fromJson(json['proxyAccountId'] as Map),
+    depositId: json['depositId'] as String,
+    receiverId: ProxyId.fromJson(json['receiverId'] as Map),
+  );
 }
 
 Map<String, dynamic> _$DepositUpdatedAlertToJson(
@@ -20,5 +21,5 @@ Map<String, dynamic> _$DepositUpdatedAlertToJson(
       'proxyAccountId': instance.proxyAccountId.toJson(),
       'alertId': instance.alertId,
       'depositId': instance.depositId,
-      'receiverId': instance.receiverId.toJson()
+      'receiverId': instance.receiverId.toJson(),
     };
