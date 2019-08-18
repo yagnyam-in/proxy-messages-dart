@@ -6,8 +6,8 @@ import 'package:proxy_messages/escrow.dart';
 part 'escrow_account_updated_alert.g.dart';
 
 @JsonSerializable()
-class EscorwAccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
-  static const ALERT_TYPE = "in.yagnyam.proxy.messages.escrow.alerts.EscorwAccountUpdatedAlert";
+class EscrowAccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
+  static const ALERT_TYPE = "in.yagnyam.proxy.messages.escrow.alerts.EscrowAccountUpdatedAlert";
 
   @JsonKey(nullable: false)
   final EscrowAccountId escrowAccountId;
@@ -18,7 +18,7 @@ class EscorwAccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final List<ProxyId> receivers;
 
-  EscorwAccountUpdatedAlert({
+  EscrowAccountUpdatedAlert({
     @required this.alertId,
     @required this.escrowAccountId,
     @required this.receivers,
@@ -58,15 +58,15 @@ class EscorwAccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
     return null;
   }
 
-  static EscorwAccountUpdatedAlert fromJson(Map json) => _$EscorwAccountUpdatedAlertFromJson(json);
+  static EscrowAccountUpdatedAlert fromJson(Map json) => _$EscrowAccountUpdatedAlertFromJson(json);
 
-  static SignedMessage<EscorwAccountUpdatedAlert> signedMessageFromJson(Map json) {
-    SignedMessage<EscorwAccountUpdatedAlert> signedMessage = SignedMessage.fromJson<EscorwAccountUpdatedAlert>(json);
+  static SignedMessage<EscrowAccountUpdatedAlert> signedMessageFromJson(Map json) {
+    SignedMessage<EscrowAccountUpdatedAlert> signedMessage = SignedMessage.fromJson<EscrowAccountUpdatedAlert>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;
   }
 
   @override
-  Map<String, dynamic> toJson() => _$EscorwAccountUpdatedAlertToJson(this);
+  Map<String, dynamic> toJson() => _$EscrowAccountUpdatedAlertToJson(this);
 
 }

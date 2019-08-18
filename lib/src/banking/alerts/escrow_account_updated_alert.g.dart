@@ -6,8 +6,8 @@ part of 'escrow_account_updated_alert.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-EscorwAccountUpdatedAlert _$EscorwAccountUpdatedAlertFromJson(Map json) {
-  return EscorwAccountUpdatedAlert(
+EscrowAccountUpdatedAlert _$EscrowAccountUpdatedAlertFromJson(Map json) {
+  return EscrowAccountUpdatedAlert(
     alertId: json['alertId'] as String,
     escrowAccountId: EscrowAccountId.fromJson(json['escrowAccountId'] as Map),
     receivers: (json['receivers'] as List)
@@ -16,8 +16,8 @@ EscorwAccountUpdatedAlert _$EscorwAccountUpdatedAlertFromJson(Map json) {
   );
 }
 
-Map<String, dynamic> _$EscorwAccountUpdatedAlertToJson(
-        EscorwAccountUpdatedAlert instance) =>
+Map<String, dynamic> _$EscrowAccountUpdatedAlertToJson(
+        EscrowAccountUpdatedAlert instance) =>
     <String, dynamic>{
       'escrowAccountId': instance.escrowAccountId.toJson(),
       'alertId': instance.alertId,
