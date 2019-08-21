@@ -13,7 +13,7 @@ dependencies:
   proxy_core:
    path: ../proxy-core-dart
    # git: git://github.com/yagnyam-in/proxy-core-dart.git
-  json_annotation: ^2.4.0
+  json_annotation: ^3.0.0
   quiver: '>=2.0.0 <3.0.0'
   http: ^0.12.0+2
   logging: ^0.11.3+2

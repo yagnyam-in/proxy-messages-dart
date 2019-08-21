@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
+import 'package:proxy_messages/src/banking/alerts/payment_authorization_updated_lite_alert.dart';
 import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
 part 'payment_authorization_updated_alert.g.dart';
@@ -10,7 +11,7 @@ class PaymentAuthorizationUpdatedAlert extends SignableAlertMessage with ProxyUt
   static const ALERT_TYPE = "in.yagnyam.proxy.messages.payments.PaymentAuthorizationUpdatedAlert";
   static const FIELD_PAYMENT_AUTHORIZATION_ID = "paymentAuthorizationId";
   static const FIELD_PAYER_ACCOUNT_ID = "payerAccountId";
-  static const FIELD_PAYER_BANK_ID = "payerBankId";
+  static const FIELD_PAYER_BANK_PROXY_ID = "payerBankProxyId";
 
   @JsonKey(nullable: false)
   final ProxyAccountId payerAccountId;
@@ -79,4 +80,14 @@ class PaymentAuthorizationUpdatedAlert extends SignableAlertMessage with ProxyUt
 
   @override
   Map<String, dynamic> toJson() => _$PaymentAuthorizationUpdatedAlertToJson(this);
+
+  PaymentAuthorizationUpdatedLiteAlert toLiteAlert(ProxyId receiverProxyId) {
+    return PaymentAuthorizationUpdatedLiteAlert(
+      proxyUniverse: proxyUniverse,
+      alertId: alertId,
+      payerAccountId: payerAccountId,
+      receiverProxyId: receiverProxyId,
+      paymentAuthorizationId: paymentAuthorizationId,
+    );
+  }
 }

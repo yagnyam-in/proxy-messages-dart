@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
+import 'package:proxy_messages/src/banking/alerts/deposit_updated_lite_alert.dart';
 import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
 part 'deposit_updated_alert.g.dart';
@@ -51,7 +52,10 @@ class DepositUpdatedAlert extends SignableAlertMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return isNotEmpty(alertId) && isNotEmpty(depositId) && isValidProxyId(receiverId) && isValidProxyObject(proxyAccountId);
+    return isNotEmpty(alertId) &&
+        isNotEmpty(depositId) &&
+        isValidProxyId(receiverId) &&
+        isValidProxyObject(proxyAccountId);
   }
 
   @override
@@ -62,7 +66,6 @@ class DepositUpdatedAlert extends SignableAlertMessage with ProxyUtils {
 
   @override
   List<ProxyId> get receivers => [receiverId];
-
 
   @override
   String toReadableString() {
@@ -80,4 +83,13 @@ class DepositUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   @override
   Map<String, dynamic> toJson() => _$DepositUpdatedAlertToJson(this);
 
+  DepositUpdatedLiteAlert toLiteAlert(ProxyId receiverProxyId) {
+    return DepositUpdatedLiteAlert(
+      proxyUniverse: proxyUniverse,
+      alertId: alertId,
+      proxyAccountId: proxyAccountId,
+      receiverProxyId: receiverProxyId,
+      depositId: depositId,
+    );
+  }
 }

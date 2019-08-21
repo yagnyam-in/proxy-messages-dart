@@ -47,3 +47,7 @@ export 'src/banking/payments/payment_authorization_status_response.dart';
 export 'src/banking/alerts/deposit_updated_alert.dart';
 export 'src/banking/alerts/account_updated_alert.dart';
 export 'src/banking/alerts/withdrawal_updated_alert.dart';
+
+export 'src/banking/alerts/deposit_updated_lite_alert.dart';
+export 'src/banking/alerts/account_updated_lite_alert.dart';
+export 'src/banking/alerts/withdrawal_updated_lite_alert.dart';

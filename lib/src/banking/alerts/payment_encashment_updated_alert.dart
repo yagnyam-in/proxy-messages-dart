@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
+import 'package:proxy_messages/src/banking/alerts/payment_encashment_updated_lite_alert.dart';
 import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
 part 'payment_encashment_updated_alert.g.dart';
@@ -11,7 +12,7 @@ class PaymentEncashmentUpdatedAlert extends SignableAlertMessage with ProxyUtils
   static const FIELD_PAYMENT_AUTHORIZATION_ID = "paymentAuthorizationId";
   static const FIELD_PAYMENT_ENCASHMENT_ID = "paymentEncashmentId";
   static const FIELD_PAYER_ACCOUNT_ID = "payerAccountId";
-  static const FIELD_PAYER_BANK_ID = "payerBankId";
+  static const FIELD_PAYER_BANK_PROXY_ID = "payerBankProxyId";
 
   @JsonKey(nullable: false)
   final ProxyAccountId payerAccountId;
@@ -86,4 +87,15 @@ class PaymentEncashmentUpdatedAlert extends SignableAlertMessage with ProxyUtils
 
   @override
   Map<String, dynamic> toJson() => _$PaymentEncashmentUpdatedAlertToJson(this);
+
+  PaymentEncashmentUpdatedLiteAlert toLiteAlert(ProxyId receiverProxyId) {
+    return PaymentEncashmentUpdatedLiteAlert(
+      proxyUniverse: proxyUniverse,
+      alertId: alertId,
+      payerAccountId: payerAccountId,
+      receiverProxyId: receiverProxyId,
+      paymentAuthorizationId: paymentAuthorizationId,
+      paymentEncashmentId: paymentEncashmentId,
+    );
+  }
 }

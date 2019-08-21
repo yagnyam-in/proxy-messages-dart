@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
+import 'package:proxy_messages/src/banking/alerts/account_updated_lite_alert.dart';
 import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
 part 'account_updated_alert.g.dart';
@@ -57,7 +58,6 @@ class AccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   @override
   List<ProxyId> get receivers => [receiverId];
 
-
   @override
   String toReadableString() {
     return null;
@@ -74,4 +74,12 @@ class AccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   @override
   Map<String, dynamic> toJson() => _$AccountUpdatedAlertToJson(this);
 
+  AccountUpdatedLiteAlert toLiteAlert(ProxyId receiverProxyId) {
+    return AccountUpdatedLiteAlert(
+      proxyUniverse: proxyUniverse,
+      alertId: alertId,
+      proxyAccountId: proxyAccountId,
+      receiverProxyId: receiverProxyId,
+    );
+  }
 }

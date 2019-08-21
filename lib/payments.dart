@@ -11,3 +11,6 @@ export 'package:proxy_messages/src/banking/payments/payment_encashment_status_re
 
 export 'package:proxy_messages/src/banking/alerts/payment_authorization_updated_alert.dart';
 export 'package:proxy_messages/src/banking/alerts/payment_encashment_updated_alert.dart';
+
+export 'package:proxy_messages/src/banking/alerts/payment_authorization_updated_lite_alert.dart';
+export 'package:proxy_messages/src/banking/alerts/payment_encashment_updated_lite_alert.dart';

@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
+import 'package:proxy_messages/src/banking/alerts/withdrawal_updated_lite_alert.dart';
 import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 
 part 'withdrawal_updated_alert.g.dart';
@@ -81,4 +82,14 @@ class WithdrawalUpdatedAlert extends SignableAlertMessage with ProxyUtils {
 
   @override
   Map<String, dynamic> toJson() => _$WithdrawalUpdatedAlertToJson(this);
+
+  WithdrawalUpdatedLiteAlert toLiteAlert(ProxyId receiverProxyId) {
+    return WithdrawalUpdatedLiteAlert(
+      proxyUniverse: proxyUniverse,
+      alertId: alertId,
+      proxyAccountId: proxyAccountId,
+      receiverProxyId: receiverProxyId,
+      withdrawalId: withdrawalId,
+    );
+  }
 }
