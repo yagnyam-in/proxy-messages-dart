@@ -3,7 +3,6 @@ import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/authorization.dart';
 
-
 part 'email_authorization_challenge_response.g.dart';
 
 @JsonSerializable()
@@ -73,6 +72,4 @@ class EmailAuthorizationChallengeResponse extends SignableMessage with ProxyUtil
   String get email => challenge.message.email;
 
   ProxyId get authorizerProxyId => challenge.message.authorizerProxyId;
-
-
 }

@@ -21,11 +21,13 @@ class EmailAuthorization extends SignableMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final DateTime validTill;
 
-  EmailAuthorization({@required this.authorizedProxyId,
+  EmailAuthorization({
+    @required this.authorizedProxyId,
     @required this.authorizerProxyId,
     @required this.email,
     @required this.validFrom,
-    @required this.validTill}) {
+    @required this.validTill,
+  }) {
     assertValid();
   }
 

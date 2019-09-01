@@ -7,12 +7,12 @@ author: Chenna Reddy <chenna@alavala.in>
 homepage: http://github.com/yagnyam-in/proxy-messages-dart
 
 environment:
- sdk: '>=2.2.2 <3.0.0'
+  sdk: '>=2.2.2 <3.0.0'
 
 dependencies:
   proxy_core:
-   path: ../proxy-core-dart
-   # git: git://github.com/yagnyam-in/proxy-core-dart.git
+    path: ../proxy-core-dart
+    # git: git://github.com/yagnyam-in/proxy-core-dart.git
   json_annotation: ^3.0.0
   quiver: '>=2.0.0 <3.0.0'
   http: ^0.12.0+2

@@ -5,7 +5,6 @@ import 'package:proxy_messages/src/banking/proxy_account_id.dart';
 import 'payment_authorization_updated_alert.dart';
 
 class PaymentAuthorizationUpdatedLiteAlert extends LiteAlert {
-
   final String paymentAuthorizationId;
 
   final ProxyAccountId payerAccountId;
@@ -17,11 +16,11 @@ class PaymentAuthorizationUpdatedLiteAlert extends LiteAlert {
     @required this.paymentAuthorizationId,
     @required this.payerAccountId,
   }) : super(
-    alertId: alertId,
-    alertType: PaymentAuthorizationUpdatedAlert.ALERT_TYPE,
-    proxyUniverse: proxyUniverse,
-    receiverProxyId: receiverProxyId,
-  );
+          alertId: alertId,
+          alertType: PaymentAuthorizationUpdatedAlert.ALERT_TYPE,
+          proxyUniverse: proxyUniverse,
+          receiverProxyId: receiverProxyId,
+        );
 
   factory PaymentAuthorizationUpdatedLiteAlert.fromJson(Map<dynamic, dynamic> map) {
     return PaymentAuthorizationUpdatedLiteAlert(

@@ -1,4 +1,3 @@
-
 export 'package:proxy_messages/src/banking/payments/payee.dart';
 export 'package:proxy_messages/src/banking/payments/payment_authorization.dart';
 export 'package:proxy_messages/src/banking/payments/payment_authorization_registered.dart';
