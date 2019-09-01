@@ -100,6 +100,7 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
   static PaymentAuthorization fromJson(Map json) => _$PaymentAuthorizationFromJson(json);
 
   static SignedMessage<PaymentAuthorization> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<PaymentAuthorization> signed = SignedMessage.fromJson<PaymentAuthorization>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;

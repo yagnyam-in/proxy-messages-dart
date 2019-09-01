@@ -90,6 +90,7 @@ class EscrowAccountCreationRequest extends SignableRequestMessage with ProxyUtil
   static EscrowAccountCreationRequest fromJson(Map json) => _$EscrowAccountCreationRequestFromJson(json);
 
   static SignedMessage<EscrowAccountCreationRequest> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<EscrowAccountCreationRequest> signedMessage =
         SignedMessage.fromJson<EscrowAccountCreationRequest>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);

@@ -129,6 +129,7 @@ class DepositRequestCreationRequest extends SignableRequestMessage with ProxyUti
   static DepositRequestCreationRequest fromJson(Map json) => _$DepositRequestCreationRequestFromJson(json);
 
   static SignedMessage<DepositRequestCreationRequest> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<DepositRequestCreationRequest> signed = SignedMessage.fromJson<DepositRequestCreationRequest>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;

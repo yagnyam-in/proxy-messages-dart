@@ -72,6 +72,7 @@ class PaymentAuthorizationUpdatedAlert extends SignableAlertMessage with ProxyUt
   static PaymentAuthorizationUpdatedAlert fromJson(Map json) => _$PaymentAuthorizationUpdatedAlertFromJson(json);
 
   static SignedMessage<PaymentAuthorizationUpdatedAlert> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<PaymentAuthorizationUpdatedAlert> signedMessage =
         SignedMessage.fromJson<PaymentAuthorizationUpdatedAlert>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);

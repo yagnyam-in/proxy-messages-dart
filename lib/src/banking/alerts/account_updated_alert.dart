@@ -66,6 +66,7 @@ class AccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   static AccountUpdatedAlert fromJson(Map json) => _$AccountUpdatedAlertFromJson(json);
 
   static SignedMessage<AccountUpdatedAlert> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<AccountUpdatedAlert> signedMessage = SignedMessage.fromJson<AccountUpdatedAlert>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;

@@ -19,6 +19,7 @@ class AccountUpdatedLiteAlert extends LiteAlert {
         );
 
   factory AccountUpdatedLiteAlert.fromJson(Map<dynamic, dynamic> map) {
+    if (map == null) return null;
     return AccountUpdatedLiteAlert(
       proxyUniverse: map[SignableAlertMessage.FIELD_PROXY_UNIVERSE],
       proxyAccountId: ProxyAccountId(

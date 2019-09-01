@@ -67,6 +67,7 @@ class DepositRequestCancelResponse extends SignableMessage with ProxyUtils {
   static DepositRequestCancelResponse fromJson(Map json) => _$DepositRequestCancelResponseFromJson(json);
 
   static SignedMessage<DepositRequestCancelResponse> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<DepositRequestCancelResponse> signed = SignedMessage.fromJson<DepositRequestCancelResponse>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;

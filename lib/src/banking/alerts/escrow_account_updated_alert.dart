@@ -64,6 +64,7 @@ class EscrowAccountUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   static EscrowAccountUpdatedAlert fromJson(Map json) => _$EscrowAccountUpdatedAlertFromJson(json);
 
   static SignedMessage<EscrowAccountUpdatedAlert> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<EscrowAccountUpdatedAlert> signedMessage = SignedMessage.fromJson<EscrowAccountUpdatedAlert>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;

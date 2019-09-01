@@ -79,6 +79,7 @@ class PaymentEncashmentUpdatedAlert extends SignableAlertMessage with ProxyUtils
   static PaymentEncashmentUpdatedAlert fromJson(Map json) => _$PaymentEncashmentUpdatedAlertFromJson(json);
 
   static SignedMessage<PaymentEncashmentUpdatedAlert> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<PaymentEncashmentUpdatedAlert> signedMessage =
         SignedMessage.fromJson<PaymentEncashmentUpdatedAlert>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);

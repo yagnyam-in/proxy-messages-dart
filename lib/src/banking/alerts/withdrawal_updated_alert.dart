@@ -75,6 +75,7 @@ class WithdrawalUpdatedAlert extends SignableAlertMessage with ProxyUtils {
   static WithdrawalUpdatedAlert fromJson(Map json) => _$WithdrawalUpdatedAlertFromJson(json);
 
   static SignedMessage<WithdrawalUpdatedAlert> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<WithdrawalUpdatedAlert> signedMessage = SignedMessage.fromJson<WithdrawalUpdatedAlert>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;

@@ -62,6 +62,7 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage with Prox
   static PaymentAuthorizationStatusRequest fromJson(Map json) => _$PaymentAuthorizationStatusRequestFromJson(json);
 
   static SignedMessage<PaymentAuthorizationStatusRequest> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<PaymentAuthorizationStatusRequest> signed =
         SignedMessage.fromJson<PaymentAuthorizationStatusRequest>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);

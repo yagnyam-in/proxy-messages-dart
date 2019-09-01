@@ -95,6 +95,7 @@ class Withdrawal extends SignableRequestMessage with ProxyUtils {
   static Withdrawal fromJson(Map json) => _$WithdrawalFromJson(json);
 
   static SignedMessage<Withdrawal> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<Withdrawal> signed = SignedMessage.fromJson<Withdrawal>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;

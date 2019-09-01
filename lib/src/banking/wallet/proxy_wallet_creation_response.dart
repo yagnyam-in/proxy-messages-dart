@@ -66,6 +66,7 @@ class ProxyWalletCreationResponse extends SignableMessage with ProxyUtils {
   static ProxyWalletCreationResponse fromJson(Map json) => _$ProxyWalletCreationResponseFromJson(json);
 
   static SignedMessage<ProxyWalletCreationResponse> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<ProxyWalletCreationResponse> signed = SignedMessage.fromJson<ProxyWalletCreationResponse>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;

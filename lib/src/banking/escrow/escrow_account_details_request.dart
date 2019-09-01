@@ -70,6 +70,7 @@ class EscrowAccountDetailsRequest extends SignableRequestMessage with ProxyUtils
   static EscrowAccountDetailsRequest fromJson(Map json) => _$EscrowAccountDetailsRequestFromJson(json);
 
   static SignedMessage<EscrowAccountDetailsRequest> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<EscrowAccountDetailsRequest> signedMessage =
         SignedMessage.fromJson<EscrowAccountDetailsRequest>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);

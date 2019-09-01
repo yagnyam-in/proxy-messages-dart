@@ -61,6 +61,7 @@ class PaymentEncashmentRegistered extends SignableMessage with ProxyUtils {
   static PaymentEncashmentRegistered fromJson(Map json) => _$PaymentEncashmentRegisteredFromJson(json);
 
   static SignedMessage<PaymentEncashmentRegistered> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<PaymentEncashmentRegistered> signed = SignedMessage.fromJson<PaymentEncashmentRegistered>(json);
     signed.message = MessageBuilder.instance().buildSignableMessage(signed.payload, fromJson);
     return signed;

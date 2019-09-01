@@ -72,6 +72,7 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
   static ProxyAccount fromJson(Map json) => _$ProxyAccountFromJson(json);
 
   static SignedMessage<ProxyAccount> signedMessageFromJson(Map json) {
+    if (json == null) return null;
     SignedMessage<ProxyAccount> signedMessage = SignedMessage.fromJson<ProxyAccount>(json);
     signedMessage.message = MessageBuilder.instance().buildSignableMessage(signedMessage.payload, fromJson);
     return signedMessage;
