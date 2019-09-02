@@ -14,7 +14,8 @@ ProxyAccountId _$ProxyAccountIdFromJson(Map json) {
   );
 }
 
-Map<String, dynamic> _$ProxyAccountIdToJson(ProxyAccountId instance) => <String, dynamic>{
+Map<String, dynamic> _$ProxyAccountIdToJson(ProxyAccountId instance) =>
+    <String, dynamic>{
       'accountId': instance.accountId,
       'bankProxyId': instance.bankProxyId.toJson(),
       'proxyUniverse': instance.proxyUniverse,

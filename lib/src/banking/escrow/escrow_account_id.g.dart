@@ -14,7 +14,8 @@ EscrowAccountId _$EscrowAccountIdFromJson(Map json) {
   );
 }
 
-Map<String, dynamic> _$EscrowAccountIdToJson(EscrowAccountId instance) => <String, dynamic>{
+Map<String, dynamic> _$EscrowAccountIdToJson(EscrowAccountId instance) =>
+    <String, dynamic>{
       'accountId': instance.accountId,
       'bankProxyId': instance.bankProxyId.toJson(),
       'proxyUniverse': instance.proxyUniverse,

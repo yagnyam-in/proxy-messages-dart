@@ -27,7 +27,7 @@ class EscrowAccountProposalStatus extends SignableMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return assertValidProxyObject(escrowAccountProposal) &&
+    return isValidProxyObject(escrowAccountProposal) &&
         (escrowProxyId == null || escrowProxyId.isValid()) &&
         (payeeProxyId == null || payeeProxyId.isValid());
   }

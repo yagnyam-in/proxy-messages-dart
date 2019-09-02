@@ -23,7 +23,7 @@ class EscrowAccountProposalPayeeAck extends SignableMessage with ProxyUtils {
 
   @override
   bool isValid() {
-    return isValidProxyId(payeeProxyId) && assertValidProxyObject(escrowAccountProposal);
+    return isValidProxyId(payeeProxyId) && isValidProxyObject(escrowAccountProposal);
   }
 
   @override
