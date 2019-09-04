@@ -8,7 +8,7 @@ part 'payment_authorization_updated_alert.g.dart';
 
 @JsonSerializable()
 class PaymentAuthorizationUpdatedAlert extends SignableAlertMessage with ProxyUtils {
-  static const ALERT_TYPE = "in.yagnyam.proxy.messages.payments.PaymentAuthorizationUpdatedAlert";
+  static const ALERT_TYPE = "in.yagnyam.proxy.messages.payments.alerts.PaymentAuthorizationUpdatedAlert";
   static const FIELD_PAYMENT_AUTHORIZATION_ID = "paymentAuthorizationId";
   static const FIELD_PAYER_ACCOUNT_ID = "payerAccountId";
   static const FIELD_PAYER_BANK_PROXY_ID = "payerBankProxyId";
