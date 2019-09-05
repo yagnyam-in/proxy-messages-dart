@@ -40,7 +40,9 @@ class PaymentEncashment extends SignableRequestMessage with ProxyUtils {
     @required this.paymentAuthorization,
     @required this.payeeAccount,
     this.secret,
-  });
+  }) {
+    assertValid();
+  }
 
   @override
   void assertValid() {

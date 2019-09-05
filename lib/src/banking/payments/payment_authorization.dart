@@ -40,7 +40,9 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
     @required this.proxyAccount,
     @required this.amount,
     @required this.payees,
-  });
+  }) {
+    assertValid();
+  }
 
   @override
   void assertValid() {

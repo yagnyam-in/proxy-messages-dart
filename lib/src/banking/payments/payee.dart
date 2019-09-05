@@ -33,13 +33,32 @@ class Payee extends ProxyBaseObject with ProxyUtils {
     this.emailHash,
     this.phoneHash,
     this.secretHash,
-  });
+  }) {
+    assertValid();
+  }
 
   @override
   void assertValid() {
-    assert(paymentEncashmentId != null);
+    assertNotEmpty(paymentEncashmentId);
     assert(payeeType != null);
-    assert(isValid());
+    switch (payeeType) {
+      case PayeeTypeEnum.ProxyId:
+        assertValidProxyId(proxyId);
+        break;
+      case PayeeTypeEnum.Email:
+        assertValidProxyObject(emailHash);
+        assertValidProxyObject(secretHash);
+        break;
+      case PayeeTypeEnum.Phone:
+        assertValidProxyObject(phoneHash);
+        assertValidProxyObject(secretHash);
+        break;
+      case PayeeTypeEnum.AnyoneWithSecret:
+        assertValidProxyObject(secretHash);
+        break;
+      default:
+        assert(false, "Uknown payeeType: $payeeType");
+    }
   }
 
   @override
