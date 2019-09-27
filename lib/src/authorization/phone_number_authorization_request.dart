@@ -18,11 +18,16 @@ class PhoneNumberAuthorizationRequest extends SignableRequestMessage with ProxyU
   @JsonKey(nullable: false)
   final String authorizationId;
 
+  // Human readable index to identify the challenge by end user.
+  // Should not be used for anything else.
+  final String index;
+
   PhoneNumberAuthorizationRequest({
     @required this.requesterProxyId,
     @required this.authorizerProxyId,
     @required this.phoneNumber,
     @required this.authorizationId,
+    this.index,
   }) {
     assertValid();
   }

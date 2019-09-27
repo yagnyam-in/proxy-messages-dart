@@ -12,14 +12,25 @@ EmailAuthorizationRequest _$EmailAuthorizationRequestFromJson(Map json) {
     authorizerProxyId: ProxyId.fromJson(json['authorizerProxyId'] as Map),
     email: json['email'] as String,
     authorizationId: json['authorizationId'] as String,
+    index: json['index'] as String,
   );
 }
 
 Map<String, dynamic> _$EmailAuthorizationRequestToJson(
-        EmailAuthorizationRequest instance) =>
-    <String, dynamic>{
-      'requesterProxyId': instance.requesterProxyId.toJson(),
-      'email': instance.email,
-      'authorizerProxyId': instance.authorizerProxyId.toJson(),
-      'authorizationId': instance.authorizationId,
-    };
+    EmailAuthorizationRequest instance) {
+  final val = <String, dynamic>{
+    'requesterProxyId': instance.requesterProxyId.toJson(),
+    'email': instance.email,
+    'authorizerProxyId': instance.authorizerProxyId.toJson(),
+    'authorizationId': instance.authorizationId,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('index', instance.index);
+  return val;
+}

@@ -18,11 +18,16 @@ class EmailAuthorizationRequest extends SignableRequestMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final String authorizationId;
 
+  // Human readable index to identify the challenge by end user.
+  // Should not be used for anything else.
+  final String index;
+
   EmailAuthorizationRequest({
     @required this.requesterProxyId,
     @required this.authorizerProxyId,
     @required this.email,
     @required this.authorizationId,
+    this.index,
   }) {
     assertValid();
   }
