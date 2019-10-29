@@ -3,8 +3,6 @@ import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 import 'package:proxy_messages/banking.dart';
 
-import 'escrow_account_id.dart';
-
 part 'escrow_account_creation_request.g.dart';
 
 @JsonSerializable()
@@ -100,8 +98,6 @@ class EscrowAccountCreationRequest extends SignableRequestMessage with ProxyUtil
   ProxyId get payerProxyId => debitProxyAccount.message.ownerProxyId;
 
   ProxyId get bankProxyId => debitProxyAccount.message.ownerProxyId;
-
-  String get proxyUniverse => debitProxyAccount.message.proxyUniverse;
 
   ProxyAccountId get debitProxyAccountId => debitProxyAccount.message.proxyAccountId;
 

@@ -120,10 +120,6 @@ class PaymentAuthorization extends SignableRequestMessage with ProxyUtils {
     return proxyAccount.message.currency;
   }
 
-  String get proxyUniverse {
-    return proxyAccount.message.proxyUniverse;
-  }
-
   ProxyId get payerBankProxyId {
     return proxyAccount.signedBy;
   }

@@ -5,6 +5,13 @@ import 'package:proxy_messages/banking.dart';
 
 part 'proxy_account.g.dart';
 
+enum ProxyAccountPermissionEnum {
+  InquireAccountDetails,
+  InquireBalance,
+  AuthorizeProxy,
+  MakePayment,
+}
+
 @JsonSerializable()
 class ProxyAccount extends SignableMessage with ProxyUtils {
   @JsonKey(nullable: false)
@@ -22,6 +29,9 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
   @JsonKey(nullable: false)
   final String currency;
 
+  @JsonKey(nullable: true)
+  final List<ProxyAccountPermissionEnum> permissions;
+
   /**
    * Maximum amount for which *each* Payment can be made
    */
@@ -34,6 +44,7 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
     @required this.currency,
     @required this.creationDate,
     @required this.expiryDate,
+    @required this.permissions,
     @required this.maximumAmountPerTransaction,
   }) {
     assertValid();
@@ -95,6 +106,4 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
   String get messageType => "in.yagnyam.proxy.messages.banking.ProxyAccount";
 
   ProxyId get bankProxyId => proxyAccountId.bankProxyId;
-
-  String get proxyUniverse => proxyAccountId.proxyUniverse;
 }

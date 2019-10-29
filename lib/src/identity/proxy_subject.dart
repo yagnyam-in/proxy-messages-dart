@@ -3,7 +3,6 @@ import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
 
 import 'proxy_subject_id.dart';
-import 'subject_details.dart';
 
 part 'proxy_subject.g.dart';
 
@@ -16,27 +15,27 @@ class ProxySubject extends SignableMessage with ProxyUtils {
   final ProxyId ownerProxyId;
 
   @JsonKey(nullable: false)
+  final ProxyId relyingPartyProxyId;
+
+  @JsonKey(nullable: false)
   final DateTime creationDate;
 
   @JsonKey(nullable: false)
   final DateTime expiryDate;
 
-  @JsonKey(nullable: false)
-  final SubjectDetails subjectDetails;
-
   ProxySubject({
     @required this.proxySubjectId,
     @required this.ownerProxyId,
+    @required this.relyingPartyProxyId,
     @required this.creationDate,
     @required this.expiryDate,
-    @required this.subjectDetails,
   }) {
     assertValid();
   }
 
   @override
   ProxyId getSigner() {
-    return proxySubjectId.issuerProxyId;
+    return proxySubjectId.identityProviderProxyId;
   }
 
   @override
@@ -48,18 +47,18 @@ class ProxySubject extends SignableMessage with ProxyUtils {
   bool isValid() {
     return isValidProxyObject(proxySubjectId) &&
         isValidProxyId(ownerProxyId) &&
+        isValidProxyId(relyingPartyProxyId) &&
         isValidDateTime(creationDate) &&
-        isValidDateTime(expiryDate) &&
-        isValidProxyObject(subjectDetails);
+        isValidDateTime(expiryDate);
   }
 
   @override
   void assertValid() {
     assertValidProxyObject(proxySubjectId);
     assertValidProxyId(ownerProxyId);
+    assertValidProxyId(relyingPartyProxyId);
     assertValidDateTime(creationDate);
     assertValidDateTime(expiryDate);
-    assertValidProxyObject(subjectDetails);
   }
 
   static SignedMessage<ProxySubject> signedMessageFromJson(Map json) {
@@ -87,7 +86,5 @@ class ProxySubject extends SignableMessage with ProxyUtils {
   @override
   String get messageType => "in.yagnyam.proxy.messages.identity.ProxySubject";
 
-  ProxyId get issuerProxyId => proxySubjectId.issuerProxyId;
-
-  String get proxyUniverse => proxySubjectId.proxyUniverse;
+  ProxyId get identityProviderProxyId => proxySubjectId.identityProviderProxyId;
 }

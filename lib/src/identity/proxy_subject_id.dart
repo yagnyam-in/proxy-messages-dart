@@ -10,16 +10,13 @@ class ProxySubjectId extends ProxyBaseObject with ProxyUtils {
   final String subjectId;
 
   @JsonKey(nullable: false)
-  final ProxyId issuerProxyId;
+  final ProxyId identityProviderProxyId;
 
-  @JsonKey(nullable: false)
-  final String proxyUniverse;
-
-  ProxySubjectId({@required this.subjectId, @required this.issuerProxyId, @required this.proxyUniverse}) {
+  ProxySubjectId({@required this.subjectId, @required this.identityProviderProxyId}) {
     assertValid();
   }
 
-  String get issuerId => issuerProxyId?.id;
+  String get issuerId => identityProviderProxyId?.id;
 
   @override
   bool operator ==(dynamic other) {
@@ -27,23 +24,23 @@ class ProxySubjectId extends ProxyBaseObject with ProxyUtils {
       return false;
     }
     ProxySubjectId otherSubjectId = other as ProxySubjectId;
-    return ProxySubjectId == otherSubjectId.subjectId && issuerProxyId == otherSubjectId.issuerProxyId;
+    return ProxySubjectId == otherSubjectId.subjectId &&
+        identityProviderProxyId == otherSubjectId.identityProviderProxyId;
   }
 
   String toString() {
-    return "(subjectId: $subjectId, issuerProxyId: $issuerProxyId)";
+    return "(subjectId: $subjectId, identityProviderProxyId: $identityProviderProxyId)";
   }
 
   @override
   bool isValid() {
-    return isValidId(subjectId) && isValidProxyId(issuerProxyId) && isValidId(proxyUniverse);
+    return isNotEmpty(subjectId) && isValidProxyId(identityProviderProxyId);
   }
 
   @override
   void assertValid() {
-    assert(isValidId(subjectId), "Invalid subjectId $subjectId");
-    assert(isValidProxyId(issuerProxyId), "Invalid issuerProxyId $issuerProxyId");
-    assert(isValidId(proxyUniverse), "Invalid proxyUniverse $proxyUniverse");
+    assert(isNotEmpty(subjectId), "Invalid subjectId $subjectId");
+    assert(isValidProxyId(identityProviderProxyId), "Invalid identityProviderProxyId $identityProviderProxyId");
   }
 
   static bool isValidId(String id) {

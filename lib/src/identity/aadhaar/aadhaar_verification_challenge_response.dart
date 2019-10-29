@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:proxy_core/core.dart';
-import 'package:proxy_messages/src/identity/aadhaar/aadhaar_verification_request.dart';
 
 import 'aadhaar_verification_challenge.dart';
 
@@ -58,7 +57,7 @@ class AadhaarVerificationChallengeResponse extends SignableMessage with ProxyUti
 
   @override
   List<SignedMessage<SignableMessage>> getSignedChildMessages() {
-    return [];
+    return [challenge];
   }
 
   @override
@@ -69,9 +68,9 @@ class AadhaarVerificationChallengeResponse extends SignableMessage with ProxyUti
   @override
   String get messageType => "in.yagnyam.proxy.messages.identity.aadhaar.AadhaarVerificationChallengeResponse";
 
-  String get proxyUniverse => challenge.message.proxyUniverse;
+  String get aadhaarNumber => challenge.message.aadhaarNumber;
 
   ProxyId get ownerProxyId => challenge.message.ownerProxyId;
 
-  ProxyId get issuerProxyId => challenge.message.issuerProxyId;
+  ProxyId get identityProviderProxyId => challenge.message.identityProviderProxyId;
 }

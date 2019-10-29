@@ -116,10 +116,6 @@ class PaymentEncashment extends SignableRequestMessage with ProxyUtils {
     return payerAccount.message.currency;
   }
 
-  String get proxyUniverse {
-    return payerAccount.message.proxyUniverse;
-  }
-
   ProxyId get payerBankProxyId {
     return payerAccount.signedBy;
   }

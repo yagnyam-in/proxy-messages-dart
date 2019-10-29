@@ -10,23 +10,19 @@ class AadhaarVerificationRequest extends SignableRequestMessage with ProxyUtils 
   final String requestId;
 
   @JsonKey(nullable: false)
-  final String proxyUniverse;
-
-  @JsonKey(nullable: false)
   final ProxyId ownerProxyId;
 
   @JsonKey(nullable: false)
   final String aadhaarNumber;
 
   @JsonKey(nullable: false)
-  final ProxyId issuerProxyId;
+  final ProxyId identityProviderProxyId;
 
   AadhaarVerificationRequest({
     @required this.requestId,
-    @required this.proxyUniverse,
     @required this.ownerProxyId,
     @required this.aadhaarNumber,
-    @required this.issuerProxyId,
+    @required this.identityProviderProxyId,
   }) {
     assertValid();
   }
@@ -44,18 +40,16 @@ class AadhaarVerificationRequest extends SignableRequestMessage with ProxyUtils 
   @override
   bool isValid() {
     return isValidProxyId(ownerProxyId) &&
-        isValidProxyId(issuerProxyId) &&
+        isValidProxyId(identityProviderProxyId) &&
         isNotEmpty(requestId) &&
-        isNotEmpty(proxyUniverse) &&
         isNotEmpty(aadhaarNumber);
   }
 
   @override
   void assertValid() {
     assertValidProxyId(ownerProxyId);
-    assertValidProxyId(issuerProxyId);
+    assertValidProxyId(identityProviderProxyId);
     assertNotEmpty(requestId);
-    assertNotEmpty(proxyUniverse);
     assertNotEmpty(aadhaarNumber);
   }
 

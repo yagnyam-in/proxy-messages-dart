@@ -92,10 +92,6 @@ class PaymentEncashmentStatusRequest extends SignableRequestMessage with ProxyUt
     return paymentEncashment.message.payeeId;
   }
 
-  String get proxyUniverse {
-    return paymentEncashment.message.proxyUniverse;
-  }
-
   ProxyId get payerBankProxyId {
     return paymentEncashment.message.payerBankProxyId;
   }

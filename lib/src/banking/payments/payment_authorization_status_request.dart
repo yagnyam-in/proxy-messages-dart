@@ -81,10 +81,6 @@ class PaymentAuthorizationStatusRequest extends SignableRequestMessage with Prox
     return paymentAuthorization.message.payerId;
   }
 
-  String get proxyUniverse {
-    return paymentAuthorization.message.proxyUniverse;
-  }
-
   ProxyId get payerBankProxyId {
     return paymentAuthorization.message.payerBankProxyId;
   }

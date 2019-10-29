@@ -115,6 +115,4 @@ class EscrowAccount extends SignableMessage with ProxyUtils {
   String get messageType => "in.yagnyam.proxy.messages.escrow.EscrowAccount";
 
   ProxyId get bankProxyId => escrowAccountId.bankProxyId;
-
-  String get proxyUniverse => escrowAccountId.proxyUniverse;
 }

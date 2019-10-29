@@ -22,7 +22,7 @@ class AadhaarVerificationChallenge extends SignableMessage with ProxyUtils {
 
   @override
   ProxyId getSigner() {
-    return issuerProxyId;
+    return identityProviderProxyId;
   }
 
   @override
@@ -56,7 +56,7 @@ class AadhaarVerificationChallenge extends SignableMessage with ProxyUtils {
 
   @override
   List<SignedMessage<SignableMessage>> getSignedChildMessages() {
-    return [];
+    return [request];
   }
 
   @override
@@ -67,9 +67,9 @@ class AadhaarVerificationChallenge extends SignableMessage with ProxyUtils {
   @override
   String get messageType => "in.yagnyam.proxy.messages.identity.aadhaar.AadhaarVerificationChallenge";
 
-  String get proxyUniverse => request.message.proxyUniverse;
+  String get aadhaarNumber => request.message.aadhaarNumber;
 
   ProxyId get ownerProxyId => request.message.ownerProxyId;
 
-  ProxyId get issuerProxyId => request.message.issuerProxyId;
+  ProxyId get identityProviderProxyId => request.message.identityProviderProxyId;
 }

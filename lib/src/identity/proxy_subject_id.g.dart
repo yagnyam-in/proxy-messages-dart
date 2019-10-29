@@ -9,14 +9,13 @@ part of 'proxy_subject_id.dart';
 ProxySubjectId _$ProxySubjectIdFromJson(Map json) {
   return ProxySubjectId(
     subjectId: json['subjectId'] as String,
-    issuerProxyId: ProxyId.fromJson(json['issuerProxyId'] as Map),
-    proxyUniverse: json['proxyUniverse'] as String,
+    identityProviderProxyId:
+        ProxyId.fromJson(json['identityProviderProxyId'] as Map),
   );
 }
 
 Map<String, dynamic> _$ProxySubjectIdToJson(ProxySubjectId instance) =>
     <String, dynamic>{
       'subjectId': instance.subjectId,
-      'issuerProxyId': instance.issuerProxyId.toJson(),
-      'proxyUniverse': instance.proxyUniverse,
+      'identityProviderProxyId': instance.identityProviderProxyId.toJson(),
     };

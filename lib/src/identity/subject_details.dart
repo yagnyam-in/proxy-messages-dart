@@ -3,10 +3,31 @@ import 'package:proxy_core/core.dart';
 
 part 'subject_details.g.dart';
 
+enum SubjectIdTypeEnum {
+  IN_AADHAAR,
+}
+
+enum SubjectFieldEnum {
+  subjectIdType,
+  nationality,
+  aadhaarNumber,
+  name,
+  gender,
+  age,
+  is18Plus,
+  dateOfBirth,
+}
+
 @JsonSerializable()
 class SubjectDetails extends ProxyBaseObject with ProxyUtils {
   @JsonKey(nullable: true)
+  final SubjectIdTypeEnum subjectIdType;
+
+  @JsonKey(nullable: true)
   final String nationality;
+
+  @JsonKey(nullable: true)
+  final String aadhaarNumber;
 
   @JsonKey(nullable: true)
   final String name;
@@ -25,7 +46,9 @@ class SubjectDetails extends ProxyBaseObject with ProxyUtils {
   final DateTime dateOfBirth;
 
   SubjectDetails({
+    this.subjectIdType,
     this.nationality,
+    this.aadhaarNumber,
     this.name,
     this.gender,
     this.age,
