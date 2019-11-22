@@ -89,6 +89,11 @@ class ProxyAccount extends SignableMessage with ProxyUtils {
     return signedMessage;
   }
 
+  static List<SignedMessage<ProxyAccount>> signedMessagesFromJson(List json) {
+    if (json == null) return [];
+    return json.map((m) => signedMessageFromJson(m as Map)).toList();
+  }
+
   @override
   Map<String, dynamic> toJson() => _$ProxyAccountToJson(this);
 
